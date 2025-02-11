@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Page</title>
+    <style>
+        h1 {
+            text-align: center;
+        }
+
+        .qrcode {
+            width: 250px;
+            height: 250px;
+            margin: auto;
+        }
+
+        .qrcode img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .refNoImg{
+            width: 250px;
+            margin: auto;
+            padding-top: 10px;
+        }
+
+        .refNoImg img {
+            width: 100%;
+        }
+
+        .upiid {
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .payDiv {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .payAmount {
+            background-color: greenyellow;
+            padding: 5px 10px;
+            font-weight: 700;
+
+        }
+
+        .refNoForm {
+            width: 250px;
+            margin: auto;
+        }
+
+        .refNoForm label {
+            display: block;
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        .refNoForm input {
+            width: 100%;
+            margin: 15px 0px;
+            font-size: 20px;
+            padding: 2px 5px;
+        }
+
+        .note {
+            color: red;
+            text-align: center;
+            font-weight: 600;
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Pay Admission Fee</h1>
+    <div class="qrcode">
+        <!-- <img src="images/barodaQR.jpg" alt="QR Code"> -->
+        <img src=<%= locals.qrcodeUrl %> alt="QR Code">
+    </div>
+    <p class="upiid">UPI ID - boim-440583400035@boi</p>
+    <div class="payDiv">
+        <p class="payAmount">Pay ₹<%= locals.appliedUser.admissionFee %>
+        </p>
+    </div>
+
+    <form class="refNoForm" action="/ugRegularSem3Pay" method="post" enctype="multipart/form-data">
+        <label for="refNo">Enter 12 digits UTR/Ref No. below after payment</label>
+        <input type="text" name="refNo" id="refNo" maxlength="12" pattern="[0-9]{12}" placeholder="Enter 12 Digit Ref. No." required>
+        <label for="paymentSS" class="form-label">Upload Payment Screenshot</label>
+        <input id="paymentSS" name="paymentSS" type="file" required>
+        <button type="submit">Submit</button>
+    </form>
+
+    <div class="refNoImg">
+        <img src="/images/refNo.jpg" alt="Ref no. example">
+        <!-- <img src= alt="Ref no. example"> -->
+    </div>
+
+    <p class="note">Note: Submit hard copy of Payment Screenshot and Payment Slip to College.</p>
+    <!-- <p class="note">and Payment Slip to College.</p> -->
+
+    <script>
+        const refNo = document.getElementById('refNo');
+
+        refNo.addEventListener('input', function () {
+            if (this.value.length < 12) {
+                this.setCustomValidity('Please enter a 12-digit payment Ref. No.');
+            } else {
+                this.setCustomValidity('');
+            }
+        });
+    </script>
+</body>
+
+</html>

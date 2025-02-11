@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Receipt</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css"
+        integrity="sha256-2XFplPlrFClt0bIdPgpz8H7ojnk10H69xRqd9+uTShA=" crossorigin="anonymous" />
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css'>
+    <link rel="stylesheet" href="/stylesheets/admissionForm.css">
+</head>
+
+<body>
+
+    <div class="container myCont">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class=" d-flex justify-content-between">
+                            <div class="mb-4">
+                                <img src="/images/mdcLogo.png" width="70px" alt="Logo">
+                            </div>
+                            <div class="text-muted text-center formHead">
+                                <h2>M. D. COLLEGE, NAUBATPUR</h2>
+                                <h6>ADMISSION FORM - BCA Part-III
+                                </h6>
+                                <h3>SESSION 2022-25, Uni. Roll No: <%= locals.appliedUser.uniRollNumber %></h3>
+                                <div><b>College Copy</b></div>
+                            </div>
+                            <div class="mb-4">
+                                <img src="/images/ppuLogo.png" width="70px" alt="Logo">
+                            </div>
+                        </div>
+                        <hr>
+
+                        <!-- student info -->
+                        <div class="studentInfo">
+                            <div class="studentInfoData">
+                                <!-- Student Upper -->
+                                <div class="studentInfoDataUpper">
+                                    <div class="fields">
+                                        <div class="fieldsName">1. Student's Name :</div>
+                                        <div class="fieldsNameValue"><%= locals.appliedUser.studentName %></div>
+                                    </div>
+                                    <div class="fields">
+                                        <div class="fieldsName">2. Father's Name :</div>
+                                        <div class="fieldsNameValue"><%= locals.appliedUser.fatherName %></div>
+                                    </div>
+                                    <div class="fields">
+                                        <div class="fieldsName">3. Mother's Name :</div>
+                                        <div class="fieldsNameValue"><%= locals.appliedUser.motherName %></div>
+                                    </div>
+                                    <!-- <div class="fields">
+                                        <div class="fieldsName">4. Guardian's Name :</div>
+                                        <div class="fieldsNameValue"><%= locals.appliedUser.guardianName %></div>
+                                    </div> -->
+                                </div>
+
+                                <!-- Student Lower -->
+                                <div class="studentInfoDataLower">
+                                    <div class="lowerCol1">
+                                        <div>Uni. Registration Number :</div>
+                                        <div class="lowerFieldNameValue"><%= locals.appliedUser.uniRegNumber %></div>
+                                        <div>Date of Birth :</div>
+                                        <div class="lowerFieldNameValue"><%= locals.appliedUser.dOB %></div>
+                                        <!-- <div>Religion :</div>
+                                        <div class="lowerFieldNameValue"><%= locals.appliedUser.religion %></div> -->
+                                        <!-- <div>Blood Group :</div>
+                                        <div class="lowerFieldNameValue"><%= locals.appliedUser.bloodGroup %></div> -->
+                                        <div>Aadhar No:</div>
+                                        <div class="lowerFieldNameValue"><%= locals.appliedUser.aadharNumber %></div>
+                                    </div>
+                                    <div class="lowerCol2">
+                                        <div>Uni. Roll Number </div>
+                                        <div class="lowerFieldNameValue"><%= locals.appliedUser.uniRollNumber %></div>
+                                        <div>Gender :</div>
+                                        <div class="lowerFieldNameValue"><%= locals.appliedUser.gender %></div>
+                                        <div>Category :</div>
+                                        <div class="lowerFieldNameValue"><%= locals.appliedUser.category %></div>
+                                        <!-- <div>Physically Challenge :</div>
+                                        <div class="lowerFieldNameValue"><%= locals.appliedUser.physicallyChallenged %></div> -->
+                                        <!-- <div>Mobile No:</div>
+                                        <div class="lowerFieldNameValue"><%= locals.appliedUser.mobileNumber %></div> -->
+                                    </div>
+                                    <div class="lowerCol3">
+                                        <div>College Roll Number </div>
+                                        <div class="lowerFieldNameValue"><%= locals.appliedUser.collegeRollNumber %></div>
+                                        <div>E-mail Id :</div>
+                                        <div class="lowerFieldNameValue"><%= locals.appliedUser.email %></div>
+                                        <!-- <div>Marital Status :</div>
+                                        <div class="lowerFieldNameValue"><%= locals.appliedUser.maritalStatus %></div> -->
+                                        <!-- <div>WhatsApp No :</div>
+                                        <div class="lowerFieldNameValue"><%= locals.appliedUser.whatsAppNumber %></div> -->
+                                        <div>Mobile No:</div>
+                                        <div class="lowerFieldNameValue"><%= locals.appliedUser.mobileNumber %></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="studentInfoPicture">
+                                <div class="studentPhoto">
+                                    <img src=<%= locals.appliedUser.studentPhoto %>
+                                        alt="">
+                                </div>
+                                <div class="studentSign">
+                                    <img src=<%= locals.appliedUser.studentSign %>
+                                        alt="">
+                                </div>
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        <!-- Address -->
+                        <div class="addressInfo">
+                            <p><b>4. Address for Correspondence</b></p>
+                            <div class="addressUpper">
+                                <div class="address">
+                                    <p>Address</p>
+                                    <div class="addressInputBox"><%= locals.appliedUser.address %></div>
+                                </div>
+                                <div class="district">
+                                    <p>District</p>
+                                    <div class="addressInputBox"><%= locals.appliedUser.district %></div>
+                                </div>
+                            </div>
+
+                            <div class="addressUpper">
+                                <div class="address">
+                                    <p>PoliceStation</p>
+                                    <div class="addressInputBox"><%= locals.appliedUser.policeStation %></div>
+                                </div>
+                                <div class="district">
+                                    <p>State</p>
+                                    <div class="addressInputBox"><%= locals.appliedUser.state %></div>
+                                </div>
+                                <div class="district">
+                                    <p>PIN </p>
+                                    <div class="addressInputBox"><%= locals.appliedUser.pinCode %></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <hr>
+                        <!-- course detail -->
+                        <div class="courseDetail">
+                            <p><b>5. Course Details</b></p>
+                            <div class="coursePaper">
+                                <div class="coursePaperLeft">
+                                    <div class="paperBox">
+                                        <div class="paper">Subject :</div>
+                                        <div class="paperName"><%= locals.appliedUser.subject %></div>
+                                    </div>
+                                    <!-- <div class="paperBox">
+                                        <div class="paper">Paper - 3:</div>
+                                        <div class="paperName"><%= locals.appliedUser.paper3 %></div>
+                                    </div>
+                                    <div class="paperBox">
+                                        <div class="paper">Paper - 5:</div>
+                                        <div class="paperName"><%= locals.appliedUser.paper5 %></div>
+                                    </div> -->
+                                </div>
+                                <div class="coursePaperRight">
+                                    <!-- <div class="paperBox">
+                                        <div class="paper">Paper - 2:</div>
+                                        <div class="paperName"><%= locals.appliedUser.paper2 %></div>
+                                    </div>
+                                    <div class="paperBox">
+                                        <div class="paper">Paper - 4:</div>
+                                        <div class="paperName"><%= locals.appliedUser.paper4 %></div>
+                                    </div> -->
+                                    <!-- <div class="paperBox">
+                                        <div class="paper">Paper - 6:</div>
+                                        <div class="paperName"><%= locals.appliedUser.paper6 %></div>
+                                    </div> -->
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+
+                        <div class="lastExamPassed">
+                            <p><b>7. Last Exam Passed</b></p>
+                            <div class="lastExamPassedRow">
+                                <!-- <div class="lastExamPassedCol">
+                                    <div>Exam Name :</div>
+                                    <div class="inputField"><%# locals.appliedUser.examName %></div>
+                                </div> -->
+                                <!-- <div class="lastExamPassedCol">
+                                    <div>Exam Board :</div>
+                                    <div class="inputField"><# locals.appliedUser.examBoard %></div>
+                                </div> -->
+                                <!-- <div class="lastExamPassedCol">
+                                    <div>Exam Year :</div>
+                                    <div class="inputField"><%# locals.appliedUser.examYear %></div>
+                                </div> -->
+                                <div class="lastExamPassedCol">
+                                    <div>Obt Marks/Grade :</div>
+                                    <div class="inputField"><%= locals.appliedUser.obtMarks %></div>
+                                </div>
+                                <div class="lastExamPassedCol">
+                                    <div>Full Marks/Grade :</div>
+                                    <div class="inputField"><%= locals.appliedUser.fullMarks %></div>
+                                </div>
+                                <div class="lastExamPassedCol">
+                                    <div>Obt % :</div>
+                                    <div class="inputField"><%= locals.appliedUser.obtPercent %></div>
+                                </div>
+                                <div class="lastExamPassedCol">
+                                    <div>Result :</div>
+                                    <div class="inputField"><%= locals.appliedUser.
+                                        examResult
+                                         %></div>
+                                </div>
+                            </div>
+                            <div class="lastExamPassedRow">
+                                <!-- <div class="lastExamPassedCol">
+                                    <div>Obt Marks/Grade :</div>
+                                    <div class="inputField"><%# locals.appliedUser.obtMarks %></div>
+                                </div>
+                                <div class="lastExamPassedCol">
+                                    <div>Full Marks/Grade :</div>
+                                    <div class="inputField"><# locals.appliedUser.fullMarks %></div>
+                                </div>
+                                <div class="lastExamPassedCol">
+                                    <div>Obt % :</div>
+                                    <div class="inputField"><%# locals.appliedUser.obtPercent %></div>
+                                </div> -->
+                                <!-- <div class="lastExamPassedCol">
+                                    <div>PPU Confidential No :</div>
+                                    <div class="inputField"><%# locals.appliedUser.ppuConfidentialNumber %></div>
+                                </div> -->
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        <div class="officeUse">
+                            <p><b>8. Office Endorsement for Admission</b></p>
+                            <div class="officeUseBox">
+                                <div class="div1">Admission Sign of Assistant :</div>
+                                <div class="div2">Allowed Sign Admn. In-Charge :</div>
+                                <div class="div3">Not Allowed Sign Admn. In-Charge :</div>
+                                <div class="div4">PRINCIPAL :</div>
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        <div class="declaration">
+                            <p>1. We declare that all the information which is being furnished by me at the time of online admission, is true to the best of my knowledge and belief. <br>
+                            2. We also declare that, if any discrepancy, forgery or wrong information arises or mismatch from the original documents of me at any stage, my admission would automatically be treated as cancelled. I would be solely responsible for this and the college administration will have no accountability in this regard. <br>
+                            3. We will not request to change subject after my admission. <br>
+                            4. I shall be debarred from the filling the examinations form in case the attendance is below 75%. We have read and understood it.
+                            </p>
+                        </div>
+
+                        <div class="studentAndParentSign">
+                            <p><b>Full Signature of the Parent/Guardian</b></p>
+                            <p><b>Full Signature of the Student</b></p>
+                        </div>
+
+
+                        <div class="d-print-none mt-4">
+                            <div class="float-end">
+                                <a href="javascript:window.print()" class="btn btn-success me-1"><i
+                                        class="fa fa-print"></i></a>
+                                        <a href="/bca3Form" class="btn btn-primary w-md">Back to Home Page</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- end col -->
+    </div>
+    </div>
+    <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js'></script>
+</body>
+
+</html>

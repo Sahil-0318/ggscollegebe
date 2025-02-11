@@ -1,0 +1,67 @@
+<%- include('./partials/header.ejs') %>
+
+    <!-- Sign In Start -->
+    <div class="container-fluid">
+        <div class="row h-100 align-items-center justify-content-center" style="min-height: 100vh;">
+            <div class="col-12 col-sm-8 col-md-6 col-lg-5 col-xl-4">
+                <% if(locals.invalid){ %>
+                    <div id="submitPopUp">
+                        <div class="alert alert-danger bg-danger text-light border-0 my-4 mx-3 fade show" role="alert">
+                            <%= locals.invalid %>
+                        </div>
+                    </div>
+                    <% }%>
+                        <div class="bg-light rounded p-4 p-sm-5 my-4 mx-3">
+                            <div class="d-flex flex-column gap-3 mb-3">
+                                <img class="mb-0" src="/images/logomdcollege.png" alt="MD College" style="width: 100%;">
+
+                                <h3 class="text-primary">Login</h3>
+                            </div>
+                            <form id="loginForm" action="/ugRegularSem3Login" method="post">
+                                <div class="form-floating mb-3">
+                                    <input name="mobileNumber" type="text" class="form-control" id="mobileNumber"
+                                        placeholder="Registered Mobile Number" required>
+                                    <label for="mobileNumber">Registered Mobile Number</label>
+                                </div>
+                                <button type="submit" class="btn btn-primary py-3 w-100 mb-4">Log In</button>
+                                <p class="text-center mb-0">Haven't Registered? <a href="/ugRegularSem3Signup">Register</a>
+                                </p>
+                            </form>
+                        </div>
+            </div>
+        </div>
+    </div>
+    <!-- Sign In End -->
+    </div>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../lib/chart/chart.min.js"></script>
+    <script src="../lib/easing/easing.min.js"></script>
+    <script src="../lib/waypoints/waypoints.min.js"></script>
+    <script src="../lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="../lib/tempusdominus/js/moment.min.js"></script>
+    <script src="../lib/tempusdominus/js/moment-timezone.min.js"></script>
+    <script src="../lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="../javascripts/main.js"></script>
+    <!-- <script>
+        const submitPopUp = document.querySelector('#submitPopUp')
+        setInterval(() => {
+            submitPopUp.innerHTML = ''
+        }, 3000);
+
+        document.getElementById("loginForm").addEventListener('submit', () => {
+            localStorage.setItem("mobileNumber", document.getElementById("mobileNumber").value)
+        })
+    </script> -->
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    </body>
+
+    </html>

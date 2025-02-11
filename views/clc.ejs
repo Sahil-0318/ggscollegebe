@@ -1,0 +1,244 @@
+<%- include('./partials/header.ejs') %>
+
+    <!-- Sidebar Start -->
+    <%- include('./partials/sidebar.ejs')%>
+        <!-- Sidebar End -->
+
+        <!-- Content Start -->
+        <div class="content">
+
+            <!-- Navbar Start -->
+            <%- include('./partials/navbar.ejs')%>
+                <!-- Navbar End -->
+
+                <!-- Blank Start -->
+                <div class="container-fluid pt-4 px-4">
+                    <% if(locals.submitted){ %>
+                        <div id="submitPopUp">
+                            <div class="col-12 col-md-10 alert alert-success" role="alert">
+                                <%= locals.submitted %>
+                            </div>
+                        </div>
+                        <% }%>
+
+                            <% if(locals.alreadysubmitted){ %>
+                                <div id="submitPopUp">
+                                    <div class="col-12 col-md-10 alert alert-danger" role="alert">
+                                        <%= locals.alreadysubmitted %>
+                                    </div>
+                                </div>
+                                <% }%>
+
+                                    <div class="row">
+                                        <div class="col-12 col-md-10">
+                                            <div class="bg-light rounded  p-4">
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <h6 class="mb-4">CLC Form</h6>               
+
+                                                    <% if (locals.appliedUser) { %>
+                                                    <% if (locals.appliedUser.status === "Pending") { %>
+                                                        <div class="bg-warning text-dark py-1 px-2 rounded"><%= locals.appliedUser.status %></div>
+                                                    <% } %>
+                                                    <% if (locals.appliedUser.status === "Approved") { %>
+                                                        <div class="bg-success text-light py-1 px-2 rounded"><%= locals.appliedUser.status %></div>
+                                                    <% } %>
+                                                    <% } %>
+                                                    <% if (locals.appliedUser) { %>
+                                                        <div class="btn btn-primary"><a class="text-light"
+                                                            href="/certificateReceipt/<%= locals.appliedUser.certificateType %>/<%= locals.appliedUser.appliedBy %>">Get Receipt</a></div>
+                                                    <% } %>
+                                                </div>
+
+
+                                                <form action="/clc" method="post">
+                                                    <div class="col-md-12 mb-3">
+                                                        <label for="fullName" class="form-label">1. Full Name</label>
+                                                        <input type="text" class="form-control" id="fullName"
+                                                            name="fullName" required />
+                                                    </div>
+
+                                                    <div class="col-md-12 mb-3">
+                                                        <label for="fatherName" class="form-label">2. Father's
+                                                            Name</label>
+                                                        <input type="text" class="form-control" id="fatherName"
+                                                            name="fatherName" required />
+                                                    </div>
+
+                                                    <div class="col-md-12 mb-3">
+                                                        <label for="motherName" class="form-label">3. Mother's
+                                                            Name</label>
+                                                        <input type="text" class="form-control" id="motherName"
+                                                            name="motherName" required />
+                                                    </div>
+
+                                                    <div class="col-md-12 mb-3">
+                                                        <label for="aadharNumber" class="form-label">4.
+                                                            AadharNumber</label>
+                                                        <input type="number" class="form-control" id="aadharNumber"
+                                                            name="aadharNumber" maxlength="12" pattern="[0-9]{12}"
+                                                            required />
+                                                    </div>
+
+                                                    <div class="col-md-12 mb-3">
+                                                        <label for="parmanentAddress" class="form-label">5.Parmanent
+                                                            Address</label>
+                                                        <input type="text" class="form-control" id="parmanentAddress"
+                                                            name="parmanentAddress" required />
+                                                    </div>
+
+                                                    <div class="col-md-12 mb-3">
+                                                        <label for="dOB" class="form-label">6. Date Of Birth</label>
+                                                        <input type="date" class="form-control" id="dOB" name="dOB"
+                                                            value=<%=locals.user.dOB %> required />
+                                                    </div>
+
+                                                    <div class="col-md-12 mb-3">
+                                                        <label for="course" class="form-label">7. Name of the Course
+                                                            Attended</label>
+                                                        <select id="course" class="form-select" name="course" required>
+                                                            <option value="B.A">B.A</option>
+                                                            <option value="B.COM">B.COM</option>
+                                                            <option value="B.SC">B.SC</option>
+                                                            <option value="Intermediate">Intermediate</option>
+                                                            <option value="B.C.A">B.C.A</option>
+                                                        </select>
+                                                    </div>
+
+                                                    <div class="col-md-12 mb-3">
+                                                        <label for="session" class="form-label">8. Academic
+                                                            Session</label>
+                                                        <input type="text" class="form-control" id="session"
+                                                            name="session" placeholder="Eg. 2023-2026" required />
+                                                    </div>
+
+                                                    <div class="col-md-12 mb-3">
+                                                        <label for="dOAdm" class="form-label">9. Date Of
+                                                            Admission</label>
+                                                        <input type="date" class="form-control" id="dOAdm" name="dOAdm"
+                                                            required />
+                                                    </div>
+
+                                                    <div class="col-md-12 mb-3">
+                                                        <label for="classRollNumber" class="form-label">10. Class Roll
+                                                            Number</label>
+                                                        <input type="number" class="form-control" id="classRollNumber"
+                                                            name="classRollNumber" required />
+                                                    </div>
+
+                                                    <div class="col-md-12 mb-3">
+                                                        <label for="yearOfExam" class="form-label">11. Month and Year of
+                                                            Examination</label>
+                                                        <input type="text" class="form-control" id="yearOfExam"
+                                                            name="yearOfExam" placeholder="Eg. June 2023" required />
+                                                    </div>
+
+                                                    <div class="col-md-12 mb-3">
+                                                        <label for="resultDivision" class="form-label">12. Result with
+                                                            Division</label>
+                                                        <input type="text" class="form-control" id="resultDivision"
+                                                            name="resultDivision" placeholder="Eg. 1st, 2nd, or 3rd" required />
+                                                    </div>
+
+                                                    <div class="col-md-12 mb-3">
+                                                        <label for="regNumber" class="form-label">13. Registration
+                                                            Number</label>
+                                                        <input type="text" class="form-control" id="regNumber"
+                                                            name="regNumber" required />
+                                                    </div>
+
+                                                    <div class="col-md-12 mb-3">
+                                                        <label for="uniRollNumber" class="form-label">14. University /
+                                                            BSEB Roll Number</label>
+                                                        <input type="text" class="form-control" id="uniRollNumber"
+                                                            name="uniRollNumber" required />
+                                                    </div>
+
+                                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                                    <button type="reset" class="btn btn-secondary">Reset</button>
+                                                    
+
+                                                </form>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                </div>
+
+                <!-- Blank End -->
+
+
+                <!-- Footer Start -->
+                <div class="container-fluid pt-4 px-4">
+                    <div class="bg-light rounded-top p-4">
+                        <div class="row">
+                            <div class="col-12 col-sm-6 text-center text-sm-start">
+                                &copy; <a href="#">Sri Guru Gobind Singh College, Patna City</a>, All Right Reserved.
+                            </div>
+                            <div class="col-12 col-sm-6 text-center text-sm-end">
+                                Distributed By <a href="#">Digital India</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Footer End -->
+
+        </div>
+        <!-- Content End -->
+
+
+        <!-- Back to Top -->
+        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+        </div>
+
+        <!-- JavaScript Libraries -->
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="../lib/chart/chart.min.js"></script>
+        <script src="../lib/easing/easing.min.js"></script>
+        <script src="../lib/waypoints/waypoints.min.js"></script>
+        <script src="../lib/owlcarousel/owl.carousel.min.js"></script>
+        <script src="../lib/tempusdominus/js/moment.min.js"></script>
+        <script src="../lib/tempusdominus/js/moment-timezone.min.js"></script>
+        <script src="../lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+
+        <!-- Template Javascript -->
+        <script src="../javascripts/main.js"></script>
+        <script>
+            const submitPopUp = document.querySelector('#submitPopUp')
+            setInterval(() => {
+                submitPopUp.innerHTML = ''
+            }, 3000);
+
+            const aadharNumber = document.getElementById('aadharNumber');
+
+            aadharNumber.addEventListener('input', function () {
+                if (this.value.length < 12) {
+                    this.setCustomValidity('Please enter a 12-digit Aadhar number.');
+                } else {
+                    this.setCustomValidity('');
+                }
+            });
+
+            const parmanentAddressPin = document.getElementById('parmanentAddressPin');
+
+            parmanentAddressPin.addEventListener('input', function () {
+                if (this.value.length < 6) {
+                    this.setCustomValidity('Please enter a 6-digit Pin Code number.');
+                } else {
+                    this.setCustomValidity('');
+                }
+            });
+
+            const presentAddressPin = document.getElementById('presentAddressPin');
+
+            presentAddressPin.addEventListener('input', function () {
+                if (this.value.length < 6) {
+                    this.setCustomValidity('Please enter a 6-digit Pin Code number.');
+                } else {
+                    this.setCustomValidity('');
+                }
+            });
+        </script>
+        </body>
+
+        </html>

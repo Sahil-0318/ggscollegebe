@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Receipt</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css"
+        integrity="sha256-2XFplPlrFClt0bIdPgpz8H7ojnk10H69xRqd9+uTShA=" crossorigin="anonymous" />
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css'>
+    <link rel="stylesheet" href="/stylesheets/admissionForm.css">
+</head>
+
+<body>
+
+    <div class="container myCont">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class=" d-flex justify-content-between">
+                            <div class="mb-4">
+                                <img src="/images/mdcLogo.png" width="50px" alt="Logo">
+                            </div>
+                            <div class="text-muted text-center formHead">
+                                <h4>M. D. COLLEGE, NAUBATPUR</h4>
+                                <p>Online Examination Application Form for Intermediate Annual Examination, 2025
+                                </p>
+                                <p>(For Ex-Regular, Compartmental, Improvement & Qualifying Category Eligible Student of Session prior to 2023-25) <b>Faculty - <%= locals.appliedUser.faculty %></b></p>
+                            </div>
+                            <div class="mb-4">
+                                <img src="/images/ppuLogo.png" width="50px" alt="Logo">
+                            </div>
+                        </div>
+                        <hr>
+
+                        <!-- student info -->
+                        <div class="studentInfo">
+                            <div class="studentInfoData">
+                                <!-- Student Upper -->
+                                <!-- <div class="studentInfoDataUpper">
+                                    <div class="fields">
+                                        <div class="fieldsName">1. Student's Name :</div>
+                                        <div class="fieldsNameValue"><%= locals.appliedUser.studentName %></div>
+                                    </div>
+                                    <div class="fields">
+                                        <div class="fieldsName">2. Father's Name :</div>
+                                        <div class="fieldsNameValue"><%= locals.appliedUser.fatherName %></div>
+                                    </div>
+                                    <div class="fields">
+                                        <div class="fieldsName">3. Mother's Name :</div>
+                                        <div class="fieldsNameValue"><%= locals.appliedUser.motherName %></div>
+                                    </div>
+                                </div> -->
+
+                                <!-- Student Lower -->
+                                <div class="studentInfoDataLower">
+                                    <div class="lowerCol1">
+                                        <div>1. Registration no. & Year :</div>
+                                        <div class="lowerFieldNameValue"><%= locals.appliedUser.registrationNoAndYear %></div>
+                                        
+                                        <div>4. College/+2 School Code :</div>
+                                        <div class="lowerFieldNameValue"><%= locals.appliedUser.collegeCode %></div>
+
+                                        <div>7. Student's Name :</div>
+                                        <div class="lowerFieldNameValue"><%= locals.appliedUser.studentName %></div>
+
+                                        <div>10. Date of Birth :</div>
+                                        <div class="lowerFieldNameValue"><%= locals.appliedUser.dOB %></div>
+
+                                        <div>12.2. Matric Board's Roll Number :</div>
+                                        <div class="lowerFieldNameValue"><%= locals.appliedUser.matricBoardRollNumber %></div>
+
+                                        <div>14.Caste Category :</div>
+                                        <div class="lowerFieldNameValue"><%= locals.appliedUser.casteCategory %></div>
+
+                                        <div>17. Religion :</div>
+                                        <div class="lowerFieldNameValue"><%= locals.appliedUser.religion %></div>
+                                        
+                                    </div>
+                                    <div class="lowerCol2">
+                                        <div>2. BSEB Unique Id : </div>
+                                        <div class="lowerFieldNameValue"><%= locals.appliedUser.BSEBUniqueId %></div>
+                                        
+                                        <div>5. College/ +2 School Name : </div>
+                                        <div class="lowerFieldNameValue"><%= locals.appliedUser.collegeName %></div>
+
+                                        <div>8. Father's Name : </div>
+                                        <div class="lowerFieldNameValue"><%= locals.appliedUser.fatherName %></div>
+
+                                        <div>11. Matric Passing Board's Name : </div>
+                                        <div class="lowerFieldNameValue"><%= locals.appliedUser.matricPassingBoardName %></div>
+
+                                        <div>12.3. Matric Board's Passing Year : </div>
+                                        <div class="lowerFieldNameValue"><%= locals.appliedUser.matricBoardPassingYear %></div>
+
+                                        <div>15. Differently abled : </div>
+                                        <div class="lowerFieldNameValue"><%= locals.appliedUser.differentlyAbled %></div>
+
+                                        <div>18. Aadhar Number : </div>
+                                        <div class="lowerFieldNameValue"><%= locals.appliedUser.aadharNumber %></div>
+                                        
+                                    </div>
+                                    <div class="lowerCol3">
+                                        <div>3. Student's category : </div>
+                                        <div class="lowerFieldNameValue"><%= locals.appliedUser.studentCategory %></div>
+                                        
+                                        <div>6. District Name : </div>
+                                        <div class="lowerFieldNameValue"><%= locals.appliedUser.districtName %></div>
+
+                                        <div>9. Mother's Name : </div>
+                                        <div class="lowerFieldNameValue"><%= locals.appliedUser.motherName %></div>
+
+                                        <div>12.1. Matric Board's Roll Code : </div>
+                                        <div class="lowerFieldNameValue"><%= locals.appliedUser.matricBoardRollCode %></div>
+
+                                        <div>13. Gender : </div>
+                                        <div class="lowerFieldNameValue"><%= locals.appliedUser.gender %></div>
+
+                                        <div>16. Nationality : </div>
+                                        <div class="lowerFieldNameValue"><%= locals.appliedUser.nationality %></div>
+                                        
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="studentInfoPicture">
+                                <div class="studentPhoto">
+                                    <img src=<%= locals.appliedUser.studentPhoto %>
+                                        alt="">
+                                </div>
+                                <div class="studentSign">
+                                    <img src=<%= locals.appliedUser.studentSign %>
+                                        alt="">
+                                </div>
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        <!-- Address -->
+                        <div class="addressInfo mt-4">
+                            <p><b>19. क्वालीफाइंग कोटि के परीक्षार्थी द्वारा इन्टरमीडिएट उत्तीर्ण परीक्षा का विवरण :-</b></p>
+                            <div class="studentInfoDataLower">
+                                <div class="lowerCol1">
+                                    <div>19.1. Roll Code :</div>
+                                    <div class="lowerFieldNameValue"><%= locals.appliedUser.qualifyingCategoryRollCode %></div>
+                                    
+                                    <div>20. Area where the institution is situtated :</div>
+                                    <div class="lowerFieldNameValue"><%= locals.appliedUser.qualifyingCategoryInstitutionArea %></div>
+
+                                    <div>23. E-Mail Id :</div>
+                                    <div class="lowerFieldNameValue"><%= locals.appliedUser.qualifyingCategoryEmail %></div>
+
+                                    <div>26. Father's Name in Hindi :</div>
+                                    <div class="lowerFieldNameValue"><%= locals.appliedUser.qualifyingCategoryFatherName %></div>
+
+                                    <div>29. Student's Bank A/C No :</div>
+                                    <div class="lowerFieldNameValue"><%= locals.appliedUser.qualifyingCategoryStudentBankAccountNumber %></div>
+
+                                    <div>32. Two identification mark of student :</div>
+                                    <div class="lowerFieldNameValue"><%= locals.appliedUser.qualifyingCategoryTwoIdentificationMarks %></div>
+
+                                </div>
+                                <div class="lowerCol2">
+                                    <div>19.2. Roll No. : </div>
+                                    <div class="lowerFieldNameValue"><%= locals.appliedUser.qualifyingCategoryRollNumber %></div>
+                                    
+                                    <div>21. Sub-Division (where the institution is situtated) : </div>
+                                    <div class="lowerFieldNameValue"><%= locals.appliedUser.qualifyingCategoryInstitutionSubDivision %></div>
+
+                                    <div>24. Student's Name in Hindi : </div>
+                                    <div class="lowerFieldNameValue"><%= locals.appliedUser.qualifyingCategoryStudentName %></div>
+
+                                    <div>27. Student' Address in English : </div>
+                                    <div class="lowerFieldNameValue"><%= locals.appliedUser.qualifyingCategoryAddress %></div>
+
+                                    <div>30. IFSC Code : </div>
+                                    <div class="lowerFieldNameValue"><%= locals.appliedUser.qualifyingCategoryIFSCCode %></div>
+
+                                    <div>33. Medium (language) of appearing in exam : </div>
+                                    <div class="lowerFieldNameValue"><%= locals.appliedUser.qualifyingCategoryMediumOfExam %></div>
+
+                                </div>
+                                <div class="lowerCol3">
+                                    <div>19.3. Passing Year : </div>
+                                    <div class="lowerFieldNameValue"><%= locals.appliedUser.qualifyingCategoryPassingYear %></div>
+                                    
+                                    <div>22. Mobile No. : </div>
+                                    <div class="lowerFieldNameValue"><%= locals.appliedUser.qualifyingCategoryMobileNumber %></div>
+
+                                    <div>25. Mothers's Name in Hindi : </div>
+                                    <div class="lowerFieldNameValue"><%= locals.appliedUser.qualifyingCategoryMotherName %></div>
+
+                                    <div>28. Marital Status : </div>
+                                    <div class="lowerFieldNameValue"><%= locals.appliedUser.qualifyingCategoryMaritalStatus %></div>
+
+                                    <div>31. Bank & Branch Name : </div>
+                                    <div class="lowerFieldNameValue"><%= locals.appliedUser.qualifyingCategoryBankAndBranchName %></div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <hr>
+                        <!-- course detail -->
+                        <div class="courseDetail mt-4 mb-5 pb-5">
+                            <p><b>34. Subject details with their numerical codes:-</b></p>
+                            <div class="studentInfoDataLower mb-3">
+                                <div class="lowerCol1">
+                                    <div>Compulsory Subject 1(100 Marks) :</div>
+                                    <div class="lowerFieldNameValue"><%= locals.appliedUser.compulsorySubject1 %></div>
+                                    
+                                    <div>Elective Subject 2 (100 Marks) :</div>
+                                    <div class="lowerFieldNameValue"><%= locals.appliedUser.electiveSubject2 %></div>
+
+                                </div>
+                                <div class="lowerCol2">
+                                    <div>Compulsory Subject 2 (100 Marks) : </div>
+                                    <div class="lowerFieldNameValue"><%= locals.appliedUser.compulsorySubject2 %></div>
+                                    
+                                    <div>Elective Subject 3 (100 Marks) : </div>
+                                    <div class="lowerFieldNameValue"><%= locals.appliedUser.electiveSubject3 %></div>
+
+                                </div>
+                                <div class="lowerCol3">
+                                    <div>Elective Subject 1 (100 Marks) : </div>
+                                    <div class="lowerFieldNameValue"><%= locals.appliedUser.electiveSubject1 %></div>
+                                    
+                                    <% if (locals.appliedUser.additionalSubject === "NA") { %>
+                                    
+                                    <% } else { %>   
+                                    <div>Additional Subject (100 Marks) : </div>
+                                    <div class="lowerFieldNameValue"><%= locals.appliedUser.additionalSubject %></div>
+                                    <% } %>
+                                    
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        <div class="declaration">
+                            <p>प्रमाणित किया जाता है कि इस आवेदन पत्र में दी गई सूचना पूरी तरह से सही एवं शुद्ध है और इसमें कहीं पर भी किसी प्रकार के संशोधन की आवश्यकता नहीं है। जो भी सुधार एवं संशोधन थे, सब करा लिए गए हैं।
+                            </p>
+                        </div>
+
+                        <div class="studentAndParentSign">
+                            <p><b>Signature of Parent/Guardian</b></p>
+                            <p><b>Student's Signature in Hindi</b></p>
+                            <p><b>Student's Signature in English</b></p>
+                        </div>
+
+                        <div class="declaration">
+                            <p>प्रमाणित किया जाता है कि ऊपर दिए गए सभी विवरण का मिलान महाविद्यालय/+2 विद्यालय के सभी अभिलेखों से पूर्णरूपेण कर लिया गया है। तदनुसार उक्त विद्यार्थी का परीक्षा आवेदन पत्र स्वीकार किया जाए।
+                            </p>
+                        </div>
+
+                        <div class="studentAndParentSign">
+                            <div></div>
+                            <p class="mt-5 pt-4"><b>Signature & seal of Principal</b></p>
+                        </div>
+
+
+                        <div class="d-print-none mt-4">
+                            <div class="float-end">
+                                <a href="javascript:window.print()" class="btn btn-success me-1"><i
+                                        class="fa fa-print"></i></a>
+                                        <a href="/interExamForm" class="btn btn-primary w-md">Back to Home Page</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- end col -->
+    </div>
+    </div>
+    <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js'></script>
+</body>
+
+</html>

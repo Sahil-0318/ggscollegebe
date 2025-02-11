@@ -1,0 +1,339 @@
+<%- include('./partials/header.ejs')%>
+
+
+    <!-- Sidebar Start -->
+    <%- include('./partials/adminSidebar.ejs')%>
+        <!-- Sidebar End -->
+
+
+        <!-- Content Start -->
+        <div class="content">
+            <!-- Navbar Start -->
+            <%- include('./partials/navbar.ejs')%>
+                <!-- Navbar End -->
+
+                <% if (locals.formAlert) { %>
+                    <div class="col-sm-12 col-xl-12 pt-3 px-4">
+                        <div id="submitPopUp">
+                            <div class="col-12 col-xl-12 alert alert-danger" role="alert">
+                                <%= formAlert %>
+                            </div>
+                        </div>
+                    </div>
+                    <% } %>
+
+                        <div class="col-sm-12 col-xl-12 pt-4 px-4 d-md-flex gap-4 justify-content-between">
+
+                            <!-- <div class="bg-light rounded h-100 p-4 flex-grow-1">
+                                <h6 class="mb-4">Date wise Admission List</h6>
+                                <form action="/datewiseUgRegSem1List" method="post">
+                                    <div class="row mb-3">
+                                        <label for="course" class="col-sm-3 col-md-4 col-form-label">Course / Subject :
+                                        </label>
+                                        <div class="col-sm-6 col-md-6">
+                                            <select id="course" class="form-select" name="course"
+                                                onchange="updatePaper2Option()">
+                                                <option value="All courses" selected>All courses</option>
+                                                <option value="Bachelor of Arts">Bachelor of Arts</option>
+                                                <option value="Bachelor of Science">Bachelor of Science</option>
+                                                <option value="Economics">Economics</option>
+                                                <option value="History">History</option>
+                                                <option value="Political Science">Political Science</option>
+                                                <option value="Psychology">Psychology</option>
+                                                <option value="Sociology">Sociology</option>
+                                                <option value="English">English</option>
+                                                <option value="Hindi">Hindi</option>
+                                                <option value="Urdu">Urdu</option>
+                                                <option value="Philosophy">Philosophy</option>
+                                                <option value="Physics">Physics</option>
+                                                <option value="Chemistry">Chemistry</option>
+                                                <option value="Zoology">Zoology</option>
+                                                <option value="Botany">Botany</option>
+                                                <option value="Mathematics">Mathematics</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="findAdmDateFrom" class="col-sm-3 col-md-4 col-form-label">Select
+                                            date from :</label>
+                                        <div class="col-sm-6 col-md-6">
+                                            <input type="date" class="form-control" id="findAdmDateFrom"
+                                                name="findAdmDateFrom" required>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="findAdmDateTo" class="col-sm-3 col-md-4 col-form-label">Select date
+                                            to :</label>
+                                        <div class="col-sm-6 col-md-6">
+                                            <input type="date" class="form-control" id="findAdmDateTo"
+                                                name="findAdmDateTo" required>
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Find Students</button>
+                                </form>
+                            </div> -->
+                        </div>
+
+
+                        <!-- <div class="col-sm-12 col-xl-12 pt-4 px-4">
+                            <div class="bg-light rounded h-100 p-3 d-flex flex-wrap gap-2">
+                                <div class="btn btn-secondary"><a class="text-light" href="/admissionFormList">Get All
+                                        Students</a></div>
+                                <div class="btn btn-secondary"><a class="text-light" href="/paidAdmissionFormList">Paid
+                                        Students</a></div>
+                                <div class="btn btn-secondary"><a class="text-light" href="/unpaidAdmissionFormList">Not
+                                        paid Students</a></div>
+                                <div class="btn btn-secondary"><a class="text-light" href="/genBC2Category">Gen/BC-2</a>
+                                </div>
+
+                                <div class="btn btn-secondary"><a class="text-light"
+                                        href="/bc1SCSTCategory">BC-1/SC/ST</a></div>
+
+                                <div class="btn btn-secondary"><a class="text-light" href="/scienceStu">Science
+                                        Students</a></div>
+
+                                <div class="btn btn-secondary"><a class="text-light" href="/artsStu">Arts Students</a>
+                                </div>
+                            </div>
+                        </div> -->
+
+                        <div class="col-sm-12 col-xl-12 pt-4 px-4">
+                            <div><h5 class="fw-bold text-success">Download Admission List Excel : </h5></div>
+                            <div class="bg-light rounded h-100 p-3 d-flex flex-wrap gap-2">
+                                <div class="btn btn-success"><a class="text-light" href="/BCA_Adm_List_Part_2">Adm List B.C.A Part 2</a></div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12 col-xl-12 pt-4 px-4">
+                            <div><h5 class="fw-bold">Filter Students : </h5></div>
+                            <!-- <div class="bg-light rounded h-100 p-3 d-flex flex-wrap gap-2">
+                                <div class="btn btn-secondary"><a class="text-light" href="/bca3List">Get All Students</a></div>
+
+                                <div class="btn btn-secondary"><a class="text-light" href="/bca3List?isPaid=true">Paid Students</a></div>
+
+                                <div class="btn btn-secondary"><a class="text-light" href="/bca3List?isPaid=false">Not paid Students</a></div>
+                            </div> -->
+                            <form action="/bca2List" method="get">
+                                <div class="bg-light rounded h-100 p-3 d-flex flex-wrap gap-2">
+                                    <!-- filter category -->
+
+                                    <div>
+                                        <select id="isPaid" class="form-select" name="isPaid">
+                                            <option value="all" selected>All Students</option>
+                                            <option value="true">Paid</option>
+                                            <option value="false">Unpaid</option>
+                                        </select>
+                                    </div>
+
+                                    <div>
+                                        <select id="category" class="form-select" name="category">
+                                            <option value="all" selected>Select Category</option>
+                                            <option value="GENERAL">General</option>
+                                            <option value="BC-2">BC-2</option>
+                                            <option value="BC-1">BC-1</option>
+                                            <option value="SC">SC</option>
+                                            <option value="ST">ST</option>
+                                        </select>
+                                    </div>
+
+                                    <div>
+                                        <select id="gender" class="form-select" name="gender">
+                                            <option value="all" selected>Select Gender</option>
+                                            <option value="MALE">MALE</option>
+                                            <option value="FEMALE">FEMALE</option>
+                                        </select>
+                                    </div>
+
+                                    <button class="btn btn-success" type="submit">Search</button>
+                                </div>
+                            </form>
+                        </div>
+
+
+                        <!-- Blank Start -->
+                        <div class="container-fluid pt-4 px-4">
+                            <div class="row bg-light rounded justify-content-center m-0 p-2">
+                                <section class="section">
+                                    <div class="row">
+                                        <!-- List starts Here     -->
+                                        <div class="col-12">
+                                            <div class="bg-light rounded h-100 p-0">
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <div class="d-flex gap-2 justify-content-center align-items-center">
+                                                        <h6 class="my-3 ">
+                                                            <%= locals.status %> Students (<%= locals.noOfForms %>
+                                                                    Forms)
+                                                        </h6>
+
+                                                        <!-- <%# if (locals.course && locals.findAdmDateFrom && locals.findAdmDateTo) { %>
+                                                            <div class="btn btn-secondary"><a class="text-light"
+                                                                href="/ugRegSem1Excel/<%# locals.course %>/<%# locals.findAdmDateFrom %>/<%# locals.findAdmDateTo %>">Download Excel</a></div>
+                                                        <%# } %> -->
+
+                                                        
+                                                    </div>
+                                                    <!-- <div class="my-3"> -->
+                                                    <form class="d-flex gap-2" action="/bca2List"
+                                                        method="get">
+                                                        <input type="text" class="form-control" id="mobileNumber"
+                                                            name="mobileNumber" placeholder="Enter Mobile Number"
+                                                            oninput="this.value = this.value.toUpperCase()" />
+                                                        <button type="submit" class="btn btn-primary">Find</button>
+                                                    </form>
+                                                    <!-- </div> -->
+                                                </div>
+                                                <div>
+                                                </div>
+                                                <div class="table-responsive">
+                                                    <table class="table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th scope="col">S.No.</th>
+                                                                <th scope="col">Student's Name</th>
+                                                                <th scope="col">Father's Name</th>
+                                                                <th scope="col">Mobile No.</th>
+                                                                <th scope="col">Uni. Roll No.</th>
+                                                                <th scope="col">Uni. Reg. No.</th>
+                                                                <th scope="col">Category</th>
+                                                                <th scope="col">Adm Fee</th>
+                                                                <th scope="col">Payment ID</th>
+                                                                <th scope="col">View</th>
+                                                                <th scope="col">Edit</th>
+                                                                <!-- <th scope="col">Verification</th> -->
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <% if (locals.list) { %>
+                                                                <% list.reverse().forEach((element, index)=> { %>
+                                                                    <tr>
+                                                                        <th scope="row">
+                                                                            <%= index + 1%>
+                                                                        </th>
+                                                                        <td>
+                                                                            <%= element.studentName%>
+                                                                        </td>
+                                                                        <td>
+                                                                            <%= element.fatherName%>
+                                                                        </td>
+                                                                        <td>
+                                                                            <%= element.mobileNumber%>
+                                                                        </td>
+                                                                        <td>
+                                                                            <%= element.uniRollNumber%>
+                                                                        </td>
+                                                                        <td>
+                                                                            <%= element.uniRegNumber%>
+                                                                        </td>
+                                                                        <td>
+                                                                            <%= element.category%>
+                                                                        </td>
+                                                                        <td>
+                                                                            <%= element.admissionFee%>
+                                                                        </td>
+                                                                        <td>
+                                                                            <%= element.paymentId%>
+                                                                        </td>
+                                                                        <td>
+                                                                            <a href="/bca2StudentView/<%= element._id %>"
+                                                                                class="px-4 btn btn-warning w-md">View</a>
+                                                                        </td>
+                                                                        <td>
+                                                                            <a href="/bca2StudentEdit/<%= element._id %>"
+                                                                                class="px-4 btn btn-danger w-md">Edit</a>
+                                                                        </td>
+                                                                        <!-- <td>
+                                                                            <% if (element.isVerified) { %>
+                                                                                <a href=""
+                                                                                    class="px-4 btn btn-success w-md">Verified</a>
+                                                                                <% } else { %>
+                                                                                    <a href=""
+                                                                                        class="px-4 btn btn-danger w-md">Unverified</a>
+                                                                                    <% } %>
+
+                                                                        </td> -->
+
+                                                                    </tr>
+                                                                    <% }); %>
+                                                                        <% } %>
+                                                        </tbody>
+                                                    </table>
+                                                    <% if (locals.list) { %>
+                                                        <% if (locals.list.length===0) { %>
+                                                            <h3>Student not found ...</h3>
+
+                                                            <% } %>
+                                                                <% } %>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- List ends Here     -->
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
+                        <!-- Blank End -->
+
+                        <!-- Footer Start -->
+                        <div class="container-fluid pt-4 px-4">
+                            <div class="bg-light rounded-top p-4">
+                                <div class="row">
+                                    <div class="col-12 col-sm-6 text-center text-sm-start">
+                                        &copy; <a href="#">Sri Guru Gobind Singh College, Patna City</a>, All Right Reserved.
+                                    </div>
+                                    <div class="col-12 col-sm-6 text-center text-sm-end">
+                                        Distributed By <a href="#">Digital India</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Footer End -->
+
+
+
+
+
+        </div>
+        <!-- Content End -->
+
+
+
+        <!-- Back to Top -->
+        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+        </div>
+
+
+        <!-- JavaScript Libraries -->
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="../lib/chart/chart.min.js"></script>
+        <script src="../lib/easing/easing.min.js"></script>
+        <script src="../lib/waypoints/waypoints.min.js"></script>
+        <script src="../lib/owlcarousel/owl.carousel.min.js"></script>
+        <script src="../lib/tempusdominus/js/moment.min.js"></script>
+        <script src="../lib/tempusdominus/js/moment-timezone.min.js"></script>
+        <script src="../lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+
+        <!-- Template Javascript -->
+        <script src="../javascripts/main.js"></script>
+        <script>
+            const submitPopUp = document.querySelector('#submitPopUp')
+            setInterval(() => {
+                submitPopUp.innerHTML = ''
+            }, 3000);
+        </script>
+        <script>
+            // Get the current date
+            const currentDate = new Date();
+            currentDate.setHours(currentDate.getHours() + 6);
+            currentDate.setMinutes(currentDate.getMinutes() + 30);
+
+
+            // Format the date as YYYY-MM-DD (required by input type date)
+            const formattedDate = currentDate.toISOString().slice(0, 10);
+
+            // Set the value of the input field to the formatted date
+            document.getElementById("findAdmDateTo").value = formattedDate;
+        </script>
+        </body>
+
+        </html>

@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>UG Regular Admission Form</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="../lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="../lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="../stylesheets/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="../stylesheets/style.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container-xxl position-relative bg-white d-flex p-0">
+        <!-- Spinner Start -->
+        <div id="spinner"
+            class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+            <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+        <!-- Spinner End -->
+
+
+        <!-- Sidebar Start -->
+        <div class="sidebar pe-4 pb-3">
+            <nav class="navbar bg-light navbar-light">
+                <img class="p-2" src="/images/logomdcollege.png" alt="MD College" style="width: 100%;">
+                <div class="d-flex align-items-center ms-4 mb-4">
+                    <div class="ms-3">
+                        <h6 class="mb-0"><%= locals.user.userId%></h6>
+                        <span>User</span>
+                    </div>
+                </div>
+                <div class="navbar-nav w-100">
+                    <div class="nav-item dropdown">
+                        <a href="/ugRegularSem4AdmissionForm" class="nav-link"><i class="fa-solid fa-file-alt me-2"></i>Admission Form</a>
+                    </div>
+                    <div class="nav-item dropdown">
+                        <a href="/ugRegularSem4Logout" class="nav-link"><i class="fa-solid fa-sign-out me-2"></i>Logout</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <!-- Sidebar End -->
+
+
+        <!-- Content Start -->
+        <div class="content">
+            <!-- Navbar Start -->
+            <nav class="navbar navbar-expand bg-light navbar-light sticky-top px-4 py-2">
+                <a href="#" class="sidebar-toggler flex-shrink-0">
+                    <i class="fa fa-bars"></i>
+                </a>
+                <a href="" class="navbar-brand d-flex d-lg-none mx-1 me-4">
+                    <img class="mb-0" src="/images/logomdcollege.png" alt="MD College" style="width: 100%;">
+                </a>
+            </nav>
+            <!-- Navbar End -->
+
+            <!-- Form Start -->
+            <div class="container-fluid pt-4 px-4">
+                <% if(locals.submitted){ %>
+                    <div id="submitPopUp">
+                        <div class="col-12 col-md-10 alert alert-success" role="alert">
+                            <%= locals.submitted %>
+                        </div>
+                    </div>
+                    <% }%>
+
+                        <% if(locals.alreadysubmitted){ %>
+                            <div id="submitPopUp">
+                                <div class="col-12 col-md-10 alert alert-danger" role="alert">
+                                    <%= locals.alreadysubmitted %>
+                                </div>
+                            </div>
+                            <% }%>
+
+                                <div class="row">
+                                    <div class="col-12 col-md-10">
+                                        <div class="bg-light rounded  p-4">
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <h6 class="mb-4"><%= locals.user.course %> Admission Form<% if (locals.appliedUser) { %>
+                                                  <span class="text-primary">( Fiiled by You )</span>
+                                                <% } %></h6>
+                                            </div>
+
+                                
+                                            <% if (locals.user) { %>
+                                         
+                                                <% if (locals.user.isPaid == true) { %>
+                                                    
+                                                <% } else { %>
+                                                    <form action="/ugRegularSem4AdmissionForm" method="post"
+                                                enctype="multipart/form-data">
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="studentName" class="form-label"><b>1. Student's Name :</b></label>                            
+                                                    <textarea id="studentName" name="studentName" rows="1" class="form-control" required readonly><%= user.fullName.trim().toUpperCase() %></textarea>
+                                                </div>
+
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="fatherName" class="form-label"><b>2. Father's Name :</b></label>
+                                                    <input type="text" class="form-control" id="fatherName"
+                                                        name="fatherName" oninput="this.value = this.value.toUpperCase()" required />
+                                                </div>
+
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="motherName" class="form-label"><b>3. Mother's Name :</b></label>
+                                                    <input type="text" class="form-control" id="motherName"
+                                                        name="motherName" oninput="this.value = this.value.toUpperCase()" required />
+                                                </div>
+
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="guardianName" class="form-label"><b>4. Guardian's Name :</b></label>
+                                                    <input type="text" class="form-control" id="guardianName"
+                                                        name="guardianName" oninput="this.value = this.value.toUpperCase()" required />
+                                                </div>
+
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="uniRegNumber" class="form-label">University Registration Number :</label>
+                                                    <input type="text" class="form-control" id="uniRegNumber"
+                                                        name="uniRegNumber" required />
+                                                </div>
+
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="uniRollNumber" class="form-label">University Roll Number :</label>
+                                                    <input type="text" class="form-control" id="uniRollNumber"
+                                                        name="uniRollNumber" required />
+                                                </div>
+
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="collegeRollNumber" class="form-label">College Roll Number :</label>
+                                                    <input type="text" class="form-control" id="collegeRollNumber"
+                                                        name="collegeRollNumber" required />
+                                                </div>
+
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="email" class="form-label">Email Id :</label>
+                                                    <input type="email" class="form-control" id="email"
+                                                        name="email" oninput="this.value = this.value.toLowerCase()" value=<%= locals.user.email %> required readonly />
+                                                </div>
+
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="dOB" class="form-label">Date Of Birth :</label>
+                                                    <input type="date" class="form-control" id="dOB" name="dOB" required/>
+                                                </div>
+
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="gender" class="form-label">Gender :</label>
+                                                    <select id="gender" class="form-select" name="gender" required>
+                                                        <option value="MALE">MALE</option>
+                                                        <option value="FEMALE">FEMALE</option>
+                                                    </select>
+                                                </div>
+
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="religion" class="form-label">Religion :</label>
+                                                    <select id="religion" class="form-select" name="religion" required>
+                                                        <option value="HINDU">HINDU</option>
+                                                        <option value="MUSLIM">MUSLIM</option>
+                                                        <option value="SIKH">SIKH</option>
+                                                        <option value="CHRISTIAN">CHRISTIAN</option>
+                                                    </select>
+                                                </div>
+
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="category" class="form-label">Category :</label>
+                                                    <select id="category" class="form-select" name="category"
+                                                        required>
+                                                        <option value="GENERAL">GENERAL</option>
+                                                        <option value="BC-2">BC-2</option>
+                                                        <option value="BC-1">BC-1</option>
+                                                        <option value="SC">SC</option>
+                                                        <option value="ST">ST</option>
+                                                    </select>
+                                                </div>
+
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="bloodGroup" class="form-label">Blood Group :</label>
+                                                    <input type="text" class="form-control" id="bloodGroup"
+                                                        name="bloodGroup" oninput="this.value = this.value.toUpperCase()" required />
+                                                </div>
+
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="physicallyChallenged" class="form-label">Physically Challenged :</label>
+                                                    <select id="physicallyChallenged" class="form-select" name="physicallyChallenged"
+                                                        required>
+                                                        <option value="NO">NO</option>
+                                                        <option value="YES">YES</option>
+                                                    </select>
+                                                </div>
+
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="maritalStatus" class="form-label">Marital Status :</label>
+                                                    <select id="maritalStatus" class="form-select" name="maritalStatus"
+                                                        required>
+                                                        <option value="UNMARRIED">UNMARRIED</option>
+                                                        <option value="MARRIED">MARRIED</option>
+                                                    </select>
+                                                </div>
+
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="aadharNumber" class="form-label">Applicant Aadhar Number :</label>
+                                                    <input type="number" class="form-control" id="aadharNumber"
+                                                        name="aadharNumber" maxlength="12" pattern="[0-9]{12}"
+                                                        required />
+                                                </div>
+
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="mobileNumber" class="form-label">Mobile
+                                                        Number :</label>
+                                                    <input type="number" class="form-control" id="mobileNumber"
+                                                        name="mobileNumber" readonly value=<%= locals.user.mobileNumber %> />
+                                                </div>
+
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="whatsAppNumber" class="form-label">WhatsApp Number :</label>
+                                                    <input type="number" class="form-control" id="whatsAppNumber"
+                                                        name="whatsAppNumber" required />
+                                                </div>
+
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="address" class="form-label"> <b>5. Address for Correspondence : </b></label>
+                                                </div>
+
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="address" class="form-label">Address :</label>
+                                                    <input type="text" class="form-control" id="address"
+                                                        name="address" oninput="this.value = this.value.toUpperCase()" required />
+                                                </div>
+
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="district" class="form-label">District :</label>
+                                                    <input type="text" class="form-control" id="district"
+                                                        name="district" oninput="this.value = this.value.toUpperCase()" required />
+                                                </div>
+
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="policeStation" class="form-label">Police Station :</label>
+                                                    <input type="text" class="form-control" id="policeStation"
+                                                        name="policeStation" oninput="this.value = this.value.toUpperCase()" required />
+                                                </div>
+
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="state" class="form-label">State :</label>
+                                                    <input type="text" class="form-control" id="state"
+                                                        name="state" oninput="this.value = this.value.toUpperCase()" required />
+                                                </div>
+
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="pinCode" class="form-label">PIN Code :</label>
+                                                    <input type="number" class="form-control" id="pinCode"
+                                                        name="pinCode" maxlength="12" pattern="[0-9]{6}"
+                                                        required />
+                                                </div>
+
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="address" class="form-label"> <b>6. Course Details :</b></label>
+                                                </div>
+
+                                                <% if (locals.user.course === "Bachelor of Arts (Social Science Subjects)") { %>
+                                                    <div class="col-md-12 mb-3">
+                                                        <label for="paper1" class="form-label">Paper-1 :</label>
+                                                        <select id="paper1" class="form-select" name="paper1" onchange="updatePaper2Option()"
+                                                            required>
+                                                            <option value="">सेमेस्टर 1, सेमेस्टर 2 और सेमेस्टर 3 में चयनित समान विषय का चयन करें</option>
+                                                            <option value="Economics">Economics</option>
+                                                            <option value="History">History</option>
+                                                            <option value="Political Science">Political Science</option>
+                                                            <option value="Psychology">Psychology</option>
+                                                            <option value="Sociology">Sociology</option>
+                                                        </select>
+                                                    </div>
+    
+                                                    <div class="col-md-12 mb-3">
+                                                        <label for="paper2" class="form-label">Paper-2 :</label>
+                                                        <select id="paper2" class="form-select" name="paper2"
+                                                            required>
+                                                            
+                                                        </select>
+                                                    </div>
+    
+                                                    <div class="col-md-12 mb-3">
+                                                        <label for="paper3" class="form-label">Paper-3 :</label>
+                                                        <select id="paper3" class="form-select" name="paper3"
+                                                            required>
+                                                            <option value="Course on NCC/NSS/NGO's/Social Service/Scout & Guide/Sports">Course on NCC/NSS/NGO's/Social Service/Scout & Guide/Sports</option>
+                                                        </select>
+                                                    </div>
+    
+                                                    <!-- <div class="col-md-12 mb-3">
+                                                        <label for="paper4" class="form-label">Paper-4 :</label>
+                                                        <select id="paper4" class="form-select" name="paper4"
+                                                            required>
+                                                            <option value="Course on Disaster Risk Management">Course on Disaster Risk Management</option>
+                                                        </select>
+                                                    </div> -->
+    
+                                                    <!-- <div class="col-md-12 mb-3">
+                                                        <label for="paper5" class="form-label">Paper-5 :</label>
+                                                        <select id="paper5" class="form-select" name="paper5"
+                                                            required>
+                                                            <option value="Statistical Software Package">Statistical Software Package</option>
+                                                            <option value="Communication in Professional Life">Communication in Professional Life</option>
+                                                        </select>
+                                                    </div> -->
+                                                <% } else if (locals.user.course === "Bachelor of Arts (Humanities Subjects)") { %>
+                                                    <div class="col-md-12 mb-3">
+                                                        <label for="paper1" class="form-label">Paper-1 :</label>
+                                                        <select id="paper1" class="form-select" name="paper1" onchange="updatePaper2Option()"
+                                                            required>
+                                                            <option value="">सेमेस्टर 1, सेमेस्टर 2 और सेमेस्टर 3 में चयनित समान विषय का चयन करें</option>
+                                                            <option value="English">English</option>
+                                                            <option value="Hindi">Hindi</option>
+                                                            <option value="Urdu">Urdu</option>
+                                                            <option value="Philosophy">Philosophy</option>
+                                                        </select>
+                                                    </div>
+    
+                                                    <div class="col-md-12 mb-3">
+                                                        <label for="paper2" class="form-label">Paper-2 :</label>
+                                                        <select id="paper2" class="form-select" name="paper2"
+                                                            required>
+                                                            
+                                                        </select>
+                                                    </div>
+    
+                                                    <div class="col-md-12 mb-3">
+                                                        <label for="paper3" class="form-label">Paper-3 :</label>
+                                                        <select id="paper3" class="form-select" name="paper3"
+                                                            required>
+                                                            <option value="Course on NCC/NSS/NGO's/Social Service/Scout & Guide/Sports">Course on NCC/NSS/NGO's/Social Service/Scout & Guide/Sports</option>
+                                                        </select>
+                                                    </div>
+    
+                                                    <!-- <div class="col-md-12 mb-3">
+                                                        <label for="paper4" class="form-label">Paper-4 :</label>
+                                                        <select id="paper4" class="form-select" name="paper4"
+                                                            required>
+                                                            <option value="Course on Disaster Risk Management">Course on Disaster Risk Management</option>
+                                                        </select>
+                                                    </div> -->
+    
+                                                    <!-- <div class="col-md-12 mb-3">
+                                                        <label for="paper5" class="form-label">Paper-5 :</label>
+                                                        <select id="paper5" class="form-select" name="paper5"
+                                                            required>
+                                                            <option value="Statistical Software Package">Statistical Software Package</option>
+                                                            <option value="Communication in Professional Life">Communication in Professional Life</option>
+                                                        </select>
+                                                    </div> -->
+                                                <% } else if (locals.user.course === "Bachelor of Science") { %>
+                                                    <div class="col-md-12 mb-3">
+                                                        <label for="paper1" class="form-label">Paper-1 :</label>
+                                                        <select id="paper1" class="form-select" name="paper1" onchange="updatePaper2Option()"
+                                                            required>
+                                                            <option value="">सेमेस्टर 1, सेमेस्टर 2 और सेमेस्टर 3 में चयनित समान विषय का चयन करें</option>
+                                                            <option value="Physics">Physics</option>
+                                                            <option value="Chemistry">Chemistry</option>
+                                                            <option value="Zoology">Zoology</option>
+                                                            <option value="Botany">Botany</option>
+                                                            <option value="Mathematics">Mathematics</option>
+                                                        </select>
+                                                    </div>
+    
+                                                    <div class="col-md-12 mb-3">
+                                                        <label for="paper2" class="form-label">Paper-2 :</label>
+                                                        <select id="paper2" class="form-select" name="paper2"
+                                                            required>
+                                                            
+                                                        </select>
+                                                    </div>
+    
+                                                    <div class="col-md-12 mb-3">
+                                                        <label for="paper3" class="form-label">Paper-3 :</label>
+                                                        <select id="paper3" class="form-select" name="paper3"
+                                                            required>
+                                                            <option value="Course on NCC/NSS/NGO's/Social Service/Scout & Guide/Sports">Course on NCC/NSS/NGO's/Social Service/Scout & Guide/Sports</option>
+                                                        </select>
+                                                    </div>
+    
+                                                    <!-- <div class="col-md-12 mb-3">
+                                                        <label for="paper4" class="form-label">Paper-4 :</label>
+                                                        <select id="paper4" class="form-select" name="paper4"
+                                                            required>
+                                                            <option value="Course on Disaster Risk Management">Course on Disaster Risk Management</option>
+                                                        </select>
+                                                    </div> -->
+    
+                                                    <!-- <div class="col-md-12 mb-3">
+                                                        <label for="paper5" class="form-label">Paper-5 :</label>
+                                                        <select id="paper5" class="form-select" name="paper5"
+                                                            required>
+                                                            <option value="Prospecting E-waste for sustainability">Prospecting E-waste for sustainability</option>
+                                                            <option value="Graphic Design & Animation">Graphic Design & Animation</option>
+                                                        </select>
+                                                    </div> -->
+                                                <% } %>
+
+                                                
+
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="address" class="form-label"> <b>7. Last Exam Passed:</b></label>
+                                                </div>
+
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="examResult" class="form-label">Exam Result :</label>
+                                                    <select id="examResult" class="form-select" name="examResult"
+                                                        required>
+                                                        <option value="1st Division">1st Division</option>
+                                                        <option value="2nd Division">2nd Division</option>
+                                                        <option value="3rd Division">3rd Division</option>
+                                                    </select>
+                                                </div>
+
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="obtMarks" class="form-label">Obtained Marks/Gr :</label>
+                                                    <input type="number" class="form-control" id="obtMarks"
+                                                        name="obtMarks" required />
+                                                </div>
+
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="fullMarks" class="form-label">Full Marks/Gr :</label>
+                                                    <input type="number" class="form-control" id="fullMarks"
+                                                        name="fullMarks" required />
+                                                </div>
+
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="obtPercent" class="form-label">Obtained % :</label>
+                                                    <input type="text" class="form-control" id="obtPercent"
+                                                        name="obtPercent" required />
+                                                </div>
+
+                                                <div class="mb-3">
+                                                    <label for="studentPhoto" class="form-label">Passport Size
+                                                        Photo</label>
+                                                    <input class="form-control form-control-sm" id="studentPhoto"
+                                                        name="studentPhoto" type="file" required>
+                                                </div>
+
+                                                <div class="mb-3">
+                                                    <label for="studentPhoto" class="form-label">Student Sign</label>
+                                                    <input class="form-control form-control-sm" id="studentPhoto"
+                                                        name="studentPhoto" type="file" required>
+                                                </div>
+
+                                                <% if (locals.appliedUser) { %>
+                                                    <button type="submit" class="btn btn-primary" disabled>Submit</button>
+                                                <% } else { %>
+                                                    <% if (locals.portal) { %>
+                                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                                        <% } else { %>
+                                                            <button type="submit" class="btn btn-primary" disabled>Submit</button>
+                                                    <% } %>
+                                                <% } %>
+                                                <button type="reset" class="btn btn-secondary">Reset</button>
+
+                                            </form>
+                                                <% } %>
+                                            <% } %>
+
+                                        </div>
+                                        <% if (locals.appliedUser) { %>
+                                         
+                                        <% if (locals.appliedUser.isPaid == true) { %>
+                                            <!-- <button class="btn btn-success my-4" disabled><a class="text-light" href="">Pay Admission Fee</a></button> -->
+                                        <% } else { %>
+                                            <button class="btn btn-success my-4"><a class="text-light" href="/ugRegularSem4Pay">Pay Admission Fee</a></button>
+                                        <% } %>
+                                        <% } %>
+
+                                        <% if (locals.appliedUser) { %>
+                                         
+                                        <% if (locals.appliedUser.isPaid == true) { %>
+                                            <button class="btn btn-primary my-4"><a class="text-light " href="/ugRegularSem4Receipt">Print Receipt</a></button>
+                                        <% } %>
+                                        <% } %>
+
+                                        <% if (locals.appliedUser) { %>
+                                         
+                                        <% if (locals.appliedUser.isPaid == true) { %>
+                                            <button class="btn btn-primary my-4"><a class="text-light" href="/ugRegularSem4AdmFormCopy">Print Admission form</a></button>
+                                        <% } %>
+                                        <% } %>
+
+                                        
+
+                                    </div>
+                                </div>
+            </div>
+
+            <!-- Form End -->
+
+
+            <!-- Footer Start -->
+            <div class="container-fluid pt-4 px-4">
+                <div class="bg-light rounded-top p-4">
+                    <div class="row">
+                        <div class="col-12 col-sm-4 text-center text-sm-start">
+                            &copy; <a href="#">MD College, Naubatpur</a>, All Right Reserved.
+                        </div>
+                        <!-- <div class="col-12 col-sm-4 text-center text-sm-center"> -->
+                            <!-- <a href="#">Terms & Conditions</a>. -->
+                            <!-- <div type="button" class="text-primary" data-toggle="modal" data-target="#termsModal">
+                                Terms and Conditions
+                            </div> -->
+                            <!-- TnC -->
+                            <!-- <div class="modal fade" id="termsModal" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-scrollable">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="termsModalLabel">Terms and Conditions For Online-Payments</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p class="text-start">The Terms and Conditions contained herein shall apply to any user using the services of
+                                                Malti Dhari College, Naubatpur for making payments through an online
+                                                payment gateway service offered by Phone Pay Payment Gateway Service
+                                                provider, through website i.e. www.mdcollegenaubatpur.ac.in . Each User is therefore deemed to have
+                                                read and accepted these Terms and Conditions.</p>
+                                                <b class="text-start"><p>A. Privacy Policy</p></b>
+                                                <p class="text-start">MD College respects and protects the privacy of the individuals that access the information and use the
+                                                    services provided through them. Individually identifiable information about the User is not willfully
+                                                    disclosed to any third party without first receiving the User’s permission, as covered in this Privacy
+                                                    Policy.
+                                                    This Privacy Policy describes MD College’s treatment of personally identifiable information that MD College
+                                                    collects when Users on the MD College’s website. MD College does not collect any unique information about
+                                                    the User (such as User’s name, email address, age, gender etc.) except when the User specifically
+                                                    and knowingly provide such information on the Website. Like any business interested in offering the
+                                                    highest quality of service to clients, MD College may, from time to time, send email and other
+                                                    communication to the User tell them about the various services, features, functionality and content
+                                                    offered by MD College website or seek voluntary information from you.</p>
+
+                                                    <p class="text-start">Please be aware, however, that MD College will release specific personal information about the User if
+                                                        required to do so in the following circumstances:</p>
+
+                                                    <ol type="a">
+                                                        <li class="text-start">in order to comply with any valid legal process such as a search warrant, statute, or court
+                                                            order, or</li>
+                                                        
+                                                        <li class="text-start">f any of User’s actions on MD College’s website violate the Terms of Service or any of MD College’s
+                                                            guidelines for specific services, or
+                                                            c) to protect or defend MD College’s legal rights</li>
+
+                                                        <li class="text-start">to protect or defend MD College’s legal rights or property, the MD College site, or MD College Users; or</li>
+
+                                                        <li class="text-start">to investigate, prevent, or take action regarding illegal activities, suspected fraud, situations
+                                                            involving potential threats to the security, integrity of MD College website/offerings.</li>
+                                                    </ol>
+
+                                                    <b class="text-start"><p>B. General Terms and Conditions For Online-Payments</p></b>
+
+                                                    <ol type="1">
+                                                        <li class="text-start">Once a User has accepted these Terms and Conditions, he/ she may register and avail the
+                                                            Services. A User may either register on MD College’s website or alternatively enter his/ her details
+                                                            and pay their dues in any other manner as may be specified by MD College from time to time.</li>
+                                                        
+                                                        <li class="text-start">MD College's rights, obligations, undertakings shall be subject to the laws in force in India, as well
+                                                            as any directives/ procedures of Government of India, and nothing contained in these Terms
+                                                            and Conditions shall be in derogation of MD College's right to comply with any law enforcement
+                                                            agencies request or requirements relating to any User’s use of the website or information
+                                                            provided to or gathered by MD College with respect to such use. Each User accepts and agrees
+                                                            that the provision of details of his/ her use of the Website to regulators or police or to any other
+                                                            third party in order to resolve disputes or complaints which relate to the
+                                                            Website shall be at the absolute discretion of MD College.</li>
+                                                        
+                                                        <li class="text-start">If any part of these Terms and Conditions are determined to be invalid or unenforceable
+                                                            pursuant to applicable law including, but not limited to, the warranty disclaimers and liability
+                                                            limitations set forth herein, then the invalid or unenforceable provision will be deemed
+                                                            superseded by a valid, enforceable provision that most closely matches the intent of the
+                                                            original provision and the remainder of these Terms and Conditions shall continue in effect.</li>
+
+                                                        <li class="text-start">These Terms and Conditions constitute the entire agreement between the User and MD College.
+                                                            These Terms and Conditions supersede all prior or contemporaneous communications and
+                                                            proposals, whether electronic, oral, or written, between the User and MD College. A printed
+                                                            version of these Terms and Conditions and of any notice given in electronic form shall be
+                                                            admissible in judicial or administrative proceedings based upon or relating to these Terms and
+                                                            Conditions to the same extent and subject to the same conditions as other business
+                                                            documents and records originally generated and maintained in printed form.</li>
+
+                                                        <li class="text-start">The entries in the books of MD College and/or the Payment Service Providers kept in the ordinary
+                                                            course of business of MD College and/or the Payment Service Providers with regard to
+                                                            transactions covered under these Terms and Conditions and matters therein appearing shall
+                                                            be binding on the User and shall be conclusive proof of the genuineness and accuracy of the
+                                                            transaction.</li>
+                                                        
+                                                        <li class="text-start">Refund For Charge Back Transaction: In the event there is any claim for/ of charge back by the
+                                                            User for any reason whatsoever, such User shall immediately approach MD College with his/ her
+                                                            claim details and claim refund from MD College alone. Such refund (if any) shall be effected only
+                                                            by MD College via payment gateway or by means of a demand draft or such other means as
+                                                            MD College deems appropriate. No claims for refund/ charge back shall be made by any User to
+                                                            the Payment Service Provider(s) and in the event such claim is made it shall not be
+                                                            entertained.</li>
+
+                                                        <li class="text-start">In these Terms and Conditions, the term “Charge Back” shall mean, approved and settled
+                                                            credit card or net banking purchase transaction(s) which are at any time refused, debited or
+                                                            charged back to merchant account (and shall also include similar debits to Payment Service
+                                                            Provider's accounts, if any) by the acquiring bank or credit card company for any reason
+                                                            whatsoever, together with the bank fees, penalties and other charges incidental thereto.</li>
+
+                                                        <li class="text-start">Refund for fraudulent/duplicate transaction(s): The User shall directly contact MD College for any
+                                                            fraudulent transaction(s) on account of misuse of Card/ Bank details by a fraudulent
+                                                            individual/party and such issues shall be suitably addressed by MD College alone in line with their
+                                                            policies and rules.</li>
+
+                                                        <li class="text-start">Server Slow Down/Session Timeout: In case the Website or Payment Service Provider’s web
+                                                            page, that is linked to the Website, is experiencing any server related issues like ‘slow down’ or
+                                                            ‘failure’ or ‘session timeout’, the User shall, before initiating the second payment,, check
+                                                            whether his/her Bank Account has been debited or not and accordingly resort to one of the
+                                                            following options:</li>
+                                                        <ol type="i">
+                                                            <li class="text-start">In case the Bank Account appears to be debited, ensure that he/ she does not make the payment
+                                                                twice and immediately thereafter contact MD College via e-mail or any other mode of
+                                                                contact as provided by MD College to confirm payment.</li>
+
+                                                            <li class="text-start">In case the Bank Account is not debited, the User may initiate a fresh transaction to make
+                                                                payment.</li>
+                                                        </ol>
+                                                    </ol>
+
+                                                    <p class="text-start">However, the User agrees that under no circumstances the Payment Gateway Service
+                                                        Provider shall be held responsible for such fraudulent/duplicate transactions and hence no
+                                                        claims should be raised to Payment Gateway Service Provider No communication received by
+                                                        the Payment Service Provider(s) in this regards shall be entertained by the Payment Service
+                                                        Provider(s).</p>
+                                                    
+                                                    <b class="text-start"><p>C. Limitation of Liability</p></b>
+
+                                                    <ol type="1">
+                                                        <li class="text-start">MD College has made this Service available to the User as a matter of convenience. MD College
+                                                            expressly disclaims any claim or liability arising out of the provision of this Service. The User
+                                                            agrees and acknowledges that he/ she shall be solely responsible for his/ her conduct and that
+                                                            MD College reserves the right to terminate the rights to use of the Service immediately without
+                                                            giving any prior notice thereof.</li>
+                                                        
+                                                        <li class="text-start">MD College and/or the Payment Service Providers shall not be liable for any inaccuracy, error or
+                                                            delay in, or omission of (a) any data, information or message, or (b) the transmission or
+                                                            delivery of any such data, information or message; or (c) any loss or damage arising from or
+                                                            occasioned by any such inaccuracy, error, delay or omission, non-performance or interruption
+                                                            in any such data, information or message. Under no circumstances shall the MD College and/or
+                                                            the Payment Service Providers, its employees, directors, and its third party agents involved in
+                                                            processing, delivering or managing the Services, be liable for any direct, indirect, incidental,
+                                                            special or consequential damages, or any damages whatsoever, including punitive or
+                                                            exemplary arising out of or in any way connected with the provision of or any inadequacy or
+                                                            deficiency in the provision of the Services or resulting from unauthorized access or alteration of
+                                                            transmissions of data or arising from suspension or termination of the Services.</li>
+
+                                                        <li class="text-start">MD College and the Payment Service Provider(s) assume no liability whatsoever for any monetary
+                                                            or other damage suffered by the User on account of:</li>
+                                                        
+                                                        <ol type="i">
+                                                            <li class="text-start">the delay, failure, interruption, or corruption of any data or other information transmitted in
+                                                                connection with use of the Payment Gateway or Services in connection thereto; and/ or</li>
+                                                            
+                                                            <li class="text-start">any interruption or errors in the operation of the Payment Gateway.</li>
+                                                        </ol>
+
+                                                        <li class="text-start">The User shall indemnify and hold harmless the Payment Service Provider(s) and MD College and
+                                                            their respective officers, directors, agents, and employees, from any claim or demand, or
+                                                            actions arising out of or in connection with the utilization of the Services.</li>
+
+                                                        <li class="text-start">The User agrees that MD College or any of its employees will not be held liable by the User for
+                                                            any loss or damages arising from your use of, or reliance upon the information contained on
+                                                            the Website, or any failure to comply with these Terms and Conditions where such failure is
+                                                            due to circumstance beyond MD College’s reasonable control.</li>
+                                                    </ol>
+
+                                                    <b class="text-start"><p>D. Miscellaneous Conditions :</p></b>
+
+                                                    <ol type="1">
+                                                        <li class="text-start">Any waiver of any rights available to MD College under these Terms and Conditions shall not
+                                                            mean that those rights are automatically waived.</li>
+                                                        
+                                                        <li class="text-start">The User agrees, understands and confirms that his/ her personal data including without
+                                                            limitation details relating to debit card/ credit card transmitted over the Internet may be
+                                                            susceptible to misuse, hacking, theft and/ or fraud and that MD College or the Payment Service
+                                                            Provider(s) have no control over such matters.</li>
+
+                                                        <li class="text-start">Although all reasonable care has been taken towards guarding against unauthorized use of
+                                                            any information transmitted by the User, MD College does not represent or guarantee that the use
+                                                            of the Services provided by/ through it will not result in theft and/or unauthorized use of data
+                                                            over the Internet.</li>
+
+                                                        <li class="text-start">MD College, the Payment Service Provider(s) and its affiliates and associates shall not be liable,
+                                                            at any time, for any failure of performance, error, omission, interruption, deletion, defect, delay
+                                                            in operation or transmission, computer virus, communications line failure, theft or destruction
+                                                            or unauthorized access to, alteration of, or use of information contained on the Website.</li>
+
+                                                        <li class="text-start">The User may be required to create his/ her own User ID and Password in order to register
+                                                            and/ or use the Services provided by MD College on the Website. By accepting these Terms and
+                                                            Conditions the User agrees that his/ her User ID and Password are very important pieces of
+                                                            information and it shall be the User’s own responsibility to keep them secure and confidential.
+                                                            In furtherance hereof, the User agrees to;</li>
+
+                                                        <ol type="i">
+                                                            <li class="text-start">Choose a new password, whenever required for security reasons.</li>
+                                                            <li class="text-start">Keep his/ her User ID & Password strictly confidential.</li>
+                                                            <li class="text-start">Be responsible for any transactions made by User under such User ID and Password.</li>
+                                                        </ol>
+
+                                                        <p class="text-start">The User is hereby informed that MD College will never ask the User for the User’s password in an
+                                                            unsolicited phone call or in an unsolicited email. The User is hereby required to sign out of his/
+                                                            her MD College account on the Website and close the web browser window when the
+                                                            transaction(s) have been completed. This is to ensure that others cannot access the User’s
+                                                            personal information and correspondence when the User happens to share a computer with
+                                                            someone else or is using a computer in a public place like a library or Internet café.</p>
+                                                    </ol>
+
+                                                    <b class="text-start"><p>E. Debit/Credit Card, Bank Account Details</p></b>
+
+                                                    <ol type="1">
+                                                        <li class="text-start">The User agrees that the debit/credit card details provided by him/ her for use of the aforesaid
+                                                            Service(s) must be correct and accurate and that the User shall not use a debit/ credit card,
+                                                            that is not lawfully owned by him/ her or the use of which is not authorized by the lawful owner
+                                                            thereof. The User further agrees and undertakes to provide correct and valid debit/credit card
+                                                            details.</li>
+
+                                                        <li class="text-start">The User may pay his/ her dues to MD College by using a debit/credit card or through online
+                                                            banking account. The User warrants, agrees and confirms that when he/ she initiates a
+                                                            payment transaction and/or issues an online payment instruction and provides his/ her
+                                                            card / bank details:</li>
+
+                                                        <ol type="i">
+                                                            <li class="text-start">The User is fully and lawfully entitled to use such credit / debit card, bank account for
+                                                                such transactions;</li>
+                                                            
+                                                            <li class="text-start">The User is responsible to ensure that the card/ bank account details provided by him/
+                                                                her are accurate;</li>
+
+                                                            <li class="text-start">The User is authorizing debit of the nominated card/ bank account for the payment of dues
+                                                                selected by such User along with the applicable Fees.</li>
+
+                                                            <li class="text-start">The User is responsible to ensure sufficient credit is available on the nominated card/
+                                                                bank account at the time of making the payment to permit the payment of the dues
+                                                                payable or the bill(s) selected by the User inclusive of the applicable Fee.</li>
+                                                        </ol>
+                                                    </ol>
+
+                                                    <b class="text-start"><p>F. Personal Information</p></b>
+
+                                                    <ol type="1">
+                                                        <li class="text-start">The User agrees that, to the extent required or permitted by law, MD College and/ or the Payment
+                                                            Service Provider(s) may also collect, use and disclose personal information in connection with
+                                                            security related or law enforcement investigations or in the course of cooperating with
+                                                            authorities or complying with legal requirements.</li>
+
+                                                        <li class="text-start">The User agrees that any communication sent by the User vide e-mail, shall imply release of
+                                                            information therein/ therewith to MD College. The User agrees to be contacted via e-mail on such
+                                                            mails initiated by him/ her.</li>
+
+                                                        <li class="text-start">In addition to the information already in the possession of MD College and/ or the Payment
+                                                            Service Provider(s), MD College may have collected similar information from the User in the past.
+                                                            By entering the Website the User consents to the terms of MD College’s information privacy policy
+                                                            and to MD College’s continued use of previously collected information. By submitting the User’s
+                                                            personal information to MD College, the User will be treated as having given his/her permission for
+                                                            the processing of the User’s personal data as set out herein.</li>
+
+                                                        <li class="text-start">The User acknowledges and agrees that his/ her information will be managed in accordance
+                                                            with the laws for the time in force.</li>
+                                                    </ol>
+
+                                                    <b class="text-start"><p>G. Payment Gateway Disclaimer</p></b>
+                                                    <p class="text-start">The Service is provided in order to facilitate access to view and pay dues online. MD College or
+                                                        the Payment Service Provider(s) do not make any representation of any kind, express or
+                                                        implied, as to the operation of the Payment Gateway other than what is specified in the
+                                                        Website for this purpose. By accepting/ agreeing to these Terms and Conditions, the User
+                                                        expressly agrees that his/ her use of the aforesaid online payment Service is entirely at own
+                                                        risk and responsibility of the User.</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-primary" data-dismiss="modal">Agree</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> -->
+
+                        <!-- </div> -->
+                        <div class="col-12 col-sm-6 text-center text-sm-end">
+                            Distributed By <a href="#">Digital India</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Footer End -->
+        </div>
+        <!-- Content End -->
+
+
+        <!-- Back to Top -->
+        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+    </div>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../lib/chart/chart.min.js"></script>
+    <script src="../lib/easing/easing.min.js"></script>
+    <script src="../lib/waypoints/waypoints.min.js"></script>
+    <script src="../lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="../lib/tempusdominus/js/moment.min.js"></script>
+    <script src="../lib/tempusdominus/js/moment-timezone.min.js"></script>
+    <script src="../lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="../javascripts/main.js"></script>
+
+    <script>
+        function updatePaper2Option() {
+            const paper1 = document.getElementById('paper1').value;
+            const paper2 = document.getElementById('paper2');
+            paper2.innerHTML = '';
+
+            let options = [];
+
+            if (paper1 === 'Economics') {
+                options = [
+                    { value: 'History', text: 'History' },
+                    { value: 'Political Science', text: 'Political Science' },
+                    { value: 'Psychology', text: 'Psychology' },
+                    { value: 'Sociology', text: 'Sociology' }
+                ];
+            } else if (paper1 === 'History') {
+                options = [
+                    { value: 'Economics', text: 'Economics' },
+                    { value: 'Political Science', text: 'Political Science' },
+                    { value: 'Psychology', text: 'Psychology' },
+                    { value: 'Sociology', text: 'Sociology' }
+                ];
+            } else if (paper1 === 'Political Science') {
+                options = [
+                    { value: 'Economics', text: 'Economics' },
+                    { value: 'History', text: 'History' },
+                    { value: 'Psychology', text: 'Psychology' },
+                    { value: 'Sociology', text: 'Sociology' }
+                ];
+            } else if (paper1 === 'Psychology') {
+                options = [
+                    { value: 'Economics', text: 'Economics' },
+                    { value: 'History', text: 'History' },
+                    { value: 'Political Science', text: 'Political Science' },
+                    { value: 'Sociology', text: 'Sociology' }
+                ];
+            } else if (paper1 === 'Sociology') {
+                options = [
+                    { value: 'Economics', text: 'Economics' },
+                    { value: 'History', text: 'History' },
+                    { value: 'Political Science', text: 'Political Science' },
+                    { value: 'Psychology', text: 'Psychology' }
+                ];
+
+            // Arts Humanity Subject    
+            } else if (paper1 === 'English') {
+                options = [
+                    { value: 'Hindi', text: 'Hindi' },
+                    { value: 'Urdu', text: 'Urdu' },
+                    { value: 'Philosophy', text: 'Philosophy' }
+                ];
+            } else if (paper1 === 'Hindi') {
+                options = [
+                    { value: 'English', text: 'English' },
+                    { value: 'Urdu', text: 'Urdu' },
+                    { value: 'Philosophy', text: 'Philosophy' }
+                ];
+            } else if (paper1 === 'Urdu') {
+                options = [
+                    { value: 'English', text: 'English' },
+                    { value: 'Hindi', text: 'Hindi' },
+                    { value: 'Philosophy', text: 'Philosophy' }
+                ];
+            } else if (paper1 === 'Philosophy') {
+                options = [
+                    { value: 'English', text: 'English' },
+                    { value: 'Hindi', text: 'Hindi' },
+                    { value: 'Urdu', text: 'Urdu' }
+                ];
+
+            // Science    
+            } else if (paper1 === 'Physics') {
+                options = [
+                    { value: 'Chemistry', text: 'Chemistry' },
+                    { value: 'Zoology', text: 'Zoology' },
+                    { value: 'Botany', text: 'Botany' },
+                    { value: 'Mathematics', text: 'Mathematics' }
+                ];
+            } else if (paper1 === 'Chemistry') {
+                options = [
+                    { value: 'Physics', text: 'Physics' },
+                    { value: 'Zoology', text: 'Zoology' },
+                    { value: 'Botany', text: 'Botany' },
+                    { value: 'Mathematics', text: 'Mathematics' }
+                ];
+            } else if (paper1 === 'Zoology') {
+                options = [
+                    { value: 'Physics', text: 'Physics' },
+                    { value: 'Chemistry', text: 'Chemistry' },
+                    { value: 'Botany', text: 'Botany' },
+                    { value: 'Mathematics', text: 'Mathematics' }
+                ];
+            } else if (paper1 === 'Botany') {
+                options = [
+                    { value: 'Physics', text: 'Physics' },
+                    { value: 'Chemistry', text: 'Chemistry' },
+                    { value: 'Zoology', text: 'Zoology' },
+                    { value: 'Mathematics', text: 'Mathematics' }
+                ];
+            } else if (paper1 === 'Mathematics') {
+                options = [
+                    { value: 'Physics', text: 'Physics' },
+                    { value: 'Chemistry', text: 'Chemistry' },
+                    { value: 'Zoology', text: 'Zoology' },
+                    { value: 'Botany', text: 'Botany' }
+                ];
+            }
+
+            options.forEach(option => {
+                const newOption = document.createElement('option');
+                newOption.value = option.value;
+                newOption.text = option.text;
+                paper2.appendChild(newOption);
+            });
+        }
+    </script>
+     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

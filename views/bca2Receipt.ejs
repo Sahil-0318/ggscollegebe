@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Receipt</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css"
+        integrity="sha256-2XFplPlrFClt0bIdPgpz8H7ojnk10H69xRqd9+uTShA=" crossorigin="anonymous" />
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css'>
+    <style>
+        body {
+            margin-top: 20px;
+            background-color: #eee;
+        }
+
+        .card {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
+            word-wrap: break-word;
+            background-color: #fff;
+            background-clip: border-box;
+        }
+
+        .card-body {
+            border: 0.5px solid black;
+        }
+
+        @media print {
+            @page {
+                size: A4;
+                margin: 1cm;
+            }
+
+            body{
+                margin-top: 0;
+            }
+            .card {
+                width: 100vw;
+            }
+            .myCont {
+                margin: 0;
+                padding: 0;
+                width: 100vw;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container myCont">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class=" d-flex justify-content-between">
+                            <div class="mb-4">
+                                <img src="/images/mdcLogo.png" width="100px" alt="Logo">
+                            </div>
+                            <div class="text-muted text-center">
+                                <h2>M. D. COLLEGE, NAUBATPUR</h2>
+                                <h6>(A Constituent Unit of Patliputra University, Patna)</h6>
+                                <h3>PATNA , BIHAR PIN - 801109</h3>
+                                <P>Website: www.mdcollegenaubatpur.ac.in, Email: mdcollegenaubatpur@yahoo.com</P>
+                            </div>
+                            <div class="mb-4">
+                                <img src="/images/ppuLogo.png" width="100px" alt="Logo">
+                            </div>
+                        </div>
+
+                        <hr class="my-4">
+                        <div class="text-center mb-3">E-Receipt [College Copy]</div>
+
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="text-muted">
+                                    <p class="mb-1 fw-bold">Name :&nbsp; &nbsp; &nbsp; <%=
+                                            locals.appliedUser.studentName %>
+                                    </p>
+                                    
+                                    <p class="mb-1 fw-bold">Class :&nbsp; &nbsp; &nbsp; BCA Part-II (2023-26)
+                                    </p>
+                                    <p class="mb-1 fw-bold">Uni. Registration No. :&nbsp; &nbsp; &nbsp; <%=
+                                            locals.appliedUser.uniRegNumber %></p>
+
+                                                <p class="mb-1 fw-bold">Uni. Roll No. :&nbsp; &nbsp; &nbsp; <%=
+                                                        locals.appliedUser.uniRollNumber %>
+                                                </p>
+                                                <p class="mb-1 fw-bold">College Roll No :&nbsp; &nbsp; <%=
+                                                        locals.appliedUser.collegeRollNumber %>
+                                                </p>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="text-muted ">
+                                    <p class="mb-1 fw-bold">E-mail Id :&nbsp; &nbsp; &nbsp; <%= locals.appliedUser.email
+                                            %>
+                                    </p>
+                                    <p class="mb-1 fw-bold">Mobile No :&nbsp; &nbsp; &nbsp; <%=
+                                            locals.appliedUser.mobileNumber %>
+                                    </p>
+                                    <p class="mb-1 fw-bold">Subject :&nbsp; &nbsp; &nbsp; <%=
+                                            locals.appliedUser.subject %>
+                                    </p>
+                                    <p class="mb-1 fw-bold">Category :&nbsp; &nbsp; &nbsp; <%=
+                                            locals.appliedUser.category %>
+                                    </p>
+                                    <p class="mb-1 fw-bold">Receipt No :&nbsp; &nbsp; <%= locals.appliedUser.receiptNo
+                                            %>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end row -->
+
+                        <div class="py-2">
+
+                            <div class="table-responsive">
+                                <table class="table align-middle table-nowrap table-centered mb-0">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 70px;">Sl. No.</th>
+                                            <th>Description</th>
+                                            <th></th>
+                                            <th></th>
+                                            <th class="text-end" style="width: 120px;">Amount</th>
+                                        </tr>
+                                    </thead><!-- end thead -->
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">01</th>
+                                            <td>
+                                                <div>
+                                                    <h5 class="text-truncate font-size-14 mb-1">Admission Fee</h5>
+                                                </div>
+                                            </td>
+                                            <td></td>
+                                            <td></td>
+                                            <% if (locals.appliedUser.admissionFee == 15500) { %>
+                                                <td class="text-end">₹<%= locals.appliedUser.admissionFee - 500%>
+                                                </td>
+                                            <% } else { %>
+                                                <td class="text-end">₹<%= locals.appliedUser.admissionFee%>
+                                                </td>
+                                            <% } %>
+                                        </tr>
+                                        <tr>
+                                            <% if (locals.appliedUser.admissionFee == 15500) { %>
+                                                <th scope="row">02</th>
+                                                <td>
+                                                    <div>
+                                                        <h5 class="text-truncate font-size-14 mb-1">Late Fee</h5>
+                                                    </div>
+                                                </td>
+                                                <td></td>
+                                                <td></td>
+                                            <% } else { %>
+                                            <% } %>
+                                            
+                                            <% if (locals.appliedUser.admissionFee == 15500) { %>
+                                                <td class="text-end">₹ 500
+                                                </td>
+                                            <% } else { %>
+                                            <% } %>
+                                        </tr>
+                                        <!-- end tr -->
+                                    </tbody><!-- end tbody -->
+                                </table><!-- end table -->
+                            </div><!-- end table responsive -->
+
+                            <div class="col-lg-12">
+                                <div class="row">
+                                    <p class="text-center mt-4"><b>PAY MODE INFORMATION</b></p>
+                                    <div class="col-sm-2">
+                                        <div class="text-muted">
+                                            <p class="mb-1 fw-bold">Pay Mode :</p>
+                                            <p class="mb-1 fw-bold">Bank :</p>
+                                            <p class="mb-1 fw-bold">Total :</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="text-muted">
+                                            <p class="mb-1">Online</p>
+                                            <p class="mb-1">UPI</p>
+                                            <% if (locals.appliedUser.admissionFee == 15500) { %>
+                                                <p class="mb-1 fw-bold">₹ 15500 </p>
+                                            <% } else { %>
+                                                <p class="mb-1 fw-bold">₹ 15000 </p>
+                                            <% } %>
+                                            
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="text-muted text-end">
+                                            <p class="mb-1 fw-bold">Date & Time of Payment :</p>
+                                            <p class="mb-1 fw-bold">Payment Id :</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="text-muted text-end">
+                                            <p class="mb-1">
+                                                <%= locals.appliedUser.dateAndTimeOfPayment %>
+                                            </p>
+                                            <p class="mb-1">
+                                                <%= locals.appliedUser.paymentId %>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <p class="mb-1 mt-3 fw-bold">Online Fee Paid </p>
+
+                                <div class="mt-4 mb-1">This is computer generated Receipt. Does not required signature
+                                </div>
+                            </div>
+
+                            <div class="d-print-none mt-4">
+                                <div class="float-end">
+                                    <a href="javascript:window.print()" class="btn btn-success me-1"><i
+                                            class="fa fa-print"></i></a>
+                                    <a href="/bca2Form" class="btn btn-primary w-md">Back to Home Page</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- end col -->
+        </div>
+    </div>
+    <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js'></script>
+</body>
+
+</html>

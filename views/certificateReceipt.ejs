@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Receipt</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css"
+        integrity="sha256-2XFplPlrFClt0bIdPgpz8H7ojnk10H69xRqd9+uTShA=" crossorigin="anonymous" />
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css'>
+    <style>
+        body {
+            margin-top: 20px;
+            background-color: #eee;
+        }
+
+        .card {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
+            word-wrap: break-word;
+            background-color: #fff;
+            background-clip: border-box;
+        }
+
+        .card-body {
+            border: 0.5px solid black;
+        }
+
+        @media print {
+            @page {
+                size: A4;
+                margin: 1cm;
+            }
+
+            body {
+                margin-top: 0;
+            }
+
+            .card {
+                width: 100vw;
+            }
+
+            .myCont {
+                margin: 0;
+                padding: 0;
+                width: 100vw;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container myCont">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class=" d-flex justify-content-between">
+                            <div class="mb-4">
+                                <img src="/images/mdcLogo.png" width="100px" alt="Logo">
+                            </div>
+                            <div class="text-muted text-center">
+                                <h2>M. D. COLLEGE, NAUBATPUR</h2>
+                                <h6>(A Constituent Unit of Patliputra University, Patna)</h6>
+                                <h3>PATNA , BIHAR PIN - 801109</h3>
+                                <P>Website: www.mdcollegenaubatpur.ac.in, Email: mdcollegenaubatpur@yahoo.com</P>
+                            </div>
+                            <div class="mb-4">
+                                <img src="/images/ppuLogo.png" width="100px" alt="Logo">
+                            </div>
+                        </div>
+
+                        <hr class="my-4">
+                        <% if (locals.extraInfo.certificateType === "CC") { %>
+                            <div class="text-center mb-3"><b>Character Certificate</b> E-Receipt [College Copy]</div>
+                        <% } else if (locals.extraInfo.certificateType === "clc") { %>
+                            <% if (locals.extraInfo.type === "normal") { %>
+                                <div class="text-center mb-3"><b>Normal CLC</b> E-Receipt [College Copy]</div>
+                            <% } %>
+                            <% if (locals.extraInfo.type === "urgent") { %>
+                                <div class="text-center mb-3"><b>Urgent CLC</b> E-Receipt [College Copy]</div>
+                            <% } %>
+                            <% if (locals.extraInfo.type === "duplicate") { %>
+                                <div class="text-center mb-3"><b>Duplicate CLC</b> E-Receipt [College Copy]</div>
+                            <% } %>
+                            
+                        <% } else { %>
+                            <div class="text-center mb-3"><b><%= locals.extraInfo.certificateType %></b> E-Receipt [College Copy]</div>
+                        <% } %>
+
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="text-muted">
+                                    <p class="mb-1 fw-bold">Name :&nbsp; &nbsp; &nbsp; <%= locals.appliedUser.fullName %></p>
+
+                                    <% if (locals.extraInfo.certificateType === "clc") { %>
+                                        <p class="mb-1 fw-bold">College Roll No :&nbsp; &nbsp; <%=locals.appliedUser.classRollNumber %></p>
+                                    <% } else { %>
+                                        <p class="mb-1 fw-bold">College Roll No :&nbsp; &nbsp; <%=locals.appliedUser.collegeRollNumber %></p>
+                                    <% } %>
+
+                                    <% if (locals.appliedUser.uniRegNumber) { %>
+                                        <p class="mb-1 fw-bold">Uni. Registration No. :&nbsp; &nbsp; &nbsp; <%= locals.appliedUser.uniRegNumber %></p>
+                                    <% } %>
+
+                                    <% if (locals.appliedUser.regNumber) { %>
+                                        <p class="mb-1 fw-bold">Uni. Registration No. :&nbsp; &nbsp; &nbsp; <%= locals.appliedUser.regNumber %></p>
+                                    <% } %>
+
+                                    <% if (locals.extraInfo.certificateType === "TC") { %>
+                                        <p class="mb-1 fw-bold">Course :&nbsp; &nbsp; &nbsp; <%= locals.appliedUser.courseName %></p>
+                                    <% } %>
+
+                                    
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <div class="text-muted ">
+                                    <% if (locals.appliedUser.email) { %>
+                                        <p class="mb-1 fw-bold">E-mail Id :&nbsp; &nbsp; &nbsp; <%= locals.appliedUser.email %></p>
+                                    <% } %>
+
+                                    <% if (locals.appliedUser.mobileNumber) { %>
+                                        <p class="mb-1 fw-bold">Mobile No :&nbsp; &nbsp; &nbsp; <%=
+                                            locals.appliedUser.mobileNumber %></p>
+                                    <% } %>
+                                    
+                                    <% if (locals.extraInfo.certificateType === "CC") { %>
+                                        <p class="mb-1 fw-bold">Course :&nbsp; &nbsp; &nbsp; <%= locals.appliedUser.courseName %></p>
+                                    <% } %>
+
+                                    <% if (locals.extraInfo.certificateType === "clc") { %>
+                                        <p class="mb-1 fw-bold">Course :&nbsp; &nbsp; &nbsp; <%= locals.appliedUser.course %></p>
+                                    <% } %>
+                                    
+                                    <% if (locals.extraInfo.certificateType === "clc") { %>
+                                        <% if (locals.extraInfo.type === "normal") { %>
+                                            <p class="mb-1 fw-bold">Receipt No :&nbsp; &nbsp; <%= locals.appliedUser.normalPaymentReceipt %></p>
+                                        <% } %>
+                                        <% if (locals.extraInfo.type === "urgent") { %>
+                                            <p class="mb-1 fw-bold">Receipt No :&nbsp; &nbsp; <%= locals.appliedUser.urgentPaymentReceipt %></p>
+                                        <% } %>
+                                        <% if (locals.extraInfo.type === "duplicate") { %>
+                                            <p class="mb-1 fw-bold">Receipt No :&nbsp; &nbsp; <%= locals.appliedUser.duplicatePaymentReceipt %></p>
+                                        <% } %>
+                                    <% } else { %>
+                                        <p class="mb-1 fw-bold">Receipt No :&nbsp; &nbsp; <%= locals.appliedUser.paymentReceipt
+                                            %></p>
+                                    <% } %>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end row -->
+
+                        <div class="py-2">
+
+                            <div class="table-responsive">
+                                <table class="table align-middle table-nowrap table-centered mb-0">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 70px;">Sl. No.</th>
+                                            <th>Description</th>
+                                            <th></th>
+                                            <th></th>
+                                            <th class="text-end" style="width: 120px;">Amount</th>
+                                        </tr>
+                                    </thead><!-- end thead -->
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">01</th>
+                                            <td>
+                                                <div>
+                                                    <% if (locals.extraInfo.certificateType === "CC") { %>
+                                                        <h5 class="text-truncate font-size-14 mb-1">Character Certificate Fee</h5>
+                                                        <% } else if (locals.extraInfo.certificateType === "clc") { %>
+                                                            <% if (locals.extraInfo.type === "normal") { %>
+                                                                <h5 class="text-truncate font-size-14 mb-1">Normal CLC Fee</h5>
+                                                            <% } %>
+                                                            <% if (locals.extraInfo.type === "urgent") { %>
+                                                                <h5 class="text-truncate font-size-14 mb-1">Urgent CLC Fee</h5>
+                                                            <% } %>
+                                                            <% if (locals.extraInfo.type === "duplicate") { %>
+                                                                <h5 class="text-truncate font-size-14 mb-1">Duplicate CLC Fee</h5>
+                                                            <% } %>
+                                                     <% } else { %>
+                                                        <h5 class="text-truncate font-size-14 mb-1"><%= locals.extraInfo.certificateType %> Fee</h5>
+                                                    <% } %>
+                                                </div>
+                                            </td>
+                                            <td></td>
+                                            <td></td>
+                                            <% if (locals.extraInfo.certificateType === "clc") { %>
+                                                <% if (locals.extraInfo.type === "normal") { %>
+                                                    <td class="text-end">₹ <%= locals.appliedUser.normalClcFee %>
+                                                    </td>
+                                                <% } %>
+                                                <% if (locals.extraInfo.type === "urgent") { %>
+                                                    <td class="text-end">₹ <%= locals.appliedUser.urgentClcFee %>
+                                                    </td>
+                                                <% } %>
+                                                <% if (locals.extraInfo.type === "duplicate") { %>
+                                                    <td class="text-end">₹ <%= locals.appliedUser.duplicateClcFee %>
+                                                    </td>
+                                                <% } %>
+                                            <% } else { %>
+                                                <td class="text-end">₹ <%= locals.appliedUser.feeAmount %>
+                                                </td>
+                                            <% } %>
+                                            
+                                        </tr>
+                                        <!-- end tr -->
+                                    </tbody><!-- end tbody -->
+                                </table><!-- end table -->
+                            </div><!-- end table responsive -->
+
+                            <div class="col-lg-12">
+                                <div class="row">
+                                    <p class="text-center mt-4"><b>PAY MODE INFORMATION</b></p>
+                                    <div class="col-sm-2">
+                                        <div class="text-muted">
+                                            <p class="mb-1 fw-bold">Pay Mode :</p>
+                                            <p class="mb-1 fw-bold">Bank :</p>
+                                            <p class="mb-1 fw-bold">Total :</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="text-muted">
+                                            <p class="mb-1">Online</p>
+                                            <p class="mb-1">UPI</p>
+                                            <% if (locals.extraInfo.certificateType === "clc") { %>
+                                                <% if (locals.extraInfo.type === "normal") { %>
+                                                    <p class="mb-1 fw-bold">₹<%= locals.appliedUser.normalClcFee %>
+                                                    </p>
+                                                <% } %>
+                                                <% if (locals.extraInfo.type === "urgent") { %>
+                                                    <p class="mb-1 fw-bold">₹<%= locals.appliedUser.urgentClcFee %>
+                                                    </p>
+                                                <% } %>
+                                                <% if (locals.extraInfo.type === "duplicate") { %>
+                                                    <p class="mb-1 fw-bold">₹<%= locals.appliedUser.duplicateClcFee %>
+                                                    </p>
+                                                <% } %>
+                                            <% } else { %>
+                                                <p class="mb-1 fw-bold">₹<%= locals.appliedUser.feeAmount %>
+                                                </p>
+                                            <% } %>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="text-muted text-end">
+                                            <p class="mb-1 fw-bold">Date & Time of Payment :</p>
+                                            <p class="mb-1 fw-bold">Payment Id :</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="text-muted text-end">
+                                            <% if (locals.extraInfo.certificateType === "clc") { %>
+                                                <% if (locals.extraInfo.type === "normal") { %>
+                                                    <p class="mb-1">
+                                                        <%= locals.appliedUser.normalPaidAt %>
+                                                    </p>
+                                                <% } %>
+                                                <% if (locals.extraInfo.type === "urgent") { %>
+                                                    <p class="mb-1">
+                                                        <%= locals.appliedUser.urgentPaidAt %>
+                                                    </p>
+                                                <% } %>
+                                                <% if (locals.extraInfo.type === "duplicate") { %>
+                                                    <p class="mb-1">
+                                                        <%= locals.appliedUser.duplicatePaidAt %>
+                                                    </p>
+                                                <% } %>
+                                            <% } else { %>
+                                                <p class="mb-1">
+                                                    <%= locals.appliedUser.paidAt %>
+                                                </p>
+                                            <% } %>
+                                            
+                                            <% if (locals.extraInfo.certificateType === "clc") { %>
+                                                <% if (locals.extraInfo.type === "normal") { %>
+                                                    <p class="mb-1">
+                                                        <%= locals.appliedUser.normalPaymentRefNo %>
+                                                    </p>
+                                                <% } %>
+                                                <% if (locals.extraInfo.type === "urgent") { %>
+                                                    <p class="mb-1">
+                                                        <%= locals.appliedUser.urgentPaymentRefNo %>
+                                                    </p>
+                                                <% } %>
+                                                <% if (locals.extraInfo.type === "duplicate") { %>
+                                                    <p class="mb-1">
+                                                        <%= locals.appliedUser.duplicatePaymentRefNo %>
+                                                    </p>
+                                                <% } %>
+                                            <% } else { %>
+                                                <p class="mb-1">
+                                                    <%= locals.appliedUser.paymentRefNo %>
+                                                </p>
+                                            <% } %>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <p class="mb-1 mt-3 fw-bold">Online Fee Paid </p>
+
+                                <div class="mt-4 mb-1">This is computer generated Receipt. Does not required signature
+                                </div>
+                            </div>
+
+                            <div class="d-print-none mt-4">
+                                <div class="float-end">
+                                    <a href="javascript:window.print()" class="btn btn-success me-1"><i class="fa fa-print"></i></a>
+                                    
+                                        <% if (locals.extraInfo.certificateType === "clc") { %>
+                                            <% if (locals.extraInfo.type === "normal") { %>
+                                                <a href="/clcApply?type=normal" class="btn btn-primary w-md">Back to Home Page</a>
+                                            <% } %>
+                                            <% if (locals.extraInfo.type === "urgent") { %>
+                                                <a href="/clcApply?type=urgent" class="btn btn-primary w-md">Back to Home Page</a>
+                                            <% } %>
+                                            <% if (locals.extraInfo.type === "duplicate") { %>
+                                                <a href="/clcApply?type=duplicate" class="btn btn-primary w-md">Back to Home Page</a>
+                                            <% } %>
+                                        <% } else { %>
+                                            <a href="/<%= locals.extraInfo.certificateType.toLowerCase() %>" class="btn btn-primary w-md">Back to Home Page</a>
+                                        <% } %>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- end col -->
+        </div>
+    </div>
+    <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js'></script>
+</body>
+
+</html>

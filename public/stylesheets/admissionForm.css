@@ -1,0 +1,348 @@
+body {
+    /* width: 100vw; */
+    margin-top: 20px;
+    background-color: #eee;
+}
+
+.card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+}
+
+.card-body {
+    min-height: 1060px;
+    border: 0.5px solid black;
+}
+
+.form-title h2 {
+    font-size: 10px;
+}
+
+.studentInfo {
+    width: 100%;
+    display: flex;
+    gap: 7px;
+}
+
+.studentInfoData {
+    width: 80%;
+}
+
+.studentInfoPicture {
+    width: 20%;
+}
+
+.studentInfoDataUpper .fields {
+    display: flex;
+    margin-bottom: 3px;
+}
+
+.studentInfoDataUpper .fields .fieldsName {
+    width: 33%;
+    font-weight: 500;
+}
+
+.studentInfoDataUpper .fields .fieldsNameValue {
+    width: 67%;
+    border: 1px solid black;
+    padding-left: 5px;
+    font-weight: 500;
+}
+
+.studentInfoDataLower {
+    display: flex;
+    width: 100%;
+    gap: 2px;
+}
+
+.lowerCol1 {
+    width: 30%;
+}
+
+.lowerCol2 {
+    width: 40%;
+}
+
+.lowerCol3 {
+    width: 30%;
+}
+
+.studentInfoDataLower .lowerFieldNameValue {
+    width: 100%;
+    border: 1px solid black;
+    padding-left: 5px;
+    font-weight: 500;
+    margin-top: 2px;
+}
+
+.studentInfoPicture .studentPhoto {
+    width: 100%;
+}
+
+.studentInfoPicture img {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.studentSign {
+    width: 100%;
+    height: 100px;
+    /* overflow: hidden; */
+    object-fit: contain;
+}
+
+.studentSign img {
+    width: 100%;
+    height: 100%;
+}
+
+.addressUpper {
+    display: flex;
+    gap: 5px;
+}
+
+.addressUpper .address {
+    display: flex;
+    width: 70%;
+    gap: 5px;
+}
+
+.addressUpper .district {
+    display: flex;
+    width: 30%;
+    gap: 5px;
+}
+
+.addressUpper .addressInputBox {
+    width: 100%;
+    height: 29px;
+    border: 1px solid black;
+    padding-left: 5px;
+    font-weight: 500;
+}
+
+.coursePaper {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+}
+
+.coursePaper .coursePaperLeft {
+    width: 50%;
+}
+
+.coursePaper .coursePaperRight {
+    width: 50%;
+}
+
+.coursePaper .paperBox {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 5px;
+}
+
+.paperBox .paper {
+    width: 22%;
+}
+
+.paperBox .paperName {
+    width: 77%;
+    border: 1px solid black;
+    padding-left: 5px;
+}
+
+.lastExamPassedRow {
+    display: flex;
+    width: 100%;
+    gap: 5px;
+}
+
+.lastExamPassedRow .lastExamPassedCol {
+    width: 25%;
+}
+
+.lastExamPassedRow .inputField {
+    border: 1px solid black;
+    padding-left: 5px;
+}
+
+.officeUseBox {
+    width: 100%;
+    display: flex;
+    gap: 10px;
+}
+
+.div1 {
+    width: 27%;
+}
+
+.div2 {
+    width: 27%;
+}
+
+.div3 {
+    width: 28%;
+}
+
+.div1 {
+    width: 18%;
+}
+
+.studentAndParentSign {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 30px;
+}
+
+.formHead h2 {
+    font-size: 25px;
+}
+
+.formHead h6 {
+    font-size: 20px;
+}
+
+.note {
+    color: red;
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+
+@media print {
+    @page {
+        size: A4;
+        margin: 0.7cm;
+    }
+
+    .note{
+        display: none;
+    }
+
+    body{
+        margin-top: 0;
+    }
+    .card {
+        width: 100vw;
+    }
+    .myCont {
+        margin: 0;
+        padding: 0;
+        width: 100vw;
+    }
+
+    .formHead h2 {
+        font-size: 25px;
+    }
+
+    .formHead h6 {
+        font-size: 18px;
+    }
+
+    .formHead h3 {
+        font-size: 18px;
+        padding-bottom: 0px;
+    }
+
+    .formHead div {
+        font-size: 18px;
+        text-align: center;
+    }
+
+    .studentInfo {
+        padding-top: 15px;
+    }
+
+    .studentInfoDataUpper div {
+        font-size: 12px;
+    }
+
+    .studentInfoDataLower {
+        padding-top: 7px;
+    }
+
+    .studentInfoDataLower div {
+        font-size: 12px;
+    }
+
+    .studentPhoto img {
+        height: 150px;
+        object-fit: cover;
+        object-position: center;
+    }
+
+    .studentSign {
+        width: 100%;
+        height: 70px;
+        /* overflow: hidden; */
+        /* object-fit: contain; */
+    }
+
+    .studentSign img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        object-position: left;
+    }
+
+    .addressInfo {
+        padding-top: 7px;
+    }
+
+    .addressInfo p {
+        font-size: 13px;
+    }
+
+    .addressInfo .addressInputBox {
+        font-size: 12px;
+        height: 24px;
+    }
+
+    .courseDetail div {
+        font-size: 12px;
+    }
+
+    .courseDetail p {
+        font-size: 13px;
+    }
+
+    .lastExamPassed {
+        padding-top: 7px;
+    }
+
+    .lastExamPassed div {
+        font-size: 12px;
+    }
+
+    .lastExamPassed p {
+        font-size: 13px;
+    }
+
+    .officeUse {
+        padding-top: 7px;
+    }
+
+    .officeUse div {
+        font-size: 12px;
+    }
+
+    .officeUse p {
+        font-size: 13px;
+    }
+
+    hr {
+        display: none;
+    }
+
+    .declaration {
+        padding-top: 10px;
+    }
+
+    .declaration p {
+        font-size: 10px;
+    }
+}

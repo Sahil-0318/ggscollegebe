@@ -1,0 +1,17 @@
+#pdfViewer {
+    width: 100%;
+    height: 100vh;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.pdfViewer .canvasWrapper {
+    pointer-events: none; /* Disable pointer events */
+}
+
+canvas {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+}

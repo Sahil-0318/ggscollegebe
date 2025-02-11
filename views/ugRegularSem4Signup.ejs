@@ -1,0 +1,76 @@
+<%- include('./partials/header.ejs') %>
+
+        <!-- Sign In Start -->
+        <div class="container-fluid">
+            <div class="row h-100 align-items-center justify-content-center" style="min-height: 100vh;">
+                <div class="col-12 col-sm-8 col-md-6 col-lg-5 col-xl-4">
+                    <% if(locals.invalid){ %>
+                        <div id="submitPopUp">
+                          <div class="alert alert-danger bg-danger text-light border-0 my-4 mx-3 fade show" role="alert">
+                            <%= locals.invalid %>
+                          </div>
+                        </div>
+                    <% }%>
+                    <div class="bg-light rounded p-4 p-sm-5 my-4 mx-3">
+                        <div class="d-flex flex-column gap-3 mb-3">
+                            <img class="mb-0" src="/images/logomdcollege.png" alt="MD College" style="width: 100%;">
+                            
+                            <h3 class="text-primary">UG Regular Sem-4 Admission Portal</h3>
+                            
+                        </div>
+                        <form id="registerForm" action="/ugRegularSem4Signup" method="post">
+                            <div class=" mb-3">
+                                <select id="course" class="form-select form-control" name="course" required>
+                                    <option value="Bachelor of Arts (Social Science Subjects)">Bachelor of Arts (Social Science Subjects)</option>
+                                    <option value="Bachelor of Arts (Humanities Subjects)">Bachelor of Arts (Humanities Subjects)</option>
+                                    <option value="Bachelor of Science">Bachelor of Science</option>
+                                </select>                       
+                            </div>
+                            <div class="form-floating mb-4">
+                                <input name="fullName" type="text" class="form-control" id="fullName" placeholder="Full Name" required>
+                                <label for="fullName">Full Name</label>
+                            </div>
+                            <div class="form-floating mb-4">
+                                <input name="mobileNumber" type="text" class="form-control" id="mobileNumber" placeholder="Mobile Number" required>
+                                <label for="mobileNumber">Mobile Number</label>
+                            </div>
+                            <div class="form-floating mb-4">
+                                <input name="email" type="email" class="form-control" id="email" placeholder="email" required>
+                                <label for="email">Email</label>
+                            </div>
+                            <button type="submit" class="btn btn-primary py-3 w-100 mb-4">Register</button>
+                            <p class="text-center mb-0">Already Registered? <a href="/ugRegularSem4Login">Login</a></p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Sign In End -->
+    </div>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../lib/chart/chart.min.js"></script>
+    <script src="../lib/easing/easing.min.js"></script>
+    <script src="../lib/waypoints/waypoints.min.js"></script>
+    <script src="../lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="../lib/tempusdominus/js/moment.min.js"></script>
+    <script src="../lib/tempusdominus/js/moment-timezone.min.js"></script>
+    <script src="../lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="../javascripts/main.js"></script>
+    <script>
+        const submitPopUp = document.querySelector('#submitPopUp')
+        setInterval(() => {
+          submitPopUp.innerHTML = ''
+        }, 3000);
+
+        document.getElementById("registerForm").addEventListener('submit', () =>{
+            localStorage.setItem("mobileNumber" , document.getElementById("mobileNumber").value)
+        })
+    </script>
+</body>
+
+</html>

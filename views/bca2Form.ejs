@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>UG Regular Admission Form</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="../lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="../lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="../stylesheets/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="../stylesheets/style.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container-xxl position-relative bg-white d-flex p-0">
+        <!-- Spinner Start -->
+        <div id="spinner"
+            class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+            <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+        <!-- Spinner End -->
+
+
+        <!-- Sidebar Start -->
+        <div class="sidebar pe-4 pb-3">
+            <nav class="navbar bg-light navbar-light">
+                <img class="p-2" src="/images/logomdcollege.png" alt="MD College" style="width: 100%;">
+                <div class="d-flex align-items-center ms-4 mb-4">
+                    <div class="ms-3">
+                        <h6 class="mb-0"><%= locals.user.userId%></h6>
+                        <span>User</span>
+                    </div>
+                </div>
+                <div class="navbar-nav w-100">
+                    <div class="nav-item dropdown">
+                        <a href="/bca3Form" class="nav-link"><i class="fa-solid fa-file-alt me-2"></i>Admission Form</a>
+                    </div>
+                    <div class="nav-item dropdown">
+                        <a href="/bca3Logout" class="nav-link"><i class="fa-solid fa-sign-out me-2"></i>Logout</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <!-- Sidebar End -->
+
+
+        <!-- Content Start -->
+        <div class="content">
+            <!-- Navbar Start -->
+            <nav class="navbar navbar-expand bg-light navbar-light sticky-top px-4 py-2">
+                <a href="#" class="sidebar-toggler flex-shrink-0">
+                    <i class="fa fa-bars"></i>
+                </a>
+                <a href="" class="navbar-brand d-flex d-lg-none mx-1 me-4">
+                    <img class="mb-0" src="/images/logomdcollege.png" alt="MD College" style="width: 100%;">
+                </a>
+            </nav>
+            <!-- Navbar End -->
+
+            <!-- Form Start -->
+            <div class="container-fluid pt-4 px-4">
+                <% if(locals.submitted){ %>
+                    <div id="submitPopUp">
+                        <div class="col-12 col-md-10 alert alert-success" role="alert">
+                            <%= locals.submitted %>
+                        </div>
+                    </div>
+                    <% }%>
+
+                        <% if(locals.alreadysubmitted){ %>
+                            <div id="submitPopUp">
+                                <div class="col-12 col-md-10 alert alert-danger" role="alert">
+                                    <%= locals.alreadysubmitted %>
+                                </div>
+                            </div>
+                            <% }%>
+
+                                <div class="row">
+                                    <div class="col-12 col-md-10">
+                                        <div class="bg-light rounded  p-4">
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <h6 class="mb-4"><%= locals.user.course %> Admission Form<% if (locals.appliedUser) { %>
+                                                  <span class="text-primary">( Fiiled by You )</span>
+                                                <% } %></h6>
+                                            </div>
+
+                                
+                                            <% if (locals.user) { %>
+                                         
+                                                <% if (locals.user.isPaid == true) { %>
+                                                    
+                                                <% } else { %>
+                                                    <form action="/bca2Form" method="post"
+                                                enctype="multipart/form-data">
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="studentName" class="form-label"><b>Student's Name :</b></label>                            
+                                                    <textarea id="studentName" name="studentName" rows="1" class="form-control" required readonly><%= user.fullName.trim().toUpperCase() %></textarea>
+                                                </div>
+
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="fatherName" class="form-label"><b>Father's Name :</b></label>
+                                                    <input type="text" class="form-control" id="fatherName"
+                                                        name="fatherName" oninput="this.value = this.value.toUpperCase()" required />
+                                                </div>
+
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="motherName" class="form-label"><b>Mother's Name :</b></label>
+                                                    <input type="text" class="form-control" id="motherName"
+                                                        name="motherName" oninput="this.value = this.value.toUpperCase()" required />
+                                                </div>
+
+                                                <!-- <div class="col-md-12 mb-3">
+                                                    <label for="guardianName" class="form-label"><b>Guardian's Name :</b></label>
+                                                    <input type="text" class="form-control" id="guardianName"
+                                                        name="guardianName" oninput="this.value = this.value.toUpperCase()" required />
+                                                </div> -->
+
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="uniRegNumber" class="form-label">University Registration Number :</label>
+                                                    <input type="text" class="form-control" id="uniRegNumber"
+                                                        name="uniRegNumber" required />
+                                                </div>
+
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="uniRollNumber" class="form-label">University Roll Number :</label>
+                                                    <input type="text" class="form-control" id="uniRollNumber"
+                                                        name="uniRollNumber" required />
+                                                </div>
+
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="collegeRollNumber" class="form-label">College Roll Number :</label>
+                                                    <input type="text" class="form-control" id="collegeRollNumber"
+                                                        name="collegeRollNumber" required />
+                                                </div>
+
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="email" class="form-label">Email Id :</label>
+                                                    <input type="email" class="form-control" id="email"
+                                                        name="email" oninput="this.value = this.value.toLowerCase()" value=<%= locals.user.email %> required readonly />
+                                                </div>
+
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="dOB" class="form-label">Date Of Birth :</label>
+                                                    <input type="date" class="form-control" id="dOB" name="dOB" required/>
+                                                </div>
+
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="gender" class="form-label">Gender :</label>
+                                                    <select id="gender" class="form-select" name="gender" required>
+                                                        <option value="MALE">MALE</option>
+                                                        <option value="FEMALE">FEMALE</option>
+                                                    </select>
+                                                </div>
+
+                                                <!-- <div class="col-md-12 mb-3">
+                                                    <label for="religion" class="form-label">Religion :</label>
+                                                    <select id="religion" class="form-select" name="religion" required>
+                                                        <option value="HINDU">HINDU</option>
+                                                        <option value="MUSLIM">MUSLIM</option>
+                                                        <option value="SIKH">SIKH</option>
+                                                        <option value="CHRISTIAN">CHRISTIAN</option>
+                                                    </select>
+                                                </div> -->
+
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="category" class="form-label">Category :</label>
+                                                    <select id="category" class="form-select" name="category"
+                                                        required>
+                                                        <option value="GENERAL">GENERAL</option>
+                                                        <option value="BC-2">BC-2</option>
+                                                        <option value="BC-1">BC-1</option>
+                                                        <option value="SC">SC</option>
+                                                        <option value="ST">ST</option>
+                                                    </select>
+                                                </div>
+
+                                                <!-- <div class="col-md-12 mb-3">
+                                                    <label for="bloodGroup" class="form-label">Blood Group :</label>
+                                                    <input type="text" class="form-control" id="bloodGroup"
+                                                        name="bloodGroup" oninput="this.value = this.value.toUpperCase()" required />
+                                                </div> -->
+
+                                                <!-- <div class="col-md-12 mb-3">
+                                                    <label for="physicallyChallenged" class="form-label">Physically Challenged :</label>
+                                                    <select id="physicallyChallenged" class="form-select" name="physicallyChallenged"
+                                                        required>
+                                                        <option value="NO">NO</option>
+                                                        <option value="YES">YES</option>
+                                                    </select>
+                                                </div> -->
+
+                                                <!-- <div class="col-md-12 mb-3">
+                                                    <label for="maritalStatus" class="form-label">Marital Status :</label>
+                                                    <select id="maritalStatus" class="form-select" name="maritalStatus"
+                                                        required>
+                                                        <option value="UNMARRIED">UNMARRIED</option>
+                                                        <option value="MARRIED">MARRIED</option>
+                                                    </select>
+                                                </div> -->
+
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="aadharNumber" class="form-label">Applicant Aadhar Number :</label>
+                                                    <input type="number" class="form-control" id="aadharNumber"
+                                                        name="aadharNumber" maxlength="12" pattern="[0-9]{12}"
+                                                        required />
+                                                </div>
+
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="mobileNumber" class="form-label">Mobile
+                                                        Number :</label>
+                                                    <input type="number" class="form-control" id="mobileNumber"
+                                                        name="mobileNumber" readonly value=<%= locals.user.mobileNumber %> />
+                                                </div>
+
+                                                <!-- <div class="col-md-12 mb-3">
+                                                    <label for="whatsAppNumber" class="form-label">WhatsApp Number :</label>
+                                                    <input type="number" class="form-control" id="whatsAppNumber"
+                                                        name="whatsAppNumber" required />
+                                                </div> -->
+
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="address" class="form-label"> <b>Address for Correspondence : </b></label>
+                                                </div>
+
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="address" class="form-label">Address :</label>
+                                                    <input type="text" class="form-control" id="address"
+                                                        name="address" oninput="this.value = this.value.toUpperCase()" required />
+                                                </div>
+
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="district" class="form-label">District :</label>
+                                                    <input type="text" class="form-control" id="district"
+                                                        name="district" oninput="this.value = this.value.toUpperCase()" required />
+                                                </div>
+
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="policeStation" class="form-label">Police Station :</label>
+                                                    <input type="text" class="form-control" id="policeStation"
+                                                        name="policeStation" oninput="this.value = this.value.toUpperCase()" required />
+                                                </div>
+
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="state" class="form-label">State :</label>
+                                                    <input type="text" class="form-control" id="state"
+                                                        name="state" oninput="this.value = this.value.toUpperCase()" required />
+                                                </div>
+
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="pinCode" class="form-label">PIN Code :</label>
+                                                    <input type="number" class="form-control" id="pinCode"
+                                                        name="pinCode" maxlength="12" pattern="[0-9]{6}"
+                                                        required />
+                                                </div>
+
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="address" class="form-label"> <b>Course Details :</b></label>
+                                                </div>
+
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="subject" class="form-label">Subject :</label>
+                                                    <select id="subject" class="form-select" name="subject"
+                                                        required>
+                                                        <option value="Computer Application">Computer Application</option>
+                                                    </select>
+                                                </div>
+                                                
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="address" class="form-label"> <b>Last Exam Passed:</b></label>
+                                                </div>
+
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="examResult" class="form-label">Exam Result :</label>
+                                                    <select id="examResult" class="form-select" name="examResult"
+                                                        required>
+                                                        <option value="1st Division">1st Division</option>
+                                                        <option value="2nd Division">2nd Division</option>
+                                                        <option value="3rd Division">3rd Division</option>
+                                                    </select>
+                                                </div>
+
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="obtMarks" class="form-label">Obtained Marks/Gr :</label>
+                                                    <input type="number" class="form-control" id="obtMarks"
+                                                        name="obtMarks" required />
+                                                </div>
+
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="fullMarks" class="form-label">Full Marks/Gr :</label>
+                                                    <input type="number" class="form-control" id="fullMarks"
+                                                        name="fullMarks" required />
+                                                </div>
+
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="obtPercent" class="form-label">Obtained % :</label>
+                                                    <input type="text" class="form-control" id="obtPercent"
+                                                        name="obtPercent" required />
+                                                </div>
+
+                                                <div class="mb-3">
+                                                    <label for="studentPhoto" class="form-label">Passport Size
+                                                        Photo</label>
+                                                    <input class="form-control form-control-sm" id="studentPhoto"
+                                                        name="studentPhoto" type="file" required>
+                                                </div>
+
+                                                <div class="mb-3">
+                                                    <label for="studentPhoto" class="form-label">Student Sign</label>
+                                                    <input class="form-control form-control-sm" id="studentPhoto"
+                                                        name="studentPhoto" type="file" required>
+                                                </div>
+
+                                                <% if (locals.appliedUser) { %>
+                                                    <button type="submit" class="btn btn-primary" disabled>Submit</button>
+                                                <% } else { %>
+                                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                                <% } %>
+                                                <button type="reset" class="btn btn-secondary">Reset</button>
+
+                                            </form>
+                                                <% } %>
+                                            <% } %>
+
+                                        </div>
+                                        <% if (locals.appliedUser) { %>
+                                         
+                                        <% if (locals.appliedUser.isPaid == true) { %>
+                                            <!-- <button class="btn btn-success my-4" disabled><a class="text-light" href="">Pay Admission Fee</a></button> -->
+                                        <% } else { %>
+                                            <button class="btn btn-success my-4"><a class="text-light" href="/bca2Pay">Pay Admission Fee</a></button>
+                                        <% } %>
+                                        <% } %>
+
+                                        <% if (locals.appliedUser) { %>
+                                         
+                                        <% if (locals.appliedUser.isPaid == true) { %>
+                                            <button class="btn btn-primary my-4"><a class="text-light " href="/bca2Receipt">Print Receipt</a></button>
+                                        <% } %>
+                                        <% } %>
+
+                                        <% if (locals.appliedUser) { %>
+                                         
+                                        <% if (locals.appliedUser.isPaid == true) { %>
+                                            <button class="btn btn-primary my-4"><a class="text-light" href="/bca2AdmFormCopy">Print Admission form</a></button>
+                                        <% } %>
+                                        <% } %>
+
+                                        
+
+                                    </div>
+                                </div>
+            </div>
+
+            <!-- Form End -->
+
+
+            <!-- Footer Start -->
+            <div class="container-fluid pt-4 px-4">
+                <div class="bg-light rounded-top p-4">
+                    <div class="row">
+                        <div class="col-12 col-sm-4 text-center text-sm-start">
+                            &copy; <a href="#">MD College, Naubatpur</a>, All Right Reserved.
+                        </div>
+                
+                        <div class="col-12 col-sm-6 text-center text-sm-end">
+                            Distributed By <a href="#">Digital India</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Footer End -->
+        </div>
+        <!-- Content End -->
+
+
+        <!-- Back to Top -->
+        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+    </div>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../lib/chart/chart.min.js"></script>
+    <script src="../lib/easing/easing.min.js"></script>
+    <script src="../lib/waypoints/waypoints.min.js"></script>
+    <script src="../lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="../lib/tempusdominus/js/moment.min.js"></script>
+    <script src="../lib/tempusdominus/js/moment-timezone.min.js"></script>
+    <script src="../lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="../javascripts/main.js"></script>
+
+     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

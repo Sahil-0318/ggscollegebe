@@ -1,0 +1,62 @@
+<div class="sidebar pe-4 pb-3">
+    <nav class="navbar bg-light navbar-light">
+        <!-- <h3 class="text-primary">MD College</h3> -->
+        <img class="p-2" src="/images/logomdcollege.png" alt="MD College" style="width: 100%;">
+        <div class="d-flex align-items-center ms-4 mb-4">
+            <div class="position-relative">
+                <!-- <img class="rounded-circle" src="../images/user.jpg" alt="" style="width: 40px; height: 40px;"> -->
+                <div class="bg-primary text-white rounded-circle border border-2 border-white p-1 d-flex align-items-center justify-content-center"
+                    style="width: 40px; height: 40px;">
+                    <%= locals.user.fullName.slice(0, 1)%>
+                </div>
+            </div>
+            <div class="ms-3">
+                <h6 class="mb-0">
+                    <%= locals.user.fullName%>
+                </h6>
+                <% if(locals.user.isAdmin){ %>
+                    <span>Admin</span>
+                    <% } else if(locals.user.isRecordRoom) {%>
+                        <span>Admin</span>
+                        <% } else {%>
+                            <span>User</span>
+                            <% }%>
+
+            </div>
+        </div>
+        <div class="navbar-nav w-100">
+            <div class="nav-item dropdown">
+                <a href="/recordRoomPage" class="nav-link"><i class="fa-solid fa-home me-2"></i>Dashboard</a>
+            </div>
+
+            <div class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i
+                        class="fa-solid fa-certificate me-2"></i>CLC & Character</a>
+                <div class="dropdown-menu bg-transparent border-0">
+                    <a href="/interClcApprovedList" class="dropdown-item">Intermidiate</a>
+                    <a href="/baClcApprovedList" class="dropdown-item">B.A</a>
+                    <a href="/bcomClcApprovedList" class="dropdown-item">B.COM</a>
+                    <a href="/bscClcApprovedList" class="dropdown-item">B.SC</a>
+                    <a href="/bcaClcApprovedList" class="dropdown-item">B.C.A</a>
+
+                </div>
+            </div>
+
+            <!-- <div class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i
+                        class="fa-solid fa-certificate me-2"></i>Certificates</a>
+                <div class="dropdown-menu bg-transparent border-0">
+                    <a href="/clcList" class="dropdown-item">CLC</a>
+                    
+                </div>
+            </div> -->
+
+            <!-- <div class="nav-item dropdown">
+                <a href="/notice" class="nav-link"><i class="fa-solid fa-calendar-week me-2"></i>Notice</a>
+            </div> -->
+            <!-- <div class="nav-item dropdown">
+                <a href="#" class="nav-link"><i class="fa-solid fa-key me-2"></i>Password Reset</a>
+            </div> -->
+        </div>
+    </nav>
+</div>
