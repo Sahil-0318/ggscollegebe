@@ -140,3 +140,10 @@ export const loginPost = async (req, res) => {
         return res.redirect(`/student/${courseSession}/login`);
     }
 }   
+
+export const logout = async (req, res) => {
+    const courseSession = req.params.courseSession;
+    res.clearCookie("uid");
+    req.flash("flashMessage", ["Logout successfully !!", "alert-danger"]);
+    return res.status(201).redirect(`/student/${courseSession}/login`);
+}
