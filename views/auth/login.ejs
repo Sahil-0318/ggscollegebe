@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partial/header.ejs') %>
+</head>
+
+<body>
+    <div class="container-xxl position-relative bg-white d-flex p-0">
+        <!-- Spinner Start -->
+        <%- include('../partial/spinner.ejs') %>
+            <!-- Spinner End -->
+
+            <!-- Sign In Start -->
+            <div class="container-fluid">
+                <div class="row h-100 align-items-center justify-content-center" style="min-height: 100vh;">
+                    <div class="col-12 col-sm-8 col-md-6 col-lg-5 col-xl-4">
+                        <!-- Flash message starts -->
+                        <%- include('../partial/flashMessage.ejs') %>
+                            <!-- Flash message ends -->
+
+                            <div class="bg-light rounded p-4 p-sm-5 my-4 mx-3">
+                                <div class="d-flex flex-column gap-3 mb-3">
+                                    <img class="mb-0" src="/images/sggscollegelogo.png" alt="SGGS College, Patna City"
+                                        style="width: 100%;">
+                                    <a href="" class="">
+                                        <h5 class="text-primary">Login for UG Regular <%= fullSession %></h5>
+                                    </a>
+                                </div>
+                                <form action="/student/<%= courseSession %>/login" method="post">
+                                    <div class="form-floating mb-3">
+                                        <input name="userId" type="text" class="form-control" id="userId"
+                                            placeholder="abcdef1234@SGGS" oninput="this.value = this.value.toUpperCase()" required>
+                                        <label for="userId">User Id</label>
+                                    </div>
+                                    <div class="form-floating mb-4">
+                                        <input name="password" type="password" class="form-control"
+                                            id="password" placeholder="Password" oninput="this.value = this.value.toUpperCase()" required>
+                                        <label for="password">Password</label>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-between mb-4">
+                                        <a href="">Forgot Password</a>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary py-3 w-100 mb-4">Log In</button>
+                                    <p class="text-center mb-0">Don't have an Account? <a
+                                            href="/student/<%= courseSession %>/register">Register</a>
+                                    </p>
+                                </form>
+                            </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Sign In End -->
+    </div>
+
+    <!-- JavaScript Libraries Starts -->
+    <%- include('../partial/jsLibrary.ejs') %>
+        <!-- JavaScript Libraries ends -->
+
+</body>
+
+</html>

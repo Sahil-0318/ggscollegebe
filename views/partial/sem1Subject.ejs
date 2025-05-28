@@ -1,0 +1,116 @@
+<script>
+    function updatePaper2Option() {
+        const paper1 = document.getElementById('paper1').value;
+        const paper2 = document.getElementById('paper2');
+        paper2.innerHTML = '';
+
+        let options = [];
+
+        if (paper1 === 'Economics') {
+            options = [
+                { value: 'History', text: 'History' },
+                { value: 'Political Science', text: 'Political Science' },
+                { value: 'Psychology', text: 'Psychology' },
+                { value: 'Sociology', text: 'Sociology' }
+            ];
+        } else if (paper1 === 'History') {
+            options = [
+                { value: 'Economics', text: 'Economics' },
+                { value: 'Political Science', text: 'Political Science' },
+                { value: 'Psychology', text: 'Psychology' },
+                { value: 'Sociology', text: 'Sociology' }
+            ];
+        } else if (paper1 === 'Political Science') {
+            options = [
+                { value: 'Economics', text: 'Economics' },
+                { value: 'History', text: 'History' },
+                { value: 'Psychology', text: 'Psychology' },
+                { value: 'Sociology', text: 'Sociology' }
+            ];
+        } else if (paper1 === 'Psychology') {
+            options = [
+                { value: 'Economics', text: 'Economics' },
+                { value: 'History', text: 'History' },
+                { value: 'Political Science', text: 'Political Science' },
+                { value: 'Sociology', text: 'Sociology' }
+            ];
+        } else if (paper1 === 'Sociology') {
+            options = [
+                { value: 'Economics', text: 'Economics' },
+                { value: 'History', text: 'History' },
+                { value: 'Political Science', text: 'Political Science' },
+                { value: 'Psychology', text: 'Psychology' }
+            ];
+
+            // Arts Humanity Subject    
+        } else if (paper1 === 'English') {
+            options = [
+                { value: 'Hindi', text: 'Hindi' },
+                { value: 'Urdu', text: 'Urdu' },
+                { value: 'Philosophy', text: 'Philosophy' }
+            ];
+        } else if (paper1 === 'Hindi') {
+            options = [
+                { value: 'English', text: 'English' },
+                { value: 'Urdu', text: 'Urdu' },
+                { value: 'Philosophy', text: 'Philosophy' }
+            ];
+        } else if (paper1 === 'Urdu') {
+            options = [
+                { value: 'English', text: 'English' },
+                { value: 'Hindi', text: 'Hindi' },
+                { value: 'Philosophy', text: 'Philosophy' }
+            ];
+        } else if (paper1 === 'Philosophy') {
+            options = [
+                { value: 'English', text: 'English' },
+                { value: 'Hindi', text: 'Hindi' },
+                { value: 'Urdu', text: 'Urdu' }
+            ];
+
+            // Science    
+        } else if (paper1 === 'Physics') {
+            options = [
+                { value: 'Chemistry', text: 'Chemistry' },
+                { value: 'Zoology', text: 'Zoology' },
+                { value: 'Botany', text: 'Botany' },
+                { value: 'Mathematics', text: 'Mathematics' }
+            ];
+        } else if (paper1 === 'Chemistry') {
+            options = [
+                { value: 'Physics', text: 'Physics' },
+                { value: 'Zoology', text: 'Zoology' },
+                { value: 'Botany', text: 'Botany' },
+                { value: 'Mathematics', text: 'Mathematics' }
+            ];
+        } else if (paper1 === 'Zoology') {
+            options = [
+                { value: 'Physics', text: 'Physics' },
+                { value: 'Chemistry', text: 'Chemistry' },
+                { value: 'Botany', text: 'Botany' },
+                { value: 'Mathematics', text: 'Mathematics' }
+            ];
+        } else if (paper1 === 'Botany') {
+            options = [
+                { value: 'Physics', text: 'Physics' },
+                { value: 'Chemistry', text: 'Chemistry' },
+                { value: 'Zoology', text: 'Zoology' },
+                { value: 'Mathematics', text: 'Mathematics' }
+            ];
+        } else if (paper1 === 'Mathematics') {
+            options = [
+                { value: 'Physics', text: 'Physics' },
+                { value: 'Chemistry', text: 'Chemistry' },
+                { value: 'Zoology', text: 'Zoology' },
+                { value: 'Botany', text: 'Botany' }
+            ];
+        }
+
+        options.forEach(option => {
+            const newOption = document.createElement('option');
+            newOption.value = option.value;
+            newOption.text = option.text;
+            paper2.appendChild(newOption);
+        });
+    }
+</script>

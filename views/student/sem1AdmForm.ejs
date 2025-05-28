@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partial/header.ejs') %>
+</head>
+
+<body>
+    <div class="container-xxl position-relative bg-white d-flex p-0">
+        <!-- Spinner Start -->
+        <%- include('../partial/spinner.ejs') %>
+            <!-- Spinner End -->
+
+
+            <!-- Sidebar Start -->
+            <%- include('../partial/studentSidebar.ejs') %>
+                <!-- Sidebar End -->
+
+
+                <!-- Content Start -->
+                <div class="content">
+                    <!-- Navbar Start -->
+                    <nav class="navbar navbar-expand bg-light navbar-light sticky-top px-4 py-1">
+
+                        <a href="#" class="sidebar-toggler flex-shrink-0 mx-1">
+                            <i class="fa fa-bars"></i>
+                        </a>
+                        <a href="" class="navbar-brand d-flex d-lg-none mx-1 me-4">
+                            <img class="mb-0" src="/images/sggscollegelogo.png" alt="SGGS College, Patna City"
+                                style="width: 100%;">
+                        </a>
+                        <!-- <div class="navbar-nav align-items-center ms-auto">
+                            <div class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                                    <img class="rounded-circle me-lg-2" src="/images/user.jpg" alt=""
+                    style="width: 40px; height: 40px;">
+                                    <div class="d-inline-flex bg-primary text-white rounded-circle border border-2 border-white p-1 d-flex align-items-center justify-content-center"
+                                        style="width: 40px; height: 40px;">
+                                        <%# locals.user.fullName.slice(0, 1)%>Sahil
+                                    </div>
+                                    <span class="d-none d-lg-inline-flex text-capitalize">
+                                        <%# locals.user.fullName%>Amit
+                                    </span>
+                                </a>
+                                <div
+                                    class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
+                                    <a href="#" class="dropdown-item">My Profile</a>
+                                    <a href="#" class="dropdown-item">Settings</a>
+                                    <a href="/logout" class="dropdown-item">Log Out</a>
+                                </div>
+                            </div>
+                        </div> -->
+                    </nav>
+                    <!-- Navbar End -->
+
+                    <!-- Form Start -->
+                    <div class="container-fluid pt-4 px-4">
+                        <!-- Flash message starts -->
+                        <%- include('../partial/flashMessage.ejs') %>
+                            <!-- Flash message ends -->
+
+                            <div class="row">
+                                <div class="col-12 col-md-12">
+                                    <div class="bg-light rounded  p-4">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <h6 class="mb-4">
+                                                UG Regular Sem 1 (<%= existingStudent.session %>) Admission Form<% if
+                                                        (existingStudent.sem1) { %>
+                                                        <span class="text-primary">( Fiiled by You )</span>
+                                                        <% } %>
+                                            </h6>
+                                        </div>
+
+                                        <% if (existingStudent.sem1===null) { %>
+                                            <form action="/student/<%= courseSession %>/admForm" method="post"
+                                                enctype="multipart/form-data">
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="studentName" class="form-label"><b>1. Student's
+                                                            Name
+                                                            :</b></label>
+
+                                                    <textarea id="studentName" name="studentName" rows="1"
+                                                        class="form-control" required
+                                                        readonly><%= existingStudent.studentName.trim() %></textarea>
+                                                </div>
+
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="fatherName" class="form-label"><b>2. Father's
+                                                            Name
+                                                            :</b></label>
+
+                                                    <textarea id="fatherName" name="fatherName" rows="1"
+                                                        class="form-control" required
+                                                        readonly><%= existingStudent.fatherName.trim() %></textarea>
+                                                </div>
+
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="motherName" class="form-label"><b>3. Mother's
+                                                            Name
+                                                            :</b></label>
+                                                    <input type="text" class="form-control" id="motherName"
+                                                        name="motherName"
+                                                        oninput="this.value = this.value.toUpperCase()" required />
+                                                </div>
+
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="guardianName" class="form-label"><b>4.
+                                                            Guardian's
+                                                            Name :</b></label>
+                                                    <input type="text" class="form-control" id="guardianName"
+                                                        name="guardianName"
+                                                        oninput="this.value = this.value.toUpperCase()" required />
+                                                </div>
+
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="referenceNumber" class="form-label">Reference
+                                                        Number
+                                                        :</label>
+                                                    <input type="text" class="form-control" id="referenceNumber"
+                                                        name="referenceNumber" value=<%=existingStudent.referenceNumber
+                                                        %> required
+                                                    readonly />
+                                                </div>
+
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="email" class="form-label">Email Id :</label>
+                                                    <textarea id="email" name="email" rows="1" class="form-control"
+                                                        required readonly><%= existingStudent.email.trim() %></textarea>
+                                                </div>
+
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="applicantId" class="form-label">Applicant's Id
+                                                        :</label>
+                                                    <input type="text" class="form-control" id="applicantId"
+                                                        name="applicantId"
+                                                        oninput="this.value = this.value.toUpperCase()" required />
+                                                </div>
+
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="dOB" class="form-label">Date Of Birth :</label>
+                                                    <input type="date" class="form-control" id="dOB" name="dOB" required
+                                                        value="<%= existingStudent.dOB ? existingStudent.dOB.toISOString().split('T')[0] : '' %>" />
+                                                </div>
+
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="gender" class="form-label">Gender :</label>
+                                                    <select id="gender" class="form-select" name="gender" required>
+                                                        <option value="Male" <%=existingStudent.gender==="Male"
+                                                            ? 'selected' : "" %>>Male</option>
+                                                        <option value="Female" <%=existingStudent.gender==="Female"
+                                                            ? 'selected' : "" %>>Female</option>
+                                                        <option value="Other">Other</option>
+                                                    </select>
+                                                </div>
+
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="familyAnnualIncome" class="form-label">Family
+                                                        Annual
+                                                        Income :</label>
+                                                    <input type="text" class="form-control" id="familyAnnualIncome"
+                                                        name="familyAnnualIncome"
+                                                        oninput="this.value = this.value.toUpperCase()"
+                                                        placeholder="UP TO 1 LAKH" required />
+                                                </div>
+
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="religion" class="form-label">Religion :</label>
+                                                    <select id="religion" class="form-select" name="religion" required>
+                                                        <option value="HINDU">HINDU</option>
+                                                        <option value="MUSLIM">MUSLIM</option>
+                                                        <option value="SIKH">SIKH</option>
+                                                        <option value="CHRISTIAN">CHRISTIAN</option>
+                                                    </select>
+                                                </div>
+
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="category" class="form-label">Category :</label>
+                                                    <select id="category" class="form-select" name="category" required>
+                                                        <option value="GENERAL">GENERAL</option>
+                                                        <option value="BC-2">BC-2</option>
+                                                        <option value="BC-1">BC-1</option>
+                                                        <option value="SC">SC</option>
+                                                        <option value="ST">ST</option>
+                                                    </select>
+                                                </div>
+
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="bloodGroup" class="form-label">Blood Group
+                                                        :</label>
+                                                    <input type="text" class="form-control" id="bloodGroup"
+                                                        name="bloodGroup"
+                                                        oninput="this.value = this.value.toUpperCase()" required />
+                                                </div>
+
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="physicallyChallenged" class="form-label">Physically
+                                                        Challenged :</label>
+                                                    <select id="physicallyChallenged" class="form-select"
+                                                        name="physicallyChallenged" required>
+                                                        <option value="NO">NO</option>
+                                                        <option value="YES">YES</option>
+                                                    </select>
+                                                </div>
+
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="maritalStatus" class="form-label">Marital Status
+                                                        :</label>
+                                                    <select id="maritalStatus" class="form-select" name="maritalStatus"
+                                                        required>
+                                                        <option value="UNMARRIED">UNMARRIED</option>
+                                                        <option value="MARRIED">MARRIED</option>
+                                                    </select>
+                                                </div>
+
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="aadharNumber" class="form-label">Applicant
+                                                        Aadhar
+                                                        Number :</label>
+                                                    <input type="number" class="form-control" id="aadharNumber"
+                                                        name="aadharNumber" maxlength="12" pattern="[0-9]{12}"
+                                                        required />
+                                                </div>
+
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="mobileNumber" class="form-label">Mobile
+                                                        Number :</label>
+                                                    <input type="number" class="form-control" id="mobileNumber"
+                                                        name="mobileNumber" readonly
+                                                        value=<%=existingStudent.mobileNumber %> />
+                                                </div>
+
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="whatsAppNumber" class="form-label">WhatsApp
+                                                        Number
+                                                        :</label>
+                                                    <input type="number" class="form-control" id="whatsAppNumber"
+                                                        name="whatsAppNumber" required />
+                                                </div>
+
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="address" class="form-label"> <b>5. Address for
+                                                            Correspondence : </b></label>
+                                                </div>
+
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="address" class="form-label">Address :</label>
+                                                    <input type="text" class="form-control" id="address" name="address"
+                                                        oninput="this.value = this.value.toUpperCase()" required />
+                                                </div>
+
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="district" class="form-label">District :</label>
+                                                    <input type="text" class="form-control" id="district"
+                                                        name="district" oninput="this.value = this.value.toUpperCase()"
+                                                        required />
+                                                </div>
+
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="policeStation" class="form-label">Police Station
+                                                        :</label>
+                                                    <input type="text" class="form-control" id="policeStation"
+                                                        name="policeStation"
+                                                        oninput="this.value = this.value.toUpperCase()" required />
+                                                </div>
+
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="state" class="form-label">State :</label>
+                                                    <input type="text" class="form-control" id="state" name="state"
+                                                        oninput="this.value = this.value.toUpperCase()" required />
+                                                </div>
+
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="pinCode" class="form-label">PIN Code :</label>
+                                                    <input type="number" class="form-control" id="pinCode"
+                                                        name="pinCode" maxlength="12" pattern="[0-9]{6}" required />
+                                                </div>
+
+                                                <div class="col-md-12 mb-3">
+                                                    <label class="form-label"> <b>6. Course
+                                                            Details
+                                                            :</b></label>
+                                                </div>
+
+                                                <% if (
+                                                    existingStudent.course==="Bachelor of Arts (Social Science Subjects)"
+                                                    ) { %>
+                                                    <div class="col-md-12 mb-3">
+                                                        <label for="paper1" class="form-label">Paper-1 :</label>
+                                                        <select id="paper1" class="form-select" name="paper1"
+                                                            onchange="updatePaper2Option()" required>
+                                                            <option value="">Your Major Subject is "<%=
+                                                                    existingStudent.majorSubject %>",
+                                                                    Select
+                                                                    it --</option>
+                                                            <option value="Economics">Economics</option>
+                                                            <option value="History">History</option>
+                                                            <option value="Political Science">Political Science
+                                                            </option>
+                                                            <option value="Psychology">Psychology</option>
+                                                            <option value="Sociology">Sociology</option>
+                                                        </select>
+                                                    </div>
+
+                                                    <div class="col-md-12 mb-3">
+                                                        <label for="paper2" class="form-label">Paper-2 :</label>
+                                                        <select id="paper2" class="form-select" name="paper2" required>
+
+                                                        </select>
+                                                    </div>
+
+                                                    <div class="col-md-12 mb-3">
+                                                        <label for="paper3" class="form-label">Paper-3 :</label>
+                                                        <select id="paper3" class="form-select" name="paper3" required>
+                                                            <option value="Indian Social values & Ethics">Indian
+                                                                Social values & Ethics</option>
+                                                            <option value="Sports Science">Sports Science
+                                                            </option>
+                                                            <option value="Glimpse of India">Glimpse of India
+                                                            </option>
+                                                            <option
+                                                                value="Acquaintance to Electrical & Electronics Appliances">
+                                                                Acquaintance to Electrical & Electronics
+                                                                Appliances
+                                                            </option>
+                                                            <option value="E. Commerce">E. Commerce</option>
+                                                            <option value="Functional languages">Functional
+                                                                languages</option>
+                                                        </select>
+                                                    </div>
+
+                                                    <div class="col-md-12 mb-3">
+                                                        <label for="paper4" class="form-label">Paper-4 :</label>
+                                                        <select id="paper4" class="form-select" name="paper4" required>
+                                                            <option value="English Communication">English
+                                                                Communication</option>
+                                                        </select>
+                                                    </div>
+
+                                                    <div class="col-md-12 mb-3">
+                                                        <label for="paper5" class="form-label">Paper-5 :</label>
+                                                        <select id="paper5" class="form-select" name="paper5" required>
+                                                            <option value="Communication in everyday life">
+                                                                Communication in everyday life</option>
+                                                            <option value="Basic IT Tools">Basic IT Tools
+                                                            </option>
+                                                        </select>
+                                                    </div>
+
+                                                    <div class="col-md-12 mb-3">
+                                                        <label for="paper6" class="form-label">Paper-6 :</label>
+                                                        <select id="paper6" class="form-select" name="paper6" required>
+                                                            <option value="Art of being happy">Art of being
+                                                                happy
+                                                            </option>
+                                                            <option value="Ayurveda & Nutrition">Ayurveda &
+                                                                Nutrition</option>
+                                                        </select>
+                                                    </div>
+                                                    <% } else if (
+                                                        existingStudent.course==="Bachelor of Arts (Humanities Subjects)"
+                                                        ) { %>
+                                                        <div class="col-md-12 mb-3">
+                                                            <label for="paper1" class="form-label">Paper-1
+                                                                :</label>
+                                                            <select id="paper1" class="form-select" name="paper1"
+                                                                onchange="updatePaper2Option()" required>
+                                                                <option value="">Your Major Subject is "<%=
+                                                                        existingStudent.majorSubject %>
+                                                                        ",
+                                                                        Select it --</option>
+                                                                <option value="English">English</option>
+                                                                <option value="Hindi">Hindi</option>
+                                                                <option value="Urdu">Urdu</option>
+                                                                <option value="Philosophy">Philosophy</option>
+                                                            </select>
+                                                        </div>
+
+                                                        <div class="col-md-12 mb-3">
+                                                            <label for="paper2" class="form-label">Paper-2
+                                                                :</label>
+                                                            <select id="paper2" class="form-select" name="paper2"
+                                                                required>
+
+                                                            </select>
+                                                        </div>
+
+                                                        <div class="col-md-12 mb-3">
+                                                            <label for="paper3" class="form-label">Paper-3
+                                                                :</label>
+                                                            <select id="paper3" class="form-select" name="paper3"
+                                                                required>
+                                                                <option value="Indian Social values & Ethics">
+                                                                    Indian
+                                                                    Social values & Ethics</option>
+                                                                <option value="Sports Science">Sports Science
+                                                                </option>
+                                                                <option value="Glimpse of India">Glimpse of
+                                                                    India
+                                                                </option>
+                                                                <option
+                                                                    value="Acquaintance to Electrical & Electronics Appliances">
+                                                                    Acquaintance to Electrical & Electronics
+                                                                    Appliances</option>
+                                                                <option value="E. Commerce">E. Commerce</option>
+                                                                <option value="Functional languages">Functional
+                                                                    languages</option>
+                                                            </select>
+                                                        </div>
+
+                                                        <div class="col-md-12 mb-3">
+                                                            <label for="paper4" class="form-label">Paper-4
+                                                                :</label>
+                                                            <select id="paper4" class="form-select" name="paper4"
+                                                                required>
+                                                                <option value="English Communication">English
+                                                                    Communication</option>
+                                                            </select>
+                                                        </div>
+
+                                                        <div class="col-md-12 mb-3">
+                                                            <label for="paper5" class="form-label">Paper-5
+                                                                :</label>
+                                                            <select id="paper5" class="form-select" name="paper5"
+                                                                required>
+                                                                <option value="Communication in everyday life">
+                                                                    Communication in everyday life</option>
+                                                                <option value="Basic IT Tools">Basic IT Tools
+                                                                </option>
+                                                            </select>
+                                                        </div>
+
+                                                        <div class="col-md-12 mb-3">
+                                                            <label for="paper6" class="form-label">Paper-6
+                                                                :</label>
+                                                            <select id="paper6" class="form-select" name="paper6"
+                                                                required>
+                                                                <option value="Art of being happy">Art of being
+                                                                    happy</option>
+                                                                <option value="Ayurveda & Nutrition">Ayurveda &
+                                                                    Nutrition</option>
+                                                            </select>
+                                                        </div>
+                                                        <% } else if ( existingStudent.course==="Bachelor of Science" )
+                                                            { %>
+                                                            <div class="col-md-12 mb-3">
+                                                                <label for="paper1" class="form-label">Paper-1
+                                                                    :</label>
+                                                                <select id="paper1" class="form-select" name="paper1"
+                                                                    onchange="updatePaper2Option()" required>
+                                                                    <option value="">Your Major Subject is "<%=
+                                                                            existingStudent.majorSubject %>
+                                                                            ", Select it --</option>
+                                                                    <option value="Physics">Physics</option>
+                                                                    <option value="Chemistry">Chemistry</option>
+                                                                    <option value="Zoology">Zoology</option>
+                                                                    <option value="Botany">Botany</option>
+                                                                    <option value="Mathematics">Mathematics
+                                                                    </option>
+                                                                </select>
+                                                            </div>
+
+                                                            <div class="col-md-12 mb-3">
+                                                                <label for="paper2" class="form-label">Paper-2
+                                                                    :</label>
+                                                                <select id="paper2" class="form-select" name="paper2"
+                                                                    required>
+
+                                                                </select>
+                                                            </div>
+
+                                                            <div class="col-md-12 mb-3">
+                                                                <label for="paper3" class="form-label">Paper-3
+                                                                    :</label>
+                                                                <select id="paper3" class="form-select" name="paper3"
+                                                                    required>
+                                                                    <option value="Indian Social values & Ethics">
+                                                                        Indian Social values & Ethics</option>
+                                                                    <option value="Sports Science">Sports
+                                                                        Science
+                                                                    </option>
+                                                                    <option value="Glimpse of India">Glimpse of
+                                                                        India</option>
+                                                                    <option
+                                                                        value="Acquaintance to Electrical & Electronics Appliances">
+                                                                        Acquaintance to Electrical & Electronics
+                                                                        Appliances</option>
+                                                                    <option value="E. Commerce">E. Commerce
+                                                                    </option>
+                                                                    <option value="Functional languages">
+                                                                        Functional
+                                                                        languages</option>
+                                                                </select>
+                                                            </div>
+
+                                                            <div class="col-md-12 mb-3">
+                                                                <label for="paper4" class="form-label">Paper-4
+                                                                    :</label>
+                                                                <select id="paper4" class="form-select" name="paper4"
+                                                                    required>
+                                                                    <option value="English Communication">
+                                                                        English
+                                                                        Communication</option>
+                                                                </select>
+                                                            </div>
+
+                                                            <div class="col-md-12 mb-3">
+                                                                <label for="paper5" class="form-label">Paper-5
+                                                                    :</label>
+                                                                <select id="paper5" class="form-select" name="paper5"
+                                                                    required>
+                                                                    <option value="Communication in everyday life">
+                                                                        Communication in everyday life</option>
+                                                                    <option value="Basic IT Tools">Basic IT
+                                                                        Tools
+                                                                    </option>
+                                                                </select>
+                                                            </div>
+
+                                                            <div class="col-md-12 mb-3">
+                                                                <label for="paper6" class="form-label">Paper-6
+                                                                    :</label>
+                                                                <select id="paper6" class="form-select" name="paper6"
+                                                                    required>
+                                                                    <option value="Art of being happy">Art of
+                                                                        being
+                                                                        happy</option>
+                                                                    <option value="Ayurveda & Nutrition">
+                                                                        Ayurveda &
+                                                                        Nutrition</option>
+                                                                </select>
+                                                            </div>
+                                                            <% } %>
+
+
+
+                                                                <div class="col-md-12 mb-3">
+                                                                    <label class="form-label">
+                                                                        <b>7.
+                                                                            Last Exam Passed:</b></label>
+                                                                </div>
+
+                                                                <div class="col-md-12 mb-3">
+                                                                    <label for="examName" class="form-label">Exam
+                                                                        Name :</label>
+                                                                    <select id="examName" class="form-select"
+                                                                        name="examName" required>
+                                                                        <option value="I.A (10+2)">I.A (10+2)
+                                                                        </option>
+                                                                        <option value="I.COM (10+2)">I.COM
+                                                                            (10+2)
+                                                                        </option>
+                                                                        <option value="I.SC (10+2)">I.SC (10+2)
+                                                                        </option>
+                                                                    </select>
+                                                                </div>
+
+                                                                <div class="col-md-12 mb-3">
+                                                                    <label for="examBoard" class="form-label">Exam
+                                                                        Board :</label>
+                                                                    <select id="examBoard" class="form-select"
+                                                                        name="examBoard" required>
+                                                                        <option value="BSEB">BSEB</option>
+                                                                        <option value="CBSE">CBSE</option>
+                                                                        <option value="OTHER">OTHER</option>
+                                                                    </select>
+                                                                </div>
+
+                                                                <div class="col-md-12 mb-3">
+                                                                    <label for="examYear" class="form-label">Exam
+                                                                        Year :</label>
+                                                                    <input type="number" class="form-control"
+                                                                        id="examYear" name="examYear"
+                                                                        placeholder="Ex - 2024" required />
+                                                                </div>
+
+                                                                <div class="col-md-12 mb-3">
+                                                                    <label for="examResult" class="form-label">Exam
+                                                                        Result :</label>
+                                                                    <select id="examResult" class="form-select"
+                                                                        name="examResult" required>
+                                                                        <option value="1st Division">1st
+                                                                            Division
+                                                                        </option>
+                                                                        <option value="2nd Division">2nd
+                                                                            Division
+                                                                        </option>
+                                                                        <option value="3rd Division">3rd
+                                                                            Division
+                                                                        </option>
+                                                                    </select>
+                                                                </div>
+
+                                                                <div class="col-md-12 mb-3">
+                                                                    <label for="obtMarks" class="form-label">Obtained
+                                                                        Marks/Gr
+                                                                        :</label>
+                                                                    <input type="number" class="form-control"
+                                                                        id="obtMarks" name="obtMarks" required />
+                                                                </div>
+
+                                                                <div class="col-md-12 mb-3">
+                                                                    <label for="fullMarks" class="form-label">Full
+                                                                        Marks/Gr :</label>
+                                                                    <input type="number" class="form-control"
+                                                                        id="fullMarks" name="fullMarks" required />
+                                                                </div>
+
+                                                                <div class="col-md-12 mb-3">
+                                                                    <label for="obtPercent" class="form-label">Obtained
+                                                                        % :</label>
+                                                                    <input type="text" class="form-control"
+                                                                        id="obtPercent" name="obtPercent" required />
+                                                                </div>
+
+                                                                <div class="col-md-12 mb-3">
+                                                                    <label for="ppuConfidentialNumber"
+                                                                        class="form-label">PPU Confidential
+                                                                        Number
+                                                                        :</label>
+                                                                    <input type="text" class="form-control"
+                                                                        id="ppuConfidentialNumber"
+                                                                        name="ppuConfidentialNumber"
+                                                                        oninput="this.value = this.value.toUpperCase()"
+                                                                        required />
+                                                                </div>
+
+                                                                <div class="mb-3">
+                                                                    <label for="studentPhoto"
+                                                                        class="form-label">Passport Size
+                                                                        Photo</label>
+                                                                    <input class="form-control form-control-sm"
+                                                                        id="studentPhoto" name="studentPhoto"
+                                                                        type="file" accept="image/*" required>
+                                                                </div>
+
+                                                                <div class="mb-3">
+                                                                    <label for="studentSign" class="form-label">Student
+                                                                        Sign</label>
+                                                                    <input class="form-control form-control-sm"
+                                                                        id="studentSign" name="studentSign" type="file"
+                                                                        accept="image/*" required>
+                                                                </div>
+
+                                                                <button type="submit"
+                                                                    class="btn btn-primary">Submit</button>
+                                                                <button type="reset"
+                                                                    class="btn btn-secondary">Reset</button>
+
+                                            </form>
+                                            <% } %>
+
+                                            <% if (existingStudent.sem1.isPaid) { %>
+                                                <h3 class="text-success mb-4">🎉 Payment Successful!</h3>
+                                                <p>Thank you, <strong>
+                                                        <%= existingStudent.studentName %>
+                                                    </strong>, your payment has been received.</p>
+                                                <p>You can now proceed to access your <strong class="text-primary">Admission Form</strong> and <strong class="text-primary">Admission Receipt</strong>.
+                                                </p>
+                                            <% } %>
+
+                                    </div>
+
+                                    <% if (existingStudent) { %>
+                                        <% if (existingStudent.sem1.isPaid) { %>
+
+                                            <button class="btn btn-primary my-4"><a class="text-light"
+                                                    href="/student/<%= courseSession %>/admFormCopy">Download Admission
+                                                    Form</a></button>
+                                                <button class="btn btn-primary my-4"><a class="text-light"
+                                                    href="/student/<%= courseSession %>/receiptCopy">Download
+                                                    Receipt</a></button>
+                                            <% } else { %>
+                                                <button class="btn btn-success my-4"><a class="text-light"
+                                                        href="/student/<%= courseSession %>/checkoutPage/<%= existingStudent.sem1._id %>">Pay
+                                                        Admission
+                                                        Fee</a></button>
+                                                <% } %>
+                                                    <% } %>
+
+                                </div>
+                            </div>
+                    </div>
+
+                    <!-- Form End -->
+
+
+                    <!-- Footer Start -->
+                    <%- include('../partial/footer.ejs') %>
+                        <!-- Footer End -->
+                </div>
+                <!-- Content End -->
+
+
+                <!-- Back to Top -->
+                <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+    </div>
+
+    <!-- JavaScript Libraries Starts -->
+    <%- include('../partial/jsLibrary.ejs') %>
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <%- include('../partial/sem1Subject.ejs') %>
+</body>
+
+</html>
