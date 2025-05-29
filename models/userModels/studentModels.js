@@ -18,7 +18,8 @@ const studentSchema = mongoose.Schema({
         required: true
     },
     referenceNumber: {
-        type: String
+        type: String,
+        default: null
     },
     studentName: {
         type: String,
@@ -43,7 +44,8 @@ const studentSchema = mongoose.Schema({
         unique: true
     },
     fatherName: {
-        type: String
+        type: String,
+        default: null
     },
     majorSubject: {
         type: String

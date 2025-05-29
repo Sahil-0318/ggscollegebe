@@ -1,0 +1,26 @@
+<script>
+    const subjectOptions = {
+        "Bachelor of Arts (Social Science Subjects)": ["Economics", "History", "Political Science", "Psychology", "Sociology"],
+        "Bachelor of Arts (Humanities Subjects)": ["English", "Hindi", "Urdu", "Philosophy"],
+        "Bachelor of Science": ["Physics", "Chemistry", "Zoology", "Botany", "Mathematics"]
+    };
+
+    const courseSelect = document.getElementById("course");
+    const majorSubjectSelect = document.getElementById("majorSubject");
+
+    courseSelect.addEventListener("change", function () {
+        const selectedCourse = this.value;
+        const subjects = subjectOptions[selectedCourse] || [];
+
+        // Clear previous options
+        majorSubjectSelect.innerHTML = '<option>--- Select Major Subject ---</option>';
+
+        // Add new options
+        subjects.forEach(subject => {
+            const option = document.createElement("option");
+            option.value = subject;
+            option.textContent = subject;
+            majorSubjectSelect.appendChild(option);
+        });
+    });
+</script>

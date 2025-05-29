@@ -11,7 +11,8 @@
         </div>
         <div class="navbar-nav w-100">
             <div class="nav-item dropdown">
-                <a href="/student/<%= courseSession %>/dashboard" class="nav-link"><i class="fa-solid fa-home me-2"></i>Dashboard</a>
+                <a href="/student/<%= courseSession %>/dashboard" class="nav-link"><i
+                        class="fa-solid fa-home me-2"></i>Dashboard</a>
             </div>
 
             <% if (semPortal.sem1) { %>
@@ -20,127 +21,48 @@
                         <i class="fa-solid fa-rectangle-list me-2"></i>Semester 1
                     </a>
                     <div class="dropdown-menu bg-transparent border-0">
-                        <a href="/student/<%= courseSession %>/admForm" class="dropdown-item">Admission Form</a>
-                        <!-- <a href="/interExamForm2List" class="dropdown-item">Inter Exam 2 List (2023-25)</a> -->
+                        <a href="/student/<%= courseSession %>/sem1/admForm" class="dropdown-item">Admission Form</a>
                     </div>
                 </div>
                 <% } %>
-
                     <% if (semPortal.sem2) { %>
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
                                 <i class="fa-solid fa-rectangle-list me-2"></i>Semester 2
                             </a>
                             <div class="dropdown-menu bg-transparent border-0">
-                                <a href="/interExamFormList" class="dropdown-item">Inter Exam List (2023-25)</a>
-                                <a href="/interExamForm2List" class="dropdown-item">Inter Exam 2 List (2023-25)</a>
+                                <a href="/student/<%= courseSession %>/sem2/admForm" class="dropdown-item">Admission
                             </div>
                         </div>
                         <% } %>
 
-                            <% if (semPortal.sem3) { %>
-                                <div class="nav-item dropdown">
-                                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                                        <i class="fa-solid fa-rectangle-list me-2"></i>Semester 3
-                                    </a>
-                                    <div class="dropdown-menu bg-transparent border-0">
-                                        <a href="/interExamFormList" class="dropdown-item">Inter Exam List (2023-25)</a>
-                                        <a href="/interExamForm2List" class="dropdown-item">Inter Exam 2 List
-                                            (2023-25)</a>
-                                    </div>
-                                </div>
-                                <% } %>
+                    <% if (semPortal.sem3) { %>
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                                <i class="fa-solid fa-rectangle-list me-2"></i>Semester 3
+                            </a>
+                            <div class="dropdown-menu bg-transparent border-0">
+                                <a href="/student/<%= courseSession %>/sem3/admForm" class="dropdown-item">Admission
+                            </div>
+                        </div>
+                        <% } %>
 
-                                    <% if (semPortal.sem4) { %>
-                                        <div class="nav-item dropdown">
-                                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                                                <i class="fa-solid fa-rectangle-list me-2"></i>Semester 4
-                                            </a>
-                                            <div class="dropdown-menu bg-transparent border-0">
-                                                <a href="/interExamFormList" class="dropdown-item">Inter Exam List
-                                                    (2023-25)</a>
-                                                <a href="/interExamForm2List" class="dropdown-item">Inter Exam 2 List
-                                                    (2023-25)</a>
-                                            </div>
-                                        </div>
-                                        <% } %>
+                    <% if (semPortal.sem4) { %>
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                                <i class="fa-solid fa-rectangle-list me-2"></i>Semester 4
+                            </a>
+                            <div class="dropdown-menu bg-transparent border-0">
+                                <a href="/student/<%= courseSession %>/sem4/admForm" class="dropdown-item">Admission
+                            </div>
+                        </div>
+                        <% } %>
 
-                                            <% if (semPortal.sem5) { %>
-                                                <div class="nav-item dropdown">
-                                                    <a href="#" class="nav-link dropdown-toggle"
-                                                        data-bs-toggle="dropdown">
-                                                        <i class="fa-solid fa-rectangle-list me-2"></i>Semester 5
-                                                    </a>
-                                                    <div class="dropdown-menu bg-transparent border-0">
-                                                        <a href="/interExamFormList" class="dropdown-item">Inter Exam
-                                                            List (2023-25)</a>
-                                                        <a href="/interExamForm2List" class="dropdown-item">Inter Exam 2
-                                                            List (2023-25)</a>
-                                                    </div>
-                                                </div>
-                                                <% } %>
-
-                                                    <% if (semPortal.sem6) { %>
-                                                        <div class="nav-item dropdown">
-                                                            <a href="#" class="nav-link dropdown-toggle"
-                                                                data-bs-toggle="dropdown">
-                                                                <i class="fa-solid fa-rectangle-list me-2"></i>Semester
-                                                                6
-                                                            </a>
-                                                            <div class="dropdown-menu bg-transparent border-0">
-                                                                <a href="/interExamFormList" class="dropdown-item">Inter
-                                                                    Exam List (2023-25)</a>
-                                                                <a href="/interExamForm2List"
-                                                                    class="dropdown-item">Inter Exam 2 List
-                                                                    (2023-25)</a>
-                                                            </div>
-                                                        </div>
-                                                        <% } %>
-
-                                                            <% if (semPortal.sem7) { %>
-                                                                <div class="nav-item dropdown">
-                                                                    <a href="#" class="nav-link dropdown-toggle"
-                                                                        data-bs-toggle="dropdown">
-                                                                        <i
-                                                                            class="fa-solid fa-rectangle-list me-2"></i>Semester
-                                                                        7
-                                                                    </a>
-                                                                    <div class="dropdown-menu bg-transparent border-0">
-                                                                        <a href="/interExamFormList"
-                                                                            class="dropdown-item">Inter Exam List
-                                                                            (2023-25)</a>
-                                                                        <a href="/interExamForm2List"
-                                                                            class="dropdown-item">Inter Exam 2 List
-                                                                            (2023-25)</a>
-                                                                    </div>
-                                                                </div>
-                                                                <% } %>
-
-                                                                    <% if (semPortal.sem8) { %>
-                                                                        <div class="nav-item dropdown">
-                                                                            <a href="#" class="nav-link dropdown-toggle"
-                                                                                data-bs-toggle="dropdown">
-                                                                                <i
-                                                                                    class="fa-solid fa-rectangle-list me-2"></i>Semester
-                                                                                8
-                                                                            </a>
-                                                                            <div
-                                                                                class="dropdown-menu bg-transparent border-0">
-                                                                                <a href="/interExamFormList"
-                                                                                    class="dropdown-item">Inter Exam
-                                                                                    List (2023-25)</a>
-                                                                                <a href="/interExamForm2List"
-                                                                                    class="dropdown-item">Inter Exam 2
-                                                                                    List (2023-25)</a>
-                                                                            </div>
-                                                                        </div>
-                                                                        <% } %>
-
-                                                                            <div class="nav-item dropdown">
-                                                                                <a href="/student/<%= courseSession %>/logout"
-                                                                                    class="nav-link"><i
-                                                                                        class="fa-solid fa-sign-out me-2"></i>Logout</a>
-                                                                            </div>
+                        
+                            <div class="nav-item dropdown">
+                                <a href="/student/logout" class="nav-link"><i
+                                        class="fa-solid fa-sign-out me-2"></i>Logout</a>
+                            </div>
         </div>
     </nav>
 </div>

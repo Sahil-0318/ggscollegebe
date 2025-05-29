@@ -31,11 +31,11 @@ export const generatePassword = () => {
     return password;
 }
 
-export const sendCredentialsOnEmail = (email, userId, password) => {
+export const sendCredentialsOnEmail = async (email, userId, password) => {
     const transporter = nodemailer.createTransport({
-        service: 'gmail.com',
-        // port: 587,
+        service: 'gmail',
         port: 465,
+        secure: true,
         auth: {
             user: process.env.EMAIL,
             pass: process.env.PASS
@@ -46,14 +46,8 @@ export const sendCredentialsOnEmail = (email, userId, password) => {
         from: process.env.SENDER_EMAIL,
         to: email,
         subject: 'Login Credentials',
-        text: `Dear Student,\nYour login credentials are :\nUserId is ${userId} and Password is ${password}. \n \nSGGS College, Patna City`
+        text: `Dear Student,\nYour login credentials are:\nUserId: ${userId}\nPassword: ${password}\n\nSGGS College, Patna City`
     };
 
-    transporter.sendMail(mailOptions, (error, info) => {
-        if (error) {
-            console.error('Error while sending credentials to email ::', error);
-        } else {
-            console.log('Email sent:', info.response);
-        }
-    });
-}
+    return transporter.sendMail(mailOptions); // now returns a Promise
+};

@@ -19,10 +19,12 @@ mongoose.connect(process.env.DB_CONNECTION).then(() => {
 
 // Importing Auth Routes
 import authRoute from './routes/authRoutes/authRoute.js'
+import recoverCredentialRoute from './routes/authRoutes/recoverCredential.js'
 
 // Importing User Routes
 import userDashboardRoute from './routes/studentRoutes/dashboardRoute.js'
 import studentSem1Route from './routes/studentRoutes/sem1Route.js'
+import studentSem2Route from './routes/studentRoutes/sem2Route.js'
 
 app.use(
     session({
@@ -44,10 +46,16 @@ app.use(cookieParser())
 
 // Auth Routes
 app.use('/student', authRoute)
+app.use('/student', recoverCredentialRoute)
 
 // User Routes
 app.use('/student', userDashboardRoute)
 app.use('/student', studentSem1Route)
+app.use('/student', studentSem2Route)
+
+app.use((req, res, next) => {
+  res.status(404).render("auth/pageNotFound");
+});
 
 app.listen(port, () => {
   console.log(`Example app listening on http://localhost:${port}`)

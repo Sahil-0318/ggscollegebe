@@ -90,12 +90,21 @@
                                                         </p>
                                                     </div>
                                                 </div>
+                                                
+                                                <div class="col-md-6 col-xl-4">
+                                                    <div class="bg-light rounded p-3 shadow-sm">
+                                                        <h6 class="text-muted">Major Subject</h6>
+                                                        <p class="fs-5 mb-0 text-break">
+                                                            <%= existingStudent?.majorSubject || 'Data not available' %>
+                                                        </p>
+                                                    </div>
+                                                </div>
 
                                                 <div class="col-md-6 col-xl-4">
                                                     <div class="bg-light rounded p-3 shadow-sm">
-                                                        <h6 class="text-muted">User ID</h6>
+                                                        <h6 class="text-muted">Father's Name</h6>
                                                         <p class="fs-5 mb-0 text-break">
-                                                            <%= existingStudent?.userId || 'Data not available' %>
+                                                            <%= existingStudent?.fatherName || 'Data not available' %>
                                                         </p>
                                                     </div>
                                                 </div>
@@ -139,21 +148,13 @@
 
                                                 <div class="col-md-6 col-xl-4">
                                                     <div class="bg-light rounded p-3 shadow-sm">
-                                                        <h6 class="text-muted">Father's Name</h6>
+                                                        <h6 class="text-muted">User ID</h6>
                                                         <p class="fs-5 mb-0 text-break">
-                                                            <%= existingStudent?.fatherName || 'Data not available' %>
+                                                            <%= existingStudent?.userId || 'Data not available' %>
                                                         </p>
                                                     </div>
                                                 </div>
 
-                                                <div class="col-md-6 col-xl-4">
-                                                    <div class="bg-light rounded p-3 shadow-sm">
-                                                        <h6 class="text-muted">Major Subject</h6>
-                                                        <p class="fs-5 mb-0 text-break">
-                                                            <%= existingStudent?.majorSubject || 'Data not available' %>
-                                                        </p>
-                                                    </div>
-                                                </div>
                                             </div>
                                         <!-- </div> -->
 

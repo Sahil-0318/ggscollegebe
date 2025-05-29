@@ -12,7 +12,7 @@ cloudinary.v2.config({
 export const uploadFile = async (file) => {
   try {
     if (!file || !file.buffer || !file.mimetype) {
-      throw new Error("Invalid file input");
+      throw new Error("Invalid file input: missing buffer or mimetype");
     }
 
     const mimetype = file.mimetype;
@@ -26,7 +26,14 @@ export const uploadFile = async (file) => {
       return new Promise((resolve, reject) => {
         const stream = cloudinary.v2.uploader.upload_stream(
           { resource_type: 'image', format: 'jpg' },
-          (err, result) => (err ? reject(err) : resolve(result))
+          (err, result) => {
+            if (err) {
+              console.error('Cloudinary image upload error:', err);
+              return reject(new Error('Image upload failed'));
+            }
+            // Optional: console.log('Image uploaded:', result.secure_url);
+            resolve(result);
+          }
         );
         stream.end(processedImage);
       });
@@ -39,7 +46,14 @@ export const uploadFile = async (file) => {
       return new Promise((resolve, reject) => {
         const stream = cloudinary.v2.uploader.upload_stream(
           { resource_type: 'raw', format: 'pdf' },
-          (err, result) => (err ? reject(err) : resolve(result))
+          (err, result) => {
+            if (err) {
+              console.error('Cloudinary PDF upload error:', err);
+              return reject(new Error('PDF upload failed'));
+            }
+            // Optional: console.log('PDF uploaded:', result.secure_url);
+            resolve(result);
+          }
         );
         stream.end(compressedPdf);
       });
@@ -50,7 +64,9 @@ export const uploadFile = async (file) => {
     }
   } catch (err) {
     console.error('File upload error:', err);
-    throw err;
+    throw err;  // Let controller handle the error
   }
 };
 
+
+  

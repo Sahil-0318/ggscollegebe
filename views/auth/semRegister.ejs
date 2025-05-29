@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partial/header.ejs') %>
+</head>
+
+<body>
+    <div class="container-xxl position-relative bg-white d-flex p-0">
+        <!-- Spinner Start -->
+        <%- include('../partial/spinner.ejs') %>
+            <!-- Spinner End -->
+            <!-- Sign Up Start -->
+            <div class="container-fluid">
+                <div class="row h-100 align-items-center justify-content-center" style="min-height: 100vh;">
+                    <div class="col-12 col-sm-8 col-md-6 col-lg-5 col-xl-4">
+                        <!-- Flash message starts -->
+                        <%- include('../partial/flashMessage.ejs') %>
+                            <!-- Flash message ends -->
+
+                            <div class="bg-light rounded p-4 p-sm-5 my-4 mx-3">
+                                <div class="d-flex gap-3 flex-column mb-3">
+                                    <img class="mb-0" src="/images/sggscollegelogo.png" alt="SGGS College, Patna City"
+                                        style="width: 100%;">
+                                    <a href="" class="">
+                                        <h5 class="text-primary">Register for UG Regular <%= formattedSemester %>
+                                                <%= fullSession %>
+                                                    Admission</h5>
+                                    </a>
+                                </div>
+                                <form action="/student/<%= courseSession %>/<%= semester %>/register" method="post">
+
+                                    <div class=" mb-3">
+                                        <label class="fw-bolder text-capitalize form-label" for="course">Course</label>
+                                        <select id="course" class="form-select form-control" name="course" required>
+                                            <option value="" disabled selected>--- Select Course ---</option>
+                                            <option value="Bachelor of Arts (Social Science Subjects)">Bachelor of Arts
+                                                (Social Science Subjects)</option>
+                                            <option value="Bachelor of Arts (Humanities Subjects)">Bachelor of Arts
+                                                (Humanities Subjects)</option>
+                                            <option value="Bachelor of Science">Bachelor of Science</option>
+                                        </select>
+                                    </div>
+
+                                    <div class=" mb-3">
+                                        <label class="fw-bolder text-capitalize form-label" for="majorSubject">majorSubject</label>
+                                        <select id="majorSubject" class="form-select form-control" name="majorSubject" required>
+                                            <option value="" disabled>--- Select Major Subject ---</option>
+                                        </select>
+                                    </div>
+
+
+                                    <div class="form mb-3">
+                                        <label class="fw-bolder text-capitalize form-label" for="studentName">Student
+                                            Name</label>
+                                        <input name="studentName" type="text" class="form-control" id="studentName"
+                                            oninput="this.value = this.value.toUpperCase()" required>
+                                    </div>
+
+                                    <div class="form mb-3">
+                                        <label class="fw-bolder form-label" for="mobileNumber">Mobile
+                                            Number</label>
+                                        <input name="mobileNumber" type="number" class="form-control" id="mobileNumber"
+                                            required>
+                                    </div>
+
+                                    <div class="form mb-3">
+                                        <label class="fw-bolder form-label" for="email">Email</label>
+                                        <input name="email" type="text" class="form-control" id="email"
+                                            oninput="this.value = this.value.toLowerCase()" required>
+                                    </div>
+
+                                    <div class="form mb-3">
+                                        <label class="fw-bolder form-label" for="dOB">Date of Birth</label>
+                                        <input name="dOB" type="date" class="form-control" id="dOB" required>
+                                    </div>
+
+                                    <div class=" mb-3">
+                                        <label class="fw-bolder text-capitalize form-label" for="gender">Gender</label>
+                                        <select id="gender" class="form-select form-control" name="gender" required>
+                                            <option value="" disabled selected>--- Select Gender ---</option>
+                                            <option value="Male">Male</option>
+                                            <option value="Female">Female</option>
+                                            <option value="Other">Other</option>
+                                        </select>
+                                    </div>
+
+                                    <button type="submit" class="btn btn-primary py-3 w-100 mb-4">Register</button>
+                                    <p class="text-center mb-3">Already Register ? <a
+                                            href="/student/login">Log
+                                            In</a></p>
+                                </form>
+                            </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Sign Up End -->
+    </div>
+
+    <!-- JavaScript Libraries Starts -->
+    <%- include('../partial/jsLibrary.ejs') %>
+    <%- include('../partial/semRegisterSubject.ejs') %>
+    <!-- JavaScript Libraries ends -->
+</body>
+
+</html>
