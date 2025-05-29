@@ -188,3 +188,22 @@ export const admFormCopy = async (req, res) => {
         return res.redirect(`/student/${courseSession}/admForm`);
     }
 };
+
+export const receiptCopy = async (req, res) => {
+    const courseSession = req.params.courseSession;
+    const fullSession = '20' + req.params.courseSession.match(/\d{2}-\d{2}/)[0].replace('-', '-20');
+    try {
+        const semPortal = await UgRegSemAdmPortal.findOne({ session: fullSession });
+        const existingStudent = await Students.findById(req.id).populate("sem1");
+        if (!existingStudent || !existingStudent.sem1) {
+            req.flash("flashMessage", ["Admission form not found or not filled.", "alert-danger"]);
+            return res.redirect(`/student/${courseSession}/admForm`);
+        }
+        // console.log(existingStudent)
+        res.render("student/sem1ReceiptCopy", { message: req.flash("flashMessage"), courseSession, semPortal, existingStudent, title: "Receipt Copy | SGGS College" })
+    } catch (error) {
+        console.error("Error in Controllers >> studentControllers >> sem1Controller >> receiptCopy :", error);
+        req.flash("flashMessage", ["Something went wrong !!", "alert-danger"])
+        return res.redirect(`/student/${courseSession}/admForm`);
+    }
+};

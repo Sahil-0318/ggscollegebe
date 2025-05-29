@@ -8,7 +8,7 @@ import { studentAuth } from "../../middlewares/authMiddleware.js";
 import { upload } from "../../middlewares/mediaUploadMiddleware.js";
 
 // Importing Controllers
-import { admForm, admFormPost, checkoutPage, checkoutPagePost, admFormCopy } from "../../controllers/studentControllers/sem1Controller.js";
+import { admForm, admFormPost, checkoutPage, checkoutPagePost, admFormCopy, receiptCopy } from "../../controllers/studentControllers/sem1Controller.js";
 
 studentSem1Route.get('/:courseSession/admForm', studentAuth, admForm)
 studentSem1Route.post('/:courseSession/admForm', studentAuth, upload.fields([ { name: 'studentPhoto', maxCount: 1 }, { name: 'studentSign', maxCount: 1 } ]), admFormPost)
@@ -19,6 +19,6 @@ studentSem1Route.post('/:courseSession/checkoutPage/:formId', studentAuth, uploa
 
 studentSem1Route.get('/:courseSession/admFormCopy', studentAuth, admFormCopy)
 
-// studentSem1Route.get('/:courseSession/receiptCopy', studentAuth, receiptCopy)
+studentSem1Route.get('/:courseSession/receiptCopy', studentAuth, receiptCopy)
 
 export default studentSem1Route
