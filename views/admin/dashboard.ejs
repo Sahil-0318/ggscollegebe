@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partial/header.ejs') %>
+</head>
+
+<body>
+    <div class="container-xxl position-relative bg-white d-flex p-0">
+        <!-- Spinner Start -->
+        <%- include('../partial/spinner.ejs') %>
+            <!-- Spinner End -->
+
+            <!-- Sidebar Start -->
+            <%- include('../partial/adminSidebar.ejs') %>
+                <!-- Sidebar End -->
+
+                <!-- Content Start -->
+                <div class="content">
+                    <!-- Navbar Start -->
+                    <nav class="navbar navbar-expand bg-light navbar-light sticky-top px-4 py-0">
+
+                        <a href="#" class="sidebar-toggler flex-shrink-0 mx-1">
+                            <i class="fa fa-bars"></i>
+                        </a>
+                        <a href="" class="navbar-brand d-flex d-lg-none mx-1 me-4">
+                            <img class="mb-0" src="/images/sggscollegelogo.png" alt="SGGS College, Patna City"
+                                style="width: 100%;">
+                        </a>
+
+                        <div class="navbar-nav align-items-center ms-auto">
+                            <div class="nav-item">
+                                <a href="/admin/logout" class="nav-link">
+                                    <span class="d-none d-lg-inline-flex text-capitalize">
+                                        Logout
+                                    </span>
+                                    <i class="fa-solid fa-right-from-bracket"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </nav>
+                    <!-- Navbar End -->
+
+
+                    <!-- Students Number Start -->
+                    <div class="container-fluid pt-4 px-4">
+                        <!-- Flash message starts -->
+                        <%- include('../partial/flashMessage.ejs') %>
+                            <!-- Flash message ends -->
+                            <div class="row g-4">
+                                <div class="col-sm-6 col-xl-3">
+                                    <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
+                                        <i class="fa fa-solid fa-graduation-cap fa-3x text-primary"></i>
+                                        <div class="ms-3">
+                                            <p class="mb-2">Students</p>
+                                            <h6 class="d-flex justify-content-end mb-0">
+                                                <%# locals.studentsNumber.totalStudents %>
+                                            </h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-xl-3">
+                                    <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
+                                        <i class="fa fa-solid fa-users fa-3x text-primary"></i>
+                                        <div class="ms-3">
+                                            <p class="mb-2">Employees</p>
+                                            <h6 class="d-flex justify-content-end mb-0">NA</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-xl-3">
+                                    <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
+                                        <i class="fa fa-male fa-3x text-primary"></i>
+                                        <div class="ms-3">
+                                            <p class="mb-2">Male</p>
+                                            <h6 class="d-flex justify-content-end mb-0">
+                                                <%# locals.studentsNumber.NoOfMaleStudents %>
+                                            </h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-xl-3">
+                                    <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
+                                        <i class="fa fa-solid fa-person-dress fa-3x text-primary"></i>
+                                        <div class="ms-3">
+                                            <p class="mb-2">Female</p>
+                                            <h6 class="d-flex justify-content-end mb-0">
+                                                <%# locals.studentsNumber.NoOfFemaleStudents %>
+                                            </h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-xl-3">
+                                    <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
+                                        <i class="fa fa-solid fa-book-open-reader fa-3x text-primary"></i>
+                                        <div class="ms-3">
+                                            <p class="mb-2">Other Students</p>
+                                            <h6 class="d-flex justify-content-end mb-0">NA</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                    <!-- Students Number End -->
+
+
+                    <!-- Students Number Chart Start -->
+                    <div class="container-fluid pt-4 px-4">
+                        <div class="row g-4">
+
+                            <div class="col-sm-12 col-xl-6">
+                                <div class="bg-light rounded h-100 p-4">
+                                    <h6 class="mb-4">Students</h6>
+                                    <canvas id="noOfStudents"></canvas>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-xl-6">
+                                <div class="bg-light rounded h-100 p-4">
+                                    <h6 class="mb-4">Students Category</h6>
+                                    <canvas id="stuCategory"></canvas>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!-- Students Number Chart End -->
+
+
+
+
+
+                    <!-- Widgets Start -->
+                    <div class="container-fluid pt-4 px-4">
+                        <div class="row g-4">
+
+                            <div class="col-sm-12 col-md-6 col-xl-4">
+                                <div class="h-100 bg-light rounded p-4">
+                                    <div class="d-flex align-items-center justify-content-between mb-4">
+                                        <h6 class="mb-0">Calender</h6>
+                                        <a href="">Show All</a>
+                                    </div>
+                                    <div id="calender"></div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!-- Widgets End -->
+
+
+                    <!-- Footer Start -->
+                    <%- include('../partial/footer.ejs') %>
+                        <!-- Footer End -->
+                </div>
+                <!-- Content End -->
+
+
+                <!-- Back to Top -->
+                <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+    </div>
+
+    <!-- JavaScript Libraries -->
+    <%- include('../partial/jsLibrary.ejs') %>
+
+        <script>
+            var noOfStudents = document.getElementById("noOfStudents").getContext("2d");
+            var noOfStudentsChart = new Chart(noOfStudents, {
+                type: "pie",
+                // data: <%# JSON.stringify(noOfStudents) %>,
+                data: {
+            labels: ["2020", "2021", "2022", "2023"],
+            datasets: [{
+                    label: "Students",
+                    data: [0, 0, 0, 6476],
+                    backgroundColor: "rgba(0, 156, 255, .7)"
+                },
+                {
+                    label: "Male",
+                    data: [0, 0, 0, 3900],
+                    backgroundColor: "rgba(0, 156, 255, .5)"
+                },
+                {
+                    label: "Female",
+                    data: [0, 0, 0, 2576],
+                    backgroundColor: "rgba(0, 156, 255, .3)"
+                }
+            ]
+            },
+                options: {
+                    responsive: true
+                }
+            });
+
+            var stuCategory = document.getElementById("stuCategory").getContext("2d");
+            var stuCategoryChart = new Chart(stuCategory, {
+                type: "bar",
+                // data: <%# JSON.stringify(category) %>,
+                data: "10",
+                options: {
+                    responsive: true
+                }
+            });
+        </script>
+</body>
+
+</html>

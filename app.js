@@ -17,14 +17,20 @@ mongoose.connect(process.env.DB_CONNECTION).then(() => {
 
 
 
-// Importing Auth Routes
+// Importing Students's Auth Routes
 import authRoute from './routes/authRoutes/authRoute.js'
 import recoverCredentialRoute from './routes/authRoutes/recoverCredential.js'
+
+// Importing Admin's Auth Routes
+import adminAuthRoute from './routes/adminAuthRoutes.js/adminAuthRoute.js'
 
 // Importing User Routes
 import userDashboardRoute from './routes/studentRoutes/dashboardRoute.js'
 import studentSem1Route from './routes/studentRoutes/sem1Route.js'
 import studentSem2Route from './routes/studentRoutes/sem2Route.js'
+
+// Importing Admin Routes
+import adminDashboardRoute from './routes/adminRoutes/dashboardRoute.js'
 
 app.use(
     session({
@@ -44,14 +50,23 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser())
 
-// Auth Routes
+// Student's Auth Routes
 app.use('/student', authRoute)
 app.use('/student', recoverCredentialRoute)
+
+// Student's Auth Routes
+app.use('/admin', adminAuthRoute)
+
 
 // User Routes
 app.use('/student', userDashboardRoute)
 app.use('/student', studentSem1Route)
 app.use('/student', studentSem2Route)
+
+
+// User Routes
+app.use('/admin', adminDashboardRoute)
+
 
 app.use((req, res, next) => {
   res.status(404).render("auth/pageNotFound");
