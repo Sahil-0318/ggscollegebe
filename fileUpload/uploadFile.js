@@ -69,4 +69,22 @@ export const uploadFile = async (file) => {
 };
 
 
+export const noticeUpload = (file) => {
+  return new Promise((resolve, reject) => {
+    const stream = cloudinary.v2.uploader.upload_stream(
+      { resource_type: 'auto' },
+      (error, result) => {
+        if (error) {
+          console.error('Notice Uploading Error:', error);
+          return reject(error);
+        }
+        resolve(result);
+      }
+    );
+    stream.end(file.buffer); // file.buffer is available only with memoryStorage
+  });
+};
+
+
+
   

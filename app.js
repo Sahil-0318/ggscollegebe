@@ -31,6 +31,7 @@ import studentSem2Route from './routes/studentRoutes/sem2Route.js'
 
 // Importing Admin Routes
 import adminDashboardRoute from './routes/adminRoutes/dashboardRoute.js'
+import noticeRoute from './routes/noticeRoutes/noticeRoute.js'
 
 app.use(
     session({
@@ -66,6 +67,7 @@ app.use('/student', studentSem2Route)
 
 // User Routes
 app.use('/admin', adminDashboardRoute)
+app.use('/admin', noticeRoute)
 
 
 app.use((req, res, next) => {
