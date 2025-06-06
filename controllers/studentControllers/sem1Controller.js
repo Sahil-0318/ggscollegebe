@@ -79,21 +79,11 @@ export const admFormPost = async (req, res) => {
         }
 
         // Calculate admission fee
-        let admissionFee = 0;
-        const course = existingStudent.course;
-        const isPsychology = paper1 === "Psychology";
-        const isScienceCourse = course === "Bachelor of Science" || isPsychology;
+        let admissionFee = gender === "Male" ? 2255 : 0;
+        const practicalSubjects = ['Physics', 'Chemistry', 'Botany', 'Zoology', 'Geography', 'Psychology'];
 
-        if (gender === "Male") {
-            if (isScienceCourse) {
-                admissionFee = category === "GENERAL" || category === "BC-2" ? 3455
-                    : category === "BC-1" ? 2855 : 1200;
-            } else {
-                admissionFee = category === "GENERAL" || category === "BC-2" ? 2855
-                    : category === "BC-1" ? 2255 : 600;
-            }
-        } else {
-            admissionFee = isScienceCourse ? 1200 : 600;
+        if (practicalSubjects.includes(paper1) || practicalSubjects.includes(paper2)) {
+            admissionFee += 600;
         }
 
         const newAdmissionForm = new UgRegSem1AdmForm({

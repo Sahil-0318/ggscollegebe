@@ -62,8 +62,21 @@
                                     <p><strong>Email:</strong>
                                         <%= existingStudent.sem1.email %>
                                     </p>
-                                    <p><strong>Admission Fee:</strong> ₹<%= existingStudent.sem1.admissionFee %>
-                                    </p>
+
+                                    <% const practicalSubjects=['Physics', 'Chemistry' , 'Botany' , 'Zoology'
+                                        , 'Geography' , 'Psychology' ]; const
+                                        hasPractical=practicalSubjects.includes(existingStudent.sem1.paper1) ||
+                                        practicalSubjects.includes(existingStudent.sem1.paper2); %>
+
+                                        <p><strong>Admission Fee:</strong> ₹<%= hasPractical ?
+                                                existingStudent.sem1.admissionFee - 600 :
+                                                existingStudent.sem1.admissionFee %>
+                                        </p>
+
+                                        <% if (hasPractical) { %>
+                                            <p><strong>Practical Fee:</strong> ₹600</p>
+                                            <% } %>
+
                                 </div>
                             </div>
 
@@ -75,7 +88,9 @@
 
                                         नोट: भुगतान के बाद यह फॉर्म भरें।
                                     </h6>
-                                    <form class="needs-validation mt-4" novalidate="" method="post" action="/student/<%= courseSession %>/<%= semester %>/checkoutPage/<%= existingStudent.sem1._id %>" enctype="multipart/form-data">
+                                    <form class="needs-validation mt-4" novalidate="" method="post"
+                                        action="/student/<%= courseSession %>/<%= semester %>/checkoutPage/<%= existingStudent.sem1._id %>"
+                                        enctype="multipart/form-data">
                                         <div class="row g-3">
                                             <div class="col-12">
                                                 <label for="paymentId" class="form-label fw-bold">Payment Id /
@@ -99,7 +114,8 @@
                             </div>
                         </div>
                         <h3 class="mt-4 text-center">Total Amount : ₹ <%= existingStudent.sem1.admissionFee %> /-</h3>
-                        <a href="https://www.onlinesbi.sbi/sbicollect/" target="_blank" class="btn btn-success">Pay Now</a>
+                        <a href="https://www.onlinesbi.sbi/sbicollect/" target="_blank" class="btn btn-success">Pay
+                            Now</a>
                         <hr>
                         <div class="mb-4 text-center">
                             <div class="lead text-danger fw-bold">

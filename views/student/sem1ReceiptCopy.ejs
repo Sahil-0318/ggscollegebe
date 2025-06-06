@@ -79,7 +79,8 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="text-muted">
-                                    <p class="mb-1 fw-bold">Name :&nbsp; &nbsp; &nbsp; <%= existingStudent.studentName %>
+                                    <p class="mb-1 fw-bold">Name :&nbsp; &nbsp; &nbsp; <%= existingStudent.studentName
+                                            %>
                                     </p>
 
                                     <% if (existingStudent.course==="Bachelor of Arts (Social Science Subjects)" ||
@@ -90,14 +91,16 @@
                                             </p>
                                             <% } %>
 
-                                                <p class="mb-1 fw-bold">Reference No. :&nbsp; &nbsp; &nbsp; <%= existingStudent.referenceNumber %>
+                                                <p class="mb-1 fw-bold">Reference No. :&nbsp; &nbsp; &nbsp; <%=
+                                                        existingStudent.referenceNumber %>
                                                 </p>
 
                                                 <p class="mb-1 fw-bold">College Roll No :&nbsp; &nbsp; <%=
                                                         existingStudent.sem1.collegeRollNo.replace(/^\D+/g, '' ) %>
                                                 </p>
 
-                                                <p class="mb-1 fw-bold">Gender :&nbsp; &nbsp; &nbsp; <%= existingStudent.gender %>
+                                                <p class="mb-1 fw-bold">Gender :&nbsp; &nbsp; &nbsp; <%=
+                                                        existingStudent.gender %>
                                                 </p>
                                 </div>
                             </div>
@@ -105,13 +108,17 @@
                                 <div class="text-muted ">
                                     <p class="mb-1 fw-bold">E-mail Id :&nbsp; &nbsp; &nbsp; <%= existingStudent.email %>
                                     </p>
-                                    <p class="mb-1 fw-bold">Mobile No :&nbsp; &nbsp; &nbsp; <%= existingStudent.mobileNumber %>
+                                    <p class="mb-1 fw-bold">Mobile No :&nbsp; &nbsp; &nbsp; <%=
+                                            existingStudent.mobileNumber %>
                                     </p>
-                                    <p class="mb-1 fw-bold">Major Subject :&nbsp; &nbsp; &nbsp; <%= existingStudent.majorSubject %>
+                                    <p class="mb-1 fw-bold">Major Subject :&nbsp; &nbsp; &nbsp; <%=
+                                            existingStudent.majorSubject %>
                                     </p>
-                                    <p class="mb-1 fw-bold">Category :&nbsp; &nbsp; &nbsp; <%= existingStudent.sem1.category %>
+                                    <p class="mb-1 fw-bold">Category :&nbsp; &nbsp; &nbsp; <%=
+                                            existingStudent.sem1.category %>
                                     </p>
-                                    <p class="mb-1 fw-bold">Receipt No :&nbsp; &nbsp; <%= existingStudent.sem1.receiptNo %>
+                                    <p class="mb-1 fw-bold">Receipt No :&nbsp; &nbsp; <%= existingStudent.sem1.receiptNo
+                                            %>
                                     </p>
                                 </div>
                             </div>
@@ -132,19 +139,41 @@
                                         </tr>
                                     </thead><!-- end thead -->
                                     <tbody>
-                                        <tr>
-                                            <th scope="row">01</th>
-                                            <td>
-                                                <div>
-                                                    <h5 class="text-truncate font-size-14 mb-1">Admission Fee</h5>
-                                                </div>
-                                            </td>
-                                            <td></td>
-                                            <td></td>
-                                            <td class="text-end">₹<%= existingStudent.sem1.admissionFee %>
-                                            </td>
-                                        </tr>
-                                        <!-- end tr -->
+                                        <% const practicalSubjects=['Physics', 'Chemistry' , 'Botany' , 'Zoology'
+                                            , 'Geography' , 'Psychology' ]; const
+                                            hasPractical=practicalSubjects.includes(existingStudent.sem1.paper1) ||
+                                            practicalSubjects.includes(existingStudent.sem1.paper2); %>
+                                            <tr>
+                                                <th scope="row">01</th>
+                                                <td>
+                                                    <div>
+                                                        <h5 class="text-truncate font-size-14 mb-1">Admission Fee</h5>
+                                                    </div>
+                                                </td>
+                                                <td></td>
+                                                <td></td>
+                                                <td class="text-end">₹<%= hasPractical ?
+                                                        existingStudent.sem1.admissionFee - 600 :
+                                                        existingStudent.sem1.admissionFee %>
+                                                </td>
+                                            </tr>
+
+                                            <% if (hasPractical) { %>
+                                            <tr>
+                                                <th scope="row">02</th>
+                                                <td>
+                                                    <div>
+                                                        <h5 class="text-truncate font-size-14 mb-1">Practical Fee</h5>
+                                                    </div>
+                                                </td>
+                                                <td></td>
+                                                <td></td>
+                                                <td class="text-end">₹600
+                                                </td>
+                                            </tr>
+                                            <% } %>
+                                            
+                                            <!-- end tr -->
                                     </tbody><!-- end tbody -->
                                 </table><!-- end table -->
                             </div><!-- end table responsive -->
@@ -189,8 +218,8 @@
                                 <div class="float-end">
                                     <a href="javascript:window.print()" class="btn btn-success me-1"><i
                                             class="fa fa-print"></i> Receipt</a>
-                                    <a href="/student/<%= courseSession %>/<%= semester %>/admFormCopy" class="btn btn-primary me-1"><i
-                                            class="fa fa-print"></i> Adm Form</a>
+                                    <a href="/student/<%= courseSession %>/<%= semester %>/admFormCopy"
+                                        class="btn btn-primary me-1"><i class="fa fa-print"></i> Adm Form</a>
                                 </div>
                             </div>
                         </div>
