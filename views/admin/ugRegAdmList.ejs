@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partial/header.ejs') %>
+</head>
+
+<body>
+    <div class="container-xxl position-relative bg-white d-flex p-0">
+        <!-- Spinner Start -->
+        <%- include('../partial/spinner.ejs') %>
+            <!-- Spinner End -->
+
+            <!-- Sidebar Start -->
+            <%- include('../partial/adminSidebar.ejs') %>
+                <!-- Sidebar End -->
+
+                <!-- Content Start -->
+                <div class="content">
+                    <!-- Navbar Start -->
+                    <nav class="navbar navbar-expand bg-light navbar-light sticky-top px-4 py-0">
+
+                        <a href="#" class="sidebar-toggler flex-shrink-0 mx-1">
+                            <i class="fa fa-bars"></i>
+                        </a>
+                        <a href="" class="navbar-brand d-flex d-lg-none mx-1 me-4">
+                            <img class="mb-0" src="/images/sggscollegelogo.png" alt="SGGS College, Patna City"
+                                style="width: 100%;">
+                        </a>
+
+                        <div class="navbar-nav align-items-center ms-auto">
+                            <div class="nav-item">
+                                <a href="/admin/logout" class="nav-link">
+                                    <span class="d-none d-lg-inline-flex text-capitalize">
+                                        Logout
+                                    </span>
+                                    <i class="fa-solid fa-right-from-bracket"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </nav>
+                    <!-- Navbar End -->
+
+                    <div class="col-sm-12 col-xl-12 pt-4 px-4">
+                        <!-- Flash message starts -->
+                        <%- include('../partial/flashMessage.ejs') %>
+                            <!-- Flash message ends -->
+                            <div>
+                                <h5 class="fw-bold">Filter Students : </h5>
+                            </div>
+                            <form action="/ugRegularSem1List" method="get">
+                                <div class="bg-light rounded h-100 p-3 d-flex flex-wrap gap-2">
+                                    <!-- filter category -->
+
+                                    <div>
+                                        <select id="isPaid" class="form-select" name="isPaid">
+                                            <option value="all" selected>All Students</option>
+                                            <option value="true">Paid</option>
+                                            <option value="false">Unpaid</option>
+                                        </select>
+                                    </div>
+
+                                    <div>
+                                        <select id="category" class="form-select" name="category">
+                                            <option value="all" selected>Select Category</option>
+                                            <option value="GENERAL">General</option>
+                                            <option value="BC-2">BC-2</option>
+                                            <option value="BC-1">BC-1</option>
+                                            <option value="SC">SC</option>
+                                            <option value="ST">ST</option>
+                                        </select>
+                                    </div>
+
+                                    <div>
+                                        <select id="gender" class="form-select" name="gender">
+                                            <option value="all" selected>Select Gender</option>
+                                            <option value="MALE">MALE</option>
+                                            <option value="FEMALE">FEMALE</option>
+                                        </select>
+                                    </div>
+
+                                    <button class="btn btn-success" type="submit">Search</button>
+                                </div>
+                            </form>
+                    </div>
+
+                    <!-- Blank Start -->
+                    <div class="container-fluid pt-4 px-4">
+                        <div class="row bg-light rounded justify-content-center m-0 p-2">
+                            <section class="section">
+                                <div class="row">
+                                    <!-- List starts Here     -->
+                                    <div class="col-12">
+                                        <div class="bg-light rounded h-100 p-0">
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <div class="d-flex gap-2 justify-content-center align-items-center">
+                                                    <h6 class="my-3 ">
+                                                        UG Regular (<%= fullSession %>) Admission Lists
+                                                    </h6>
+                                                </div>
+                                                <!-- <div class="my-3"> -->
+                                                <form class="d-flex gap-2" action="/ugRegularSem1List" method="post">
+                                                    <input type="text" class="form-control" id="findStuRefNo"
+                                                        name="findStuRefNo" placeholder="Enter Reference Number"
+                                                        oninput="this.value = this.value.toUpperCase()" />
+                                                    <button type="submit" class="btn btn-primary">Find</button>
+                                                </form>
+                                                <!-- </div> -->
+                                            </div>
+                                            <div>
+                                            </div>
+                                            <div class="table-responsive">
+                                                <table class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th scope="col">S.No.</th>
+                                                            <th scope="col">Student's Name</th>
+                                                            <th scope="col">Student's Detail</th>
+                                                            <th scope="col">Sem 1 Detail</th>
+                                                            <th scope="col">Sem 2 Detail</th>
+                                                            <th scope="col">Sem 3 Detail</th>
+                                                            <th scope="col">Sem 4 Detail</th>
+                                                            <th scope="col">Sem 5 Detail</th>
+                                                            <th scope="col">Sem 6 Detail</th>
+                                                            <th scope="col">Sem 7 Detail</th>
+                                                            <th scope="col">Sem 8 Detail</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <% if (locals.students) { %>
+                                                            <% students.forEach((element, index)=> { %>
+                                                                <tr>
+                                                                    <th scope="row">
+                                                                        <%= index + 1%>
+                                                                    </th>
+                                                                    <td>
+                                                                        <%= element.studentName%>
+                                                                    </td>
+                                                                    
+                                                                    <td>
+                                                                        <a href="/admin/<%= courseSession %>/student-detail/<%= element._id %>"
+                                                                            class="px-3 btn-sm btn btn-success w-md">View</a>
+                                                                    </td>
+
+                                                                    <td>
+                                                                        <a href="/ugRegularSem1StudentEdit/<%= element._id %>"
+                                                                            class="px-3 btn-sm btn btn-warning w-md">Edit</a>
+                                                                    </td>
+                                                                    
+                                                                    <td>
+                                                                        <a href="/ugRegularSem1StudentEdit/<%= element._id %>"
+                                                                            class="px-3 btn-sm btn btn-warning w-md">Edit</a>
+                                                                    </td>
+
+                                                                    <td>
+                                                                        <a href="/ugRegularSem1StudentEdit/<%= element._id %>"
+                                                                            class="px-3 btn-sm btn btn-warning w-md">Edit</a>
+                                                                    </td>
+
+                                                                    <td>
+                                                                        <a href="/ugRegularSem1StudentEdit/<%= element._id %>"
+                                                                            class="px-3 btn-sm btn btn-warning w-md">Edit</a>
+                                                                    </td>
+
+                                                                    <td>
+                                                                        <a href="/ugRegularSem1StudentEdit/<%= element._id %>"
+                                                                            class="px-3 btn-sm btn btn-warning w-md">Edit</a>
+                                                                    </td>
+
+                                                                    <td>
+                                                                        <a href="/ugRegularSem1StudentEdit/<%= element._id %>"
+                                                                            class="px-3 btn-sm btn btn-warning w-md">Edit</a>
+                                                                    </td>
+
+                                                                    <td>
+                                                                        <a href="/ugRegularSem1StudentEdit/<%= element._id %>"
+                                                                            class="px-3 btn-sm btn btn-warning w-md">Edit</a>
+                                                                    </td>
+
+                                                                    <td>
+                                                                        <a href="/ugRegularSem1StudentEdit/<%= element._id %>"
+                                                                            class="px-3 btn-sm btn btn-warning w-md">Edit</a>
+                                                                    </td>
+
+                                                                </tr>
+                                                                <% }); %>
+                                                                    <% } %>
+                                                    </tbody>
+                                                </table>
+                                                <% if (locals.list) { %>
+                                                    <% if (locals.list.length===0) { %>
+                                                        <h3>Student not found ...</h3>
+
+                                                        <% } %>
+                                                            <% } %>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- List ends Here     -->
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                    <!-- Blank End -->
+
+                    <!-- Footer Start -->
+                    <%- include('../partial/footer.ejs') %>
+                        <!-- Footer End -->
+                </div>
+                <!-- Content End -->
+
+
+                <!-- Back to Top -->
+                <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+    </div>
+
+    <!-- JavaScript Libraries -->
+    <%- include('../partial/jsLibrary.ejs') %>
+</body>
+
+</html>

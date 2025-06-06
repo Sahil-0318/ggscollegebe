@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partial/header.ejs') %>
+</head>
+
+<body>
+    <div class="container-xxl position-relative bg-white d-flex p-0">
+        <!-- Spinner Start -->
+        <%- include('../partial/spinner.ejs') %>
+            <!-- Spinner End -->
+
+
+            <!-- Sidebar Start -->
+            <%- include('../partial/adminSidebar.ejs') %>
+                <!-- Sidebar End -->
+
+
+                <!-- Content Start -->
+                <div class="content">
+                    <!-- Navbar Start -->
+                    <nav class="navbar navbar-expand bg-light navbar-light sticky-top px-4 py-1">
+
+                        <a href="#" class="sidebar-toggler flex-shrink-0 mx-1">
+                            <i class="fa fa-bars"></i>
+                        </a>
+                        <a href="" class="navbar-brand d-flex d-lg-none mx-1 me-4">
+                            <img class="mb-0" src="/images/sggscollegelogo.png" alt="SGGS College, Patna City"
+                                style="width: 100%;">
+                        </a>
+                        <!-- <div class="navbar-nav align-items-center ms-auto">
+                            <div class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                                    <img class="rounded-circle me-lg-2" src="/images/user.jpg" alt=""
+                    style="width: 40px; height: 40px;">
+                                    <div class="d-inline-flex bg-primary text-white rounded-circle border border-2 border-white p-1 d-flex align-items-center justify-content-center"
+                                        style="width: 40px; height: 40px;">
+                                        <%# locals.user.fullName.slice(0, 1)%>Sahil
+                                    </div>
+                                    <span class="d-none d-lg-inline-flex text-capitalize">
+                                        <%# locals.user.fullName%>Amit
+                                    </span>
+                                </a>
+                                <div
+                                    class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
+                                    <a href="#" class="dropdown-item">My Profile</a>
+                                    <a href="#" class="dropdown-item">Settings</a>
+                                    <a href="/logout" class="dropdown-item">Log Out</a>
+                                </div>
+                            </div>
+                        </div> -->
+                    </nav>
+                    <!-- Navbar End -->
+
+                    <div class="container-fluid pt-4 px-4">
+                        <!-- Flash message starts -->
+                        <%- include('../partial/flashMessage.ejs') %>
+                            <!-- Flash message ends -->
+                            <div class="fw-bold mb-2 fs-3 text-primary">Update UG Reg (<%= fullSession %>) Student Details :
+                            </div>
+                            <div class="row g-4">
+                                <div class="col-12">
+                                    <div class="bg-light rounded p-4">
+                                        <!-- view start -->
+                                        <% if (student) { %>
+                                            <form
+                                                action="/admin/<%= courseSession %>/student-detail-update/<%= student._id %>"
+                                                method="post" class="row g-3">
+
+                                                <div class="col-md-6">
+                                                    <label for="" class="form-label fw-bold">Student's
+                                                        Name</label>
+                                                    <textarea rows="1" name="studentName" id="studentName"
+                                                        class="form-control"
+                                                        required><%= student?.studentName || 'Data not available' %></textarea>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <label for="fatherName" class="form-label fw-bold">Father's
+                                                        Name</label>
+                                                    <textarea rows="1" name="fatherName" id="fatherName"
+                                                        class="form-control"
+                                                        required><%= student?.fatherName || 'Data not available' %></textarea>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <label for="email" class="form-label fw-bold">Email</label>
+                                                    <textarea rows="1" name="email" id="email" class="form-control"
+                                                        required><%= student?.email || 'Data not available' %></textarea>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <label for="mobileNumber" class="form-label fw-bold">Mobile
+                                                        Number</label>
+                                                    <textarea rows="1" name="mobileNumber" id="mobileNumber"
+                                                        class="form-control"
+                                                        required><%= student?.mobileNumber || 'Data not available' %></textarea>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <label for="gender" class="form-label fw-bold">Gender</label>
+
+                                                    <select class="form-control" name="gender" id="gender" required>
+                                                        <option value="Male" <%=student.gender==="Male" ? "selected"
+                                                            : "" %> >Male</option>
+                                                        <option value="Female" <%=student.gender==="Female" ? "selected"
+                                                            : "" %> >Female</option>
+                                                    </select>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <label for="dOB" class="form-label fw-bold">Date of Birth</label>
+
+                                                    <input type="date" class="form-control" id="dOB" name="dOB" required
+                                                        value="<%= student.dOB ? student.dOB.toISOString().split('T')[0] : '' %>" />
+                                                </div>
+
+                                                <button type="submit" class="btn btn-primary">Update Details</button>
+                                            </form>
+                                            <% } %>
+
+                                                <!-- view end -->
+
+                                    </div>
+
+                                    <a href="javascript:window.history.back()"
+                                        class="px-4 btn btn-secondary w-md mt-4">Back</a>
+                                </div>
+
+                            </div>
+                    </div>
+
+
+                    <!-- Footer Start -->
+                    <%- include('../partial/footer.ejs') %>
+                        <!-- Footer End -->
+                </div>
+                <!-- Content End -->
+
+
+                <!-- Back to Top -->
+                <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+    </div>
+
+    <!-- JavaScript Libraries Starts -->
+    <%- include('../partial/jsLibrary.ejs') %>
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <%- include('../partial/sem1Subject.ejs') %>
+</body>
+
+</html>

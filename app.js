@@ -33,6 +33,10 @@ import studentSem2Route from './routes/studentRoutes/sem2Route.js'
 import adminDashboardRoute from './routes/adminRoutes/dashboardRoute.js'
 import noticeRoute from './routes/noticeRoutes/noticeRoute.js'
 
+// Importing UG Reg Admission Admin Routes
+import ugReg25_29AdminRoute from './routes/ugRegAdmAdminRoutes/ugRegAdmListRoute.js'
+
+
 // Importing API Routes
 import noticeAPIRoute from './routes/noticeRoutes/noticeAPIRoute.js'
 
@@ -69,9 +73,12 @@ app.use('/student', studentSem1Route)
 app.use('/student', studentSem2Route)
 
 
-// User Routes
+// Admin Routes
 app.use('/admin', adminDashboardRoute)
 app.use('/admin', noticeRoute)
+
+// UG Reg Admission Admin Routes
+app.use('/admin', ugReg25_29AdminRoute)
 
 // User Routes
 app.use('/api', noticeAPIRoute)
