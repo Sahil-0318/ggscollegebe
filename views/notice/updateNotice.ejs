@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partial/header.ejs') %>
+</head>
+
+<body>
+    <div class="container-xxl position-relative bg-white d-flex p-0">
+        <!-- Spinner Start -->
+        <%- include('../partial/spinner.ejs') %>
+            <!-- Spinner End -->
+
+            <!-- Sidebar Start -->
+            <%- include('../partial/adminSidebar.ejs') %>
+                <!-- Sidebar End -->
+
+                <!-- Content Start -->
+                <div class="content">
+                    <!-- Navbar Start -->
+                    <nav class="navbar navbar-expand bg-light navbar-light sticky-top px-4 py-0">
+
+                        <a href="#" class="sidebar-toggler flex-shrink-0 mx-1">
+                            <i class="fa fa-bars"></i>
+                        </a>
+                        <a href="" class="navbar-brand d-flex d-lg-none mx-1 me-4">
+                            <img class="mb-0" src="/images/sggscollegelogo.png" alt="SGGS College, Patna City"
+                                style="width: 100%;">
+                        </a>
+
+                        <div class="navbar-nav align-items-center ms-auto">
+                            <div class="nav-item">
+                                <a href="/admin/logout" class="nav-link">
+                                    <span class="d-none d-lg-inline-flex text-capitalize">
+                                        Logout
+                                    </span>
+                                    <i class="fa-solid fa-right-from-bracket"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </nav>
+                    <!-- Navbar End -->
+
+                    <div class="col-sm-12 col-xl-12 pt-4 px-4 d-md-flex gap-4 justify-content-between vh-100">
+                        <div class="bg-light rounded h-100 p-4 mb-2 flex-grow-1">
+                            <!-- Flash message starts -->
+                            <%- include('../partial/flashMessage.ejs') %>
+                                <!-- Flash message ends -->
+                                <h6 class="mb-4">Update Notice</h6>
+                                <form action="/admin/notice/update/<%= notice._id %>" method="post" enctype="multipart/form-data">
+                                    <div class="row mb-3">
+                                        <label for="noticeType" class="col-sm-3 col-md-2 col-form-label">Notice Type
+                                            :</label>
+                                        <div class="col-sm-6 col-md-8">
+                                            <select class="form-control" name="noticeType" id="noticeType" required>
+                                                <option value="News" <%= notice.noticeType === 'News' ? 'selected' : "" %>>News Notice</option>
+                                                <option value="Exam" <%= notice.noticeType === 'Exam' ? 'selected' : "" %>>Exam Notice</option>
+                                                <option value="Admission" <%= notice.noticeType === 'Admission' ? 'selected' : "" %>>Admission Notice</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3">
+                                        <label for="noticeTitle" class="col-sm-3 col-md-2 col-form-label">Notice Title
+                                            :</label>
+                                        <div class="col-sm-6 col-md-8">
+                                            <textarea class="form-control" name="noticeTitle" id="noticeTitle" rows="2" required><%= notice.noticeTitle %></textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3">
+                                        <label for="noticeMedia" class="col-sm-3 col-md-2 col-form-label">Upload Notice
+                                            :</label>
+                                        <div class="col-sm-6 col-md-8">
+                                            <input class="form-control form-control-sm" id="noticeMedia"
+                                                name="noticeMedia" type="file" accept="image/*,application/pdf">
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn btn-warning">Update</button>
+                                </form>
+                        </div>
+
+                    </div>
+
+                    <!-- Footer Start -->
+                    <%- include('../partial/footer.ejs') %>
+                        <!-- Footer End -->
+                </div>
+                <!-- Content End -->
+
+
+                <!-- Back to Top -->
+                <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+    </div>
+
+    <!-- JavaScript Libraries -->
+    <%- include('../partial/jsLibrary.ejs') %>
+</body>
+
+</html>

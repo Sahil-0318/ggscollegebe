@@ -65,8 +65,7 @@
                                         <label for="noticeTitle" class="col-sm-3 col-md-2 col-form-label">Notice Title
                                             :</label>
                                         <div class="col-sm-6 col-md-8">
-                                            <input type="text" class="form-control" id="noticeTitle" name="noticeTitle"
-                                                placeholder="Notice Title" required>
+                                            <textarea class="form-control" name="noticeTitle" id="noticeTitle" rows="2" placeholder="Write notice title here..." required></textarea>
                                         </div>
                                     </div>
 
@@ -101,6 +100,7 @@
                                                     <thead>
                                                         <tr>
                                                             <th scope="col">S.No.</th>
+                                                            <th scope="col">Notice Type</th>
                                                             <th scope="col">Title</th>
                                                             <th scope="col">Notice Preview</th>
                                                             <th scope="col">Edit</th>
@@ -115,6 +115,9 @@
                                                                         <%= index + 1%>
                                                                     </th>
                                                                     <td>
+                                                                        <%= element.noticeType%>
+                                                                    </td>
+                                                                    <td>
                                                                         <%= element.noticeTitle%>
                                                                     </td>
                                                                     <td>
@@ -124,11 +127,11 @@
                                                                         </div>
                                                                     </td>
                                                                     <td>
-                                                                        <a href="/edit-notice/<%= element._id %>"
+                                                                        <a href="/admin/notice/update/<%= element._id %>"
                                                                             class="px-4 btn btn-warning w-md">Edit</a>
                                                                     </td>
                                                                     <td>
-                                                                        <a href="/delete-notice/<%= element._id %>"
+                                                                        <a href="/admin/notice/delete/<%= element._id %>"
                                                                             onclick="deleteNotice()"
                                                                             class="deleteBtn btn btn-danger w-md">Delete</a>
                                                                     </td>
@@ -167,46 +170,6 @@
 
     <!-- JavaScript Libraries -->
     <%- include('../partial/jsLibrary.ejs') %>
-
-        <script>
-            var noOfStudents = document.getElementById("noOfStudents").getContext("2d");
-            var noOfStudentsChart = new Chart(noOfStudents, {
-                type: "pie",
-                // data: <%# JSON.stringify(noOfStudents) %>,
-                data: {
-                    labels: ["2020", "2021", "2022", "2023"],
-                    datasets: [{
-                        label: "Students",
-                        data: [0, 0, 0, 6476],
-                        backgroundColor: "rgba(0, 156, 255, .7)"
-                    },
-                    {
-                        label: "Male",
-                        data: [0, 0, 0, 3900],
-                        backgroundColor: "rgba(0, 156, 255, .5)"
-                    },
-                    {
-                        label: "Female",
-                        data: [0, 0, 0, 2576],
-                        backgroundColor: "rgba(0, 156, 255, .3)"
-                    }
-                    ]
-                },
-                options: {
-                    responsive: true
-                }
-            });
-
-            var stuCategory = document.getElementById("stuCategory").getContext("2d");
-            var stuCategoryChart = new Chart(stuCategory, {
-                type: "bar",
-                // data: <%# JSON.stringify(category) %>,
-                data: "10",
-                options: {
-                    responsive: true
-                }
-            });
-        </script>
 </body>
 
 </html>

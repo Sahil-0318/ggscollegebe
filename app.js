@@ -33,6 +33,10 @@ import studentSem2Route from './routes/studentRoutes/sem2Route.js'
 import adminDashboardRoute from './routes/adminRoutes/dashboardRoute.js'
 import noticeRoute from './routes/noticeRoutes/noticeRoute.js'
 
+// Importing API Routes
+import noticeAPIRoute from './routes/noticeRoutes/noticeAPIRoute.js'
+
+
 app.use(
     session({
         secret: process.env.SESSION_SECRET_KEY,
@@ -68,6 +72,9 @@ app.use('/student', studentSem2Route)
 // User Routes
 app.use('/admin', adminDashboardRoute)
 app.use('/admin', noticeRoute)
+
+// User Routes
+app.use('/api', noticeAPIRoute)
 
 
 app.use((req, res, next) => {
