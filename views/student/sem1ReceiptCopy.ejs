@@ -139,26 +139,20 @@
                                         </tr>
                                     </thead><!-- end thead -->
                                     <tbody>
-                                        <% const practicalSubjects=['Physics', 'Chemistry' , 'Botany' , 'Zoology'
-                                            , 'Geography' , 'Psychology' ]; const
-                                            hasPractical=practicalSubjects.includes(existingStudent.sem1.paper1) ||
-                                            practicalSubjects.includes(existingStudent.sem1.paper2); %>
-                                            <tr>
-                                                <th scope="row">01</th>
-                                                <td>
-                                                    <div>
-                                                        <h5 class="text-truncate font-size-14 mb-1">Admission Fee</h5>
-                                                    </div>
-                                                </td>
-                                                <td></td>
-                                                <td></td>
-                                                <td class="text-end">₹<%= hasPractical ?
-                                                        existingStudent.sem1.admissionFee - 600 :
-                                                        existingStudent.sem1.admissionFee %>
-                                                </td>
-                                            </tr>
+                                        <tr>
+                                            <th scope="row">01</th>
+                                            <td>
+                                                <div>
+                                                    <h5 class="text-truncate font-size-14 mb-1">Admission Fee</h5>
+                                                </div>
+                                            </td>
+                                            <td></td>
+                                            <td></td>
+                                            <td class="text-end">₹<%= existingStudent.sem1.admissionFee %>
+                                            </td>
+                                        </tr>
 
-                                            <% if (hasPractical) { %>
+                                        <% if ( existingStudent.sem1.practicalFee> 0 ) { %>
                                             <tr>
                                                 <th scope="row">02</th>
                                                 <td>
@@ -168,12 +162,12 @@
                                                 </td>
                                                 <td></td>
                                                 <td></td>
-                                                <td class="text-end">₹600
+                                                <td class="text-end">₹<%= existingStudent.sem1.practicalFee %>
                                                 </td>
                                             </tr>
                                             <% } %>
-                                            
-                                            <!-- end tr -->
+
+                                                <!-- end tr -->
                                     </tbody><!-- end tbody -->
                                 </table><!-- end table -->
                             </div><!-- end table responsive -->
@@ -190,7 +184,7 @@
                                     <div class="col-sm-3">
                                         <div class="text-muted">
                                             <p class="mb-1">Online</p>
-                                            <p class="mb-1 fw-bold">₹<%= existingStudent.sem1.admissionFee %>
+                                            <p class="mb-1 fw-bold">₹<%= existingStudent.sem1.totalFee %>
                                             </p>
                                         </div>
                                     </div>

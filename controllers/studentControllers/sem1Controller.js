@@ -79,12 +79,25 @@ export const admFormPost = async (req, res) => {
         }
 
         // Calculate admission fee
-        let admissionFee = gender === "Male" ? 2255 : 0;
+        const admissionFee = gender === "Male" ? 2255 : 0;
         const practicalSubjects = ['Physics', 'Chemistry', 'Botany', 'Zoology', 'Geography', 'Psychology'];
 
-        if (practicalSubjects.includes(paper1) || practicalSubjects.includes(paper2)) {
-            admissionFee += 600;
-        }
+        let practicalFee = 0;
+
+        // for each extra practical subject
+        [paper1, paper2].forEach(paper => {
+            if (practicalSubjects.includes(paper)) {
+                practicalFee += 600;
+            }
+        });
+
+        // extra practical subject
+        // if (practicalSubjects.includes(paper1) || practicalSubjects.includes(paper2)) {
+        //     practicalFee += 600;
+        // }
+
+        const totalFee = admissionFee + practicalFee;
+
 
         const newAdmissionForm = new UgRegSem1AdmForm({
             studentName, fatherName, motherName, guardianName, referenceNumber, email, applicantId,
@@ -94,7 +107,7 @@ export const admFormPost = async (req, res) => {
             examName, examBoard, examYear, examResult, obtMarks, fullMarks, obtPercent,
             ppuConfidentialNumber, session: fullSession, studentPhoto: photoUpload.secure_url,
             studentSign: signUpload.secure_url, appliedBy: existingStudent._id,
-            admissionFee, collegeRollNo
+            admissionFee, practicalFee, totalFee, collegeRollNo
         });
 
         const savedForm = await newAdmissionForm.save();

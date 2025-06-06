@@ -169,6 +169,12 @@ const ugRegSem1AdmFormSchema = mongoose.Schema({
     admissionFee: {
         type: String
     },
+    practicalFee: {
+        type: String
+    },
+    totalFee: {
+        type: String
+    },
     collegeRollNo: {
         type: String
     },
